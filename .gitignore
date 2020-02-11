@@ -4,7 +4,7 @@ bin-release/
 [Oo]bj/
 [Bb]in/
 
-data/*
+
 
 .DS_Store
 
@@ -15,8 +15,6 @@ data/*
 # Other files and folders
 
 .settings/
-Anaylzing_R_users_files/
-RTrends2019/
 rsconnect/
 
 # Executables
