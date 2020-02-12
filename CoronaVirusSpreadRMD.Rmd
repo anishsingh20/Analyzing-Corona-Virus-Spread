@@ -78,6 +78,10 @@ recovery_rate
 
 death_rate<-(100-recovery_rate)
 death_rate
+
+
+
+
 ```
 
 So we can notice that the recovery rate of perople affected with nCOV virus is approxinately __4.7 %__, i.e only 4.7 % of people disgnosed with nCOV __recovered__ and the rest __died__. Hence the death rate is __95.3 %__ for nCOV.
@@ -87,8 +91,20 @@ So we can notice that the recovery rate of perople affected with nCOV virus is a
 
 #### Let's do some country wise analysis
 
+
+Let's first find out number of confirmed cases country wise. Obviously China is going to have the maximum number as it is the Epicenter of the breakout.
+
+
 ```{r warning=FALSE,message=FALSE}
 
+#let's check the number of nCOV cases per country
+count_country<-nCOV %>% 
+  group_by(Country) %>%
+  select(Confirmed) %>% 
+  summarise(nCases=sum(Confirmed))
+  
+   
+        
 
 ```
 
