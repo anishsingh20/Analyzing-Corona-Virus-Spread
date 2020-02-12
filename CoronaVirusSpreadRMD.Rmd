@@ -123,5 +123,5 @@ hchart(count_country1 , type = "column", hcaes(x=count_country1$Country, y= coun
 
 ```
 
-In in the above data frame we can notice that __Mainland China has aroung 284905 confirmed cases out of total 286573 nCOV csases and this makes sense. That makes Mainland China having 99.4 % of the total confirmed cases.
+In in the above data frame we can notice that __Mainland China__ has around 284905 confirmed cases out of total 286573 nCOV csases and this makes sense. That makes Mainland China having 99.4 % of the total confirmed cases.
 
