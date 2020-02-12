@@ -65,10 +65,22 @@ ncov_cases<-rbind(sum(Deaths),sum(Confirmed),sum(Recovered)) #combining by rows
 ncov_cases <- as.data.frame(ncov_cases) #converting it to a data frame
 
 #changing the names for better understanding
-row.names(ncov_cases)<-c("Death","Confirmed_Cases","Recovered")
+row.names(ncov_cases)<-c("Death","Confirmed","Recovered")
 names(ncov_cases)[1]<-"Count"
 
 ncov_cases
 
 
+#What is the recovery rate
+recovery_rate<-(ncov_cases$Count[3]/ncov_cases$Count[2])*100 
+recovery_rate
+#hence, the recovery rate is pretty low i.e 4.69%
+
+death_rate<-(100-recovery_rate)
+death_rate
 ```
+
+So we can notice that the recovery rate of perople affected with nCOV virus is approxinately __4.7 %__, i.e only 4.7 % of people disgnosed with nCOV __recovered__ and the rest __died__. Hence the death rate is __95.3 %__ for nCOV.
+
+
+
