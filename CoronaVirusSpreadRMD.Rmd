@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## AIM
 
-The primary objective and aim of this project is to analyze the spread of Corona Virus worldwide. This dataset has data available from 22 Jan,2020. The csv file is taken from WHO(World Health Organization).
+The primary objective and aim of this project is to analyze the spread of Corona Virus worldwide. This dataset has data available from 22 Jan,2020 till 9th Feb 2020. The csv file is taken from WHO(World Health Organization).
 
 ### What is Corona Virus(nCOV)
 
