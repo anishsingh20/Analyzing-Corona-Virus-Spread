@@ -109,15 +109,15 @@ count_country<-nCOV %>%
    
 #let's plot these, and lets ingnore China 
 
-count_country1<-count_country %>% 
-  filter(count_country$Country != "Mainland China") %>% 
-  arrange(desc(count_country1$nCases))
+#count_country1<-count_country %>% 
+#  filter(count_country$Country != "Mainland China") %>% 
+ # arrange(desc(count_country1$nCases))
         
 
-hchart(count_country1 , type = "column", hcaes(x=count_country1$Country, y= count_country1$nCases ),color="purple") %>% 
-      hc_exporting(enabled = TRUE) %>%
-      hc_title(text="Confirmed Cases grouped by Country",align="center") %>%
-      hc_add_theme(hc_theme_elementary()) 
+#hchart(count_country1 , type = "column", hcaes(x=count_country1$Country, y= count_country1$nCases ),color="purple") %>% 
+ #     hc_exporting(enabled = TRUE) %>%
+ #     hc_title(text="Confirmed Cases grouped by Country",align="center") %>%
+  #    hc_add_theme(hc_theme_elementary()) 
 
 
 
@@ -150,6 +150,30 @@ count_deaths
 ```{r warning=FALSE,message=FALSE}
 
 
+# Also adding the Recovery rates for each country
+count_recovered<-nCOV %>% 
+  group_by(Country) %>% 
+  select(Recovered,Confirmed) %>% 
+  summarise(nRecovered=sum(Recovered),RecoveryRate=(nRecovered/sum(Confirmed))*100) %>%
+  arrange(desc(nRecovered))
 
 
 ```
+
+Let's plot the data:
+
+
+```{r warning=FALSE,message=FALSE}
+
+hchart(count_recovered , type = "column", hcaes(x = count_recovered$Country , y = count_recovered$RecoveryRate),color="orange",name="Rate:") %>% 
+      hc_exporting(enabled = TRUE) %>%
+      hc_title(text="Recovery rate of each country out of total nCOV Cases",align="center") %>%
+      hc_add_theme(hc_theme_elementary()) 
+
+
+```
+
+
+In the above plot we can notice that __Australia__ has the highest Recovery rate followed by __Mainland China__. And other countries have recovery rates of 0.
+
+
