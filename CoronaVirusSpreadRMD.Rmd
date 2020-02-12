@@ -109,8 +109,8 @@ count_country<-nCOV %>%
    
 #let's plot these, and lets ingnore China 
 
-count_country1<- count_country %>% 
-  filter(Country != "Mainland China") %>% 
+count_country1<-count_country %>% 
+  filter(count_country$Country != "Mainland China") %>% 
   arrange(desc(count_country1$nCases))
         
 
@@ -124,4 +124,7 @@ hchart(count_country1 , type = "column", hcaes(x=count_country1$Country, y= coun
 ```
 
 In in the above data frame we can notice that __Mainland China__ has around 284905 confirmed cases out of total 286573 nCOV csases and this makes sense. That makes Mainland China having 99.4 % of the total confirmed cases.
+
+
+#### Let's find the number of Deaths occured in these countries.
 
