@@ -84,3 +84,11 @@ So we can notice that the recovery rate of perople affected with nCOV virus is a
 
 
 
+
+#### Let's do some country wise analysis
+
+```{r warning=FALSE,message=FALSE}
+
+
+```
+
