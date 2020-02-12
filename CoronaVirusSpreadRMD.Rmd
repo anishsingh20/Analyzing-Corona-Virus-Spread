@@ -40,3 +40,20 @@ attach(nCOV)
 ```
 
 
+#### Total deaths between that timeframe
+
+```{r message=FALSE,warning=FALSE}
+
+summary(nCOV)
+
+
+sum(Deaths) #total deaths of 6126 confirmed between 22 Jan -  9th Feb
+
+#Let's find sum of confirmed cases: 286573 people affected with nCOV worldwide between 22 Jan - 9 Feb
+sum(Confirmed)
+
+# let's see how many have recovered : out of 286573, only 13455 have recovered from it between 22 Jan - 9th Feb
+sum(Recovered)
+
+```
+
