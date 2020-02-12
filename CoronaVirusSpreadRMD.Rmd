@@ -110,8 +110,16 @@ count_country<-nCOV %>%
 #let's plot these, and lets ingnore China 
 
 count_country1<- count_country %>% 
-  filter(Country != "Mainland China")
+  filter(Country != "Mainland China") %>% 
+  arrange(desc(count_country1$nCases))
         
+
+hchart(count_country1 , type = "column", hcaes(x=count_country1$Country, y= count_country1$nCases ),color="purple") %>% 
+      hc_exporting(enabled = TRUE) %>%
+      hc_title(text="Confirmed Cases grouped by Country",align="center") %>%
+      hc_add_theme(hc_theme_elementary()) 
+
+
 
 ```
 
