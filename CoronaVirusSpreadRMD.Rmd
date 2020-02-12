@@ -177,3 +177,17 @@ hchart(count_recovered , type = "column", hcaes(x = count_recovered$Country , y 
 In the above plot we can notice that __Australia__ has the highest Recovery rate followed by __Mainland China__. And other countries have recovery rates of 0.
 
 
+
+
+### Let's check which province in China and Mainland China have been the most affected
+
+
+```{r warning=FALSE,message=FALSE}
+
+
+
+
+
+
+```
+
