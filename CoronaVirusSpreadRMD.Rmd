@@ -144,3 +144,12 @@ count_deaths
 *__As per this dataset between 22 Jan till 9th Feb all the deaths due to nCOV have only been in Mainland China and Hong Kong.__*
 
 
+#### Let's see how many have recovered in each Country
+
+
+```{r warning=FALSE,message=FALSE}
+
+
+
+
+```
