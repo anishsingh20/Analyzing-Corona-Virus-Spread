@@ -128,3 +128,19 @@ In in the above data frame we can notice that __Mainland China__ has around 2849
 
 #### Let's find the number of Deaths occured in these countries.
 
+
+```{r warning=FALSE,message=FALSE}
+
+count_deaths<-nCOV %>% 
+  group_by(Country) %>% 
+  select(Deaths) %>% 
+  summarise(nDeaths=sum(Deaths)) %>% 
+  arrange(desc(nDeaths))
+  
+
+count_deaths
+```
+
+*__As per this dataset between 22 Jan till 9th Feb all the deaths due to nCOV have only been in Mainland China and Hong Kong.__*
+
+
