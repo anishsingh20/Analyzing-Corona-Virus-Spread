@@ -57,3 +57,18 @@ sum(Recovered)
 
 ```
 
+Let's make a data frame out of the above totals to understand better.
+
+```{r message=FALSE,warning=FALSE}
+
+ncov_cases<-rbind(sum(Deaths),sum(Confirmed),sum(Recovered)) #combining by rows
+ncov_cases <- as.data.frame(ncov_cases) #converting it to a data frame
+
+#changing the names for better understanding
+row.names(ncov_cases)<-c("Death","Confirmed_Cases","Recovered")
+names(ncov_cases)[1]<-"Count"
+
+ncov_cases
+
+
+```
