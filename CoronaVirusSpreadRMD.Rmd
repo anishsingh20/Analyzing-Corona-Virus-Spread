@@ -92,7 +92,7 @@ So we can notice that the recovery rate of perople affected with nCOV virus is a
 #### Let's do some country wise analysis
 
 
-Let's first find out number of confirmed cases country wise. Obviously China is going to have the maximum number as it is the Epicenter of the breakout.
+Let's first find out number of confirmed cases country wise. Obviously __Mainland China__ is going to have the maximum number as it is the Epicenter of the breakout.
 
 
 ```{r warning=FALSE,message=FALSE}
@@ -102,9 +102,18 @@ count_country<-nCOV %>%
   group_by(Country) %>%
   select(Confirmed) %>% 
   summarise(nCases=sum(Confirmed))
+
+
   
+#Mainland China has aroung 284905 confirmed cases out of total 286573 nCOV csases and this makes sense.
    
+#let's plot these, and lets ingnore China 
+
+count_country1<- count_country %>% 
+  filter(Country != "Mainland China")
         
 
 ```
+
+In in the above data frame we can notice that __Mainland China has aroung 284905 confirmed cases out of total 286573 nCOV csases and this makes sense. That makes Mainland China having 99.4 % of the total confirmed cases.
 
