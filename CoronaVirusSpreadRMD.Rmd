@@ -277,3 +277,16 @@ hchart(StateCasesChina, "treemap", hcaes(x =State , value = nRecovered,color = n
 
 After __Hubei__ state most recoveries have been in State of __*Zhejiand, Hunan and Guangdong*__.
 
+
+
+2) United States
+
+
+```{r message=FALSE,warning=FALSE}
+
+hchart(USState, "pie", hcaes(x =State , y = nConfirmed,color = nConfirmed), name="count:" ) %>% 
+      hc_exporting(enabled = TRUE) %>% 
+      hc_title(text="Tree map of States in US and confirmed Cases of nCOV",align="center") %>%
+      hc_add_theme(hc_theme_elementary()) 
+
+```
