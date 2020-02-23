@@ -238,3 +238,12 @@ GermanyState<- nCOV %>%
 
 ### Let's now plot the Statewise data 
 
+
+1) States affected in Mainland China
+
+```{r message=FALSE,warning=FALSE}
+
+
+
+
+```
