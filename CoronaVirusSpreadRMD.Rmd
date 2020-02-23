@@ -189,15 +189,32 @@ In the above plot we can notice that __Australia__ has the highest Recovery rate
 ```{r warning=FALSE,message=FALSE}
 
 
-Province_China <- nCOV %>% 
-  filter(Country == "Mainland China") 
+StateChina <- nCOV %>% 
+  filter(Country == "Mainland China") %>% 
+  group_by(State) %>% 
+  select(Confirmed,Deaths,Recovered) %>% 
+  summarise(nConfirmed=sum(Confirmed),nRecovered=sum(Recovered),nDeaths=sum(Deaths))
 
-StateCasesChina<- Province_China %>%
+
+```
+
+
+Let's make a dataframe of States for all other countries as well.
+
+```{r message=FALSE,warning=FALSE}
+
+AustraliaState <- nCOV %>% 
+  filter(Country == "Australia") %>% 
   group_by(State) %>% 
   select(Confirmed,Deaths,Recovered) %>% 
   summarise(nConfirmed=sum(Confirmed),nRecovered=sum(Recovered),nDeaths=sum(Deaths))
 
 
 
-```
+USState <- nCOV %>% 
+  filter(Country == "US") %>% 
+  group_by(State) %>% 
+  select(Confirmed,Deaths,Recovered) %>% 
+  summarise(nConfirmed=sum(Confirmed),nRecovered=sum(Recovered),nDeaths=sum(Deaths))
 
+```
