@@ -113,15 +113,15 @@ count_country<-nCOV %>%
    
 #let's plot these, and lets ingnore China 
 
-#count_country1<-count_country %>% 
-#  filter(count_country$Country != "Mainland China") %>% 
- # arrange(desc(count_country1$nCases))
+countcountry1<-count_country %>% 
+  filter(count_country$Country != "Mainland China") %>% 
+  arrange(desc(nCases))
         
 
-#hchart(count_country1 , type = "column", hcaes(x=count_country1$Country, y= count_country1$nCases ),color="purple") %>% 
- #     hc_exporting(enabled = TRUE) %>%
- #     hc_title(text="Confirmed Cases grouped by Country",align="center") %>%
-  #    hc_add_theme(hc_theme_elementary()) 
+hchart(countcountry1 , type = "column", hcaes(x=countcountry1$Country, y= countcountry1$nCases ),color="purple") %>% 
+      hc_exporting(enabled = TRUE) %>%
+      hc_title(text="Confirmed Cases grouped by Country",align="center") %>%
+      hc_add_theme(hc_theme_elementary()) 
 
 
 
@@ -216,5 +216,27 @@ USState <- nCOV %>%
   group_by(State) %>% 
   select(Confirmed,Deaths,Recovered) %>% 
   summarise(nConfirmed=sum(Confirmed),nRecovered=sum(Recovered),nDeaths=sum(Deaths))
+
+
+CanadaState <- nCOV %>% 
+  filter(Country == "Canada") %>% 
+  group_by(State) %>% 
+  select(Confirmed,Deaths,Recovered) %>% 
+  summarise(nConfirmed=sum(Confirmed),nRecovered=sum(Recovered),nDeaths=sum(Deaths))
+
+
+macauState <- nCOV %>% 
+  filter(Country == "Macau") %>% 
+  group_by(State) %>% 
+  select(Confirmed,Deaths,Recovered) %>% 
+  summarise(nConfirmed=sum(Confirmed),nRecovered=sum(Recovered),nDeaths=sum(Deaths))
+
+
+GermanyState<- nCOV %>% 
+  filter(Country == "Germany") %>% 
+  group_by(State) %>% 
+  select(Confirmed,Deaths,Recovered) %>% 
+  summarise(nConfirmed=sum(Confirmed),nRecovered=sum(Recovered),nDeaths=sum(Deaths))
+
 
 ```
