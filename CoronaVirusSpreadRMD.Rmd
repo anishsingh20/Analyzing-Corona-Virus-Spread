@@ -294,5 +294,8 @@ hchart(USState, "pie", hcaes(x =State , y = nConfirmed,color = nConfirmed), name
 
 We can notice that most confirmed cases were in __Illinios(Chicago),followed by Santa Clara(California)__. 
 
+There have been no deaths in US during this time period and total of 3 people recovered, 2 in Chicago and 1 from Seattle.
+
+
 
 
