@@ -298,4 +298,17 @@ There have been no deaths in US during this time period and total of 3 people re
 
 
 
+3) Australia
+
+```{r message=FALSE,warning=FALSE}
+
+hchart(AustraliaState, "pie", hcaes(x =State , y = nConfirmed,color = nConfirmed) ) %>% 
+      hc_exporting(enabled = TRUE) %>% 
+      hc_title(text="Tree map of States in Australia and confirmed Cases of nCOV",align="center") %>%
+      hc_add_theme(hc_theme_elementary()) 
+
+```
+
+For AUstralia most confirmed cases have been in New South Wales followed by Victoria. And 22 people have been recovered in New South Wales. No deaths in this duration of 22 Jan to 9th Feb 2020.
+
 
