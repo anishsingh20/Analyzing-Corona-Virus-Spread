@@ -250,4 +250,30 @@ hchart(StateCasesChina, "treemap", hcaes(x =State , value = nConfirmed,color = n
 
 ```
 
-We can notice in the above Tree map that most of the confirmed cases of nCOV virus are in State of __Hubei__ whose capital city is __Wuhan__, as which the city where it all started.
+We can notice in the above Tree map that most of the confirmed cases of nCOV virus are in State of __Hubei__ whose capital city is __Wuhan__, as it the city where it all started.
+
+Let's see the most deaths were in which state:
+
+```{r message=FALSE,warning=FALSE}
+
+hchart(StateCasesChina, "treemap", hcaes(x =State , value = nDeaths,color = nDeaths) ) %>% 
+      hc_exporting(enabled = TRUE) %>% 
+      hc_title(text="Tree map of States in China and confirmed deaths from nCOV",align="center") %>%
+      hc_add_theme(hc_theme_elementary()) 
+
+```
+As expected most of the deaths have been in Hubei state.
+
+The most recoveries:
+
+```{r message=FALSE,warning=FALSE}
+
+hchart(StateCasesChina, "treemap", hcaes(x =State , value = nRecovered,color = nRecovered) ) %>% 
+      hc_exporting(enabled = TRUE) %>% 
+      hc_title(text="Tree map of States in China and most recoveries",align="center") %>%
+      hc_add_theme(hc_theme_elementary()) 
+
+```
+
+After __Hubei__ state most recoveries have been in State of __*Zhejiand, Hunan and Guangdong*__.
+
