@@ -189,7 +189,7 @@ In the above plot we can notice that __Australia__ has the highest Recovery rate
 ```{r warning=FALSE,message=FALSE}
 
 
-StateChina <- nCOV %>% 
+StateCasesChina <- nCOV %>% 
   filter(Country == "Mainland China") %>% 
   group_by(State) %>% 
   select(Confirmed,Deaths,Recovered) %>% 
@@ -243,6 +243,11 @@ GermanyState<- nCOV %>%
 
 ```{r message=FALSE,warning=FALSE}
 
-
+hchart(StateCasesChina, "treemap", hcaes(x =State , value = nConfirmed,color = nConfirmed) ) %>% 
+      hc_exporting(enabled = TRUE) %>% 
+      hc_title(text="Tree map of States in China and confirmed Cases of nCOV",align="center") %>%
+      hc_add_theme(hc_theme_elementary()) 
 
 ```
+
+We can notice in the above Tree map that most of the confirmed cases of nCOV virus are in State of __Hubei__ whose capital city is __Wuhan__, as which the city where it all started.
