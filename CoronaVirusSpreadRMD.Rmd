@@ -225,18 +225,12 @@ CanadaState <- nCOV %>%
   summarise(nConfirmed=sum(Confirmed),nRecovered=sum(Recovered),nDeaths=sum(Deaths))
 
 
-macauState <- nCOV %>% 
-  filter(Country == "Macau") %>% 
-  group_by(State) %>% 
-  select(Confirmed,Deaths,Recovered) %>% 
-  summarise(nConfirmed=sum(Confirmed),nRecovered=sum(Recovered),nDeaths=sum(Deaths))
-
-
 GermanyState<- nCOV %>% 
   filter(Country == "Germany") %>% 
   group_by(State) %>% 
   select(Confirmed,Deaths,Recovered) %>% 
   summarise(nConfirmed=sum(Confirmed),nRecovered=sum(Recovered),nDeaths=sum(Deaths))
+
 
 
 ```
