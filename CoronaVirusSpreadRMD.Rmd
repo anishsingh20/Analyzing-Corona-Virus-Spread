@@ -101,7 +101,10 @@ Let's check the recoveries:
 
 ```{r message=FALSE,warning=FALSE}
 
-
+hchart(nCOVDate, "spline", hcaes(x = Date,y = nRecovery), name="Confirmed recoveries:",color="green") %>% 
+  hc_exporting(enabled = TRUE) %>%
+      hc_title(text="Increase in number of nCOV recoveries over time",align="center") %>%
+      hc_add_theme(hc_theme_elementary()) 
 
 
 ```
