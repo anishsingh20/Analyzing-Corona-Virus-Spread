@@ -28,9 +28,10 @@ require(dplyr)
 require(highcharter)
 require(ggplot2)
 require(readr)
+require(anytime) # to convert to date
 
 nCOV<-read_csv("data/2019_nCoV_data.csv",col_names = TRUE)
-
+nCOV
 #ommitting any NA values if there
 nCOV<-na.omit(nCOV)
 
@@ -66,7 +67,7 @@ Let's plot the data and make a time series plot of cases,deaths and recoveries i
 
 ```{r message=FALSE,warning=FALSE}
 
-
+hchart(nCOV, "line", hcaes(x = as.Date(Date), y = Confirmed))
 
 ```
 
