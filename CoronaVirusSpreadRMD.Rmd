@@ -74,7 +74,7 @@ nCOVDate <- nCOV %>%
   summarise(nConfirmed=sum(Confirmed),nRecovery=sum(Recovered), nDeath=sum(Deaths)) 
 
 
-hchart(nCOVDate, "spline", hcaes(x = Date,y = nConfirmed), name="Confirmed cases:",color="orange") %>% 
+hchart(nCOVDate, "spline", hcaes(x = Date,y = nConfirmed), name="Confirmed cases:",color="black") %>% 
   hc_exporting(enabled = TRUE) %>%
       hc_title(text="Increase in number of nCOV cases over time",align="center") %>%
       hc_add_theme(hc_theme_elementary()) 
@@ -88,6 +88,18 @@ Incraese in Deaths over time:
 
 
 ```{r warning=FALSE, message=FALSE}
+
+hchart(nCOVDate, "spline", hcaes(x = Date,y = nDeath), name="Confirmed deaths:",color="red") %>% 
+  hc_exporting(enabled = TRUE) %>%
+      hc_title(text="Increase in number of nCOV deaths over time",align="center") %>%
+      hc_add_theme(hc_theme_elementary()) 
+  
+
+```
+
+Let's check the recoveries:
+
+```{r message=FALSE,warning=FALSE}
 
 
 
