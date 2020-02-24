@@ -309,6 +309,6 @@ hchart(AustraliaState, "pie", hcaes(x =State , y = nConfirmed,color = nConfirmed
 
 ```
 
-For AUstralia most confirmed cases have been in New South Wales followed by Victoria. And 22 people have been recovered in New South Wales. No deaths in this duration of 22 Jan to 9th Feb 2020.
+For Australia most confirmed cases have been in __New South Wales__ followed by __Victoria__. And __22__ people have been recovered in New South Wales. No deaths in this duration of 22 Jan to 9th Feb 2020.
 
 
