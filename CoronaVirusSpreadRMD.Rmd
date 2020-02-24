@@ -74,15 +74,26 @@ nCOVDate <- nCOV %>%
   summarise(nConfirmed=sum(Confirmed),nRecovery=sum(Recovered), nDeath=sum(Deaths)) 
 
 
-ggplot(data = nCOV, aes(x = unique(Date), y = Confirmed))+
-  geom_line(color = "#00AFBB", size = 2)
-
-
+hchart(nCOVDate, "spline", hcaes(x = Date,y = nConfirmed), name="Confirmed cases:",color="orange") %>% 
+  hc_exporting(enabled = TRUE) %>%
+      hc_title(text="Increase in number of nCOV cases over time",align="center") %>%
+      hc_add_theme(hc_theme_elementary()) 
   
   
   
 
 ```
+
+Incraese in Deaths over time:
+
+
+```{r warning=FALSE, message=FALSE}
+
+
+
+
+```
+
 
 Let's make a data frame out of the above totals to understand better.
 
