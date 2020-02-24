@@ -31,7 +31,7 @@ require(readr)
 require(anytime) # to convert to date
 
 nCOV<-read_csv("data/2019_nCoV_data.csv",col_names = TRUE)
-nCOV
+nCOV$Date<-anydate(nCOV$Date)
 #ommitting any NA values if there
 nCOV<-na.omit(nCOV)
 
@@ -67,7 +67,20 @@ Let's plot the data and make a time series plot of cases,deaths and recoveries i
 
 ```{r message=FALSE,warning=FALSE}
 
-hchart(nCOV, "line", hcaes(x = as.Date(Date), y = Confirmed))
+# making a dataframe and grouping by date to get total deaths, confirmed cases and recoveris for that day
+nCOVDate <- nCOV %>% 
+  select(Date,Confirmed,Deaths,Recovered) %>% 
+  group_by(Date) %>%
+  summarise(nConfirmed=sum(Confirmed),nRecovery=sum(Recovered), nDeath=sum(Deaths)) 
+
+
+ggplot(data = nCOV, aes(x = unique(Date), y = Confirmed))+
+  geom_line(color = "#00AFBB", size = 2)
+
+
+  
+  
+  
 
 ```
 
