@@ -323,4 +323,9 @@ hchart(CanadaState, "pie", hcaes(x =State , y = nConfirmed,color = nConfirmed) )
       hc_add_theme(hc_theme_elementary()) 
 
 ```
-For Canada we can notice that most confirmed cases were from __British Columbia__ followed by __Ontario__ state.
+For Canada we can notice that most confirmed cases were from __British Columbia__ followed by __Ontario__ state. *There have been no fatalities or recoveries recorded between this time perios in Canada.*
+
+
+5) Germany 
+
+In Germany there have been 
