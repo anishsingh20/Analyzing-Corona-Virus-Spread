@@ -328,4 +328,5 @@ For Canada we can notice that most confirmed cases were from __British Columbia_
 
 5) Germany 
 
-In Germany there have been 
+In Germany there have been only 20 confirmed cases that too only in state of __Bavaria__. No deaths or Recoveries recorded in this period(22 Jan to 9th Feb 2020).
+
