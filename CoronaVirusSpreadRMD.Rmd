@@ -144,6 +144,10 @@ So we can notice that the recovery rate of perople affected with nCOV virus is a
 #### Time Series Analysis of Deaths and cases for Each majorly affected Countries
 
 
+#####1) Mainland China
+
+
+
 
 #### Let's do some country wise analysis
 
