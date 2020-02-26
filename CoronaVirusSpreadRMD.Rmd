@@ -323,6 +323,32 @@ nCOVDateAUS <- nCOV %>%
 ```
 
 
+##### 7) Germany
+
+```{r message=FALSE,warning=FALSE}
+
+nCOVDateGER <- nCOV %>%
+  filter(Country == "Germany") %>% 
+  select(Date,Confirmed,Deaths,Recovered) %>% 
+  group_by(Date) %>%
+  summarise(nConfirmed=sum(Confirmed),nRecovery=sum(Recovered), nDeath=sum(Deaths)) 
+
+
+
+ highchart() %>% 
+        hc_xAxis(categories=nCOVDateGER$Date) %>% 
+        hc_add_series(name = "Confirmed Cases", data = nCOVDateGER$nConfirmed) %>% 
+        hc_add_series(name = "Recoveries", data = nCOVDateGER$nRecovery) %>%
+        hc_add_series(name = "Deaths", data= nCOVDateGER$nDeath) %>% 
+        #to add colors
+        hc_colors(c("green","blue","red")) %>%
+        hc_add_theme(hc_theme_elementary()) %>% 
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="Analysis of count of deaths,recoveries and cases for nCOV in Germany",align="center")
+
+
+```
+
 
 #### Let's do some country wise analysis
 
