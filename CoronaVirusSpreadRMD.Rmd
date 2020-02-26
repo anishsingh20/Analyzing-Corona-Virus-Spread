@@ -144,7 +144,7 @@ So we can notice that the recovery rate of perople affected with nCOV virus is a
 #### Time Series Analysis of Deaths and cases for Each majorly affected Countries
 
 
-#####1) Mainland China\
+#####1) Mainland China
 ```{r message=FALSE,warning=FALSE}
 
 nCOVDateChina <- nCOV %>%
@@ -155,11 +155,14 @@ nCOVDateChina <- nCOV %>%
 
 
 
-hchart(nCOVDate, "spline", hcaes(x = Date,y = nRecovery), name="Confirmed recoveries:",color="green") %>% 
-  hc_exporting(enabled = TRUE) %>%
-      hc_title(text="Increase in number of nCOV recoveries over time",align="center") %>%
-      hc_add_theme(hc_theme_elementary()) 
-
+ highchart() %>% 
+        hc_xAxis(categories=nCOVDateChina$Date) %>% 
+        hc_add_series(name = "Confirmed Cases", data = nCOVDateChina$nConfirmed) %>% 
+        hc_add_series(name = "Recoveries", data = nCOVDateChina$nRecovery) %>%
+        hc_add_series(name = "Deaths", data= nCOVDateChina$nDeath) %>% 
+        #to add colors
+        hc_colors(c("green","blue","red")) %>%
+        hc_add_theme(hc_theme_elementary())
 
 ```
 
