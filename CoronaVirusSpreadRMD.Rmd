@@ -139,7 +139,21 @@ death_rate
 
 So we can notice that the recovery rate of perople affected with nCOV virus is approxinately __4.7 %__, i.e only 4.7 % of people disgnosed with nCOV __recovered__ and the rest __died__. Hence the death rate is __95.3 %__ for nCOV.
 
+```{r warning=FALSE,message=FALSE}
 
+#let's make a stacked line graph of all the 3 variables:
+
+highchart() %>% 
+  hc_xAxis(categories=nCOVDate$Date) %>% 
+  hc_add_series(name="Deaths", data=nCOVDate$nDeath) %>% 
+  hc_add_series(name="") %>% 
+  hc_add_series(name="") %>% 
+  hc_colors(c()) %>% 
+  hc_add_theme(hc_theme_elementary())
+
+
+
+```
 
 #### Time Series Analysis of Deaths and cases for Each majorly affected Countries
 
