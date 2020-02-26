@@ -76,7 +76,7 @@ nCOVDate <- nCOV %>%
 
 hchart(nCOVDate, "spline", hcaes(x = Date,y = nConfirmed), name="Confirmed cases:",color="black") %>% 
   hc_exporting(enabled = TRUE) %>%
-      hc_title(text="Increase in number of nCOV cases over time",align="center") %>%
+      hc_title(text="Increase in number of COVID-19 cases over time",align="center") %>%
       hc_add_theme(hc_theme_elementary()) 
   
   
@@ -91,7 +91,7 @@ Incraese in Deaths over time:
 
 hchart(nCOVDate, "spline", hcaes(x = Date,y = nDeath), name="Confirmed deaths:",color="red") %>% 
   hc_exporting(enabled = TRUE) %>%
-      hc_title(text="Increase in number of nCOV deaths over time",align="center") %>%
+      hc_title(text="Increase in number of COVID-19 deaths over time",align="center") %>%
       hc_add_theme(hc_theme_elementary()) 
   
 
@@ -103,7 +103,7 @@ Let's check the recoveries:
 
 hchart(nCOVDate, "spline", hcaes(x = Date,y = nRecovery), name="Confirmed recoveries:",color="green") %>% 
   hc_exporting(enabled = TRUE) %>%
-      hc_title(text="Increase in number of nCOV recoveries over time",align="center") %>%
+      hc_title(text="Increase in number of COVID-19 recoveries over time",align="center") %>%
       hc_add_theme(hc_theme_elementary()) 
 
 
@@ -153,7 +153,7 @@ highchart() %>%
   hc_colors(c("red","green","blue")) %>% 
   hc_add_theme(hc_theme_elementary()) %>% 
   hc_exporting(enabled = TRUE) %>%
-  hc_title(text="Analysis of count of deaths,recoveries and cases for nCOV",align="center")
+  hc_title(text="Analysis of count of deaths,recoveries and cases for COVID-19",align="center")
 
 
 
@@ -182,7 +182,7 @@ nCOVDateChina <- nCOV %>%
         hc_colors(c("green","blue","red")) %>%
         hc_add_theme(hc_theme_elementary()) %>% 
         hc_exporting(enabled = TRUE) %>%
-        hc_title(text="Analysis of count of deaths,recoveries and cases for nCOV in China",align="center")
+        hc_title(text="Analysis of count of deaths,recoveries and cases for COVID-19 in China",align="center")
 
 ```
 
@@ -208,7 +208,7 @@ nCOVDateUS <- nCOV %>%
         hc_colors(c("green","blue","red")) %>%
         hc_add_theme(hc_theme_elementary()) %>% 
         hc_exporting(enabled = TRUE) %>%
-        hc_title(text="Analysis of count of deaths,recoveries and cases for nCOV in United States",align="center")
+        hc_title(text="Analysis of count of deaths,recoveries and cases for COVID-19 in United States",align="center")
 
 
 ```
@@ -236,7 +236,7 @@ nCOVDateHK <- nCOV %>%
         hc_colors(c("green","blue","red")) %>%
         hc_add_theme(hc_theme_elementary()) %>% 
         hc_exporting(enabled = TRUE) %>%
-        hc_title(text="Analysis of count of deaths,recoveries and cases for nCOV in Hong Kong",align="center")
+        hc_title(text="Analysis of count of deaths,recoveries and cases for COVID-19 in Hong Kong",align="center")
 
 
 ```
@@ -263,7 +263,7 @@ nCOVDateMacau <- nCOV %>%
         hc_colors(c("green","blue","red")) %>%
         hc_add_theme(hc_theme_elementary()) %>% 
         hc_exporting(enabled = TRUE) %>%
-        hc_title(text="Analysis of count of deaths,recoveries and cases for nCOV in Macau",align="center")
+        hc_title(text="Analysis of count of deaths,recoveries and cases for COVID-19 in Macau",align="center")
 
 
 ```
@@ -290,7 +290,7 @@ nCOVDateCanada <- nCOV %>%
         hc_colors(c("green","blue","red")) %>%
         hc_add_theme(hc_theme_elementary()) %>% 
         hc_exporting(enabled = TRUE) %>%
-        hc_title(text="Analysis of count of deaths,recoveries and cases for nCOV in Canada",align="center")
+        hc_title(text="Analysis of count of deaths,recoveries and cases for COVID-19 in Canada",align="center")
 
 
 ```
@@ -317,7 +317,7 @@ nCOVDateAUS <- nCOV %>%
         hc_colors(c("green","blue","red")) %>%
         hc_add_theme(hc_theme_elementary()) %>% 
         hc_exporting(enabled = TRUE) %>%
-        hc_title(text="Analysis of count of deaths,recoveries and cases for nCOV in Australia",align="center")
+        hc_title(text="Analysis of count of deaths,recoveries and cases for COVID-19 in Australia",align="center")
 
 
 ```
@@ -344,7 +344,7 @@ nCOVDateGER <- nCOV %>%
         hc_colors(c("green","blue","red")) %>%
         hc_add_theme(hc_theme_elementary()) %>% 
         hc_exporting(enabled = TRUE) %>%
-        hc_title(text="Analysis of count of deaths,recoveries and cases for nCOV in Germany",align="center")
+        hc_title(text="Analysis of count of deaths,recoveries and cases for COVID-19 in Germany",align="center")
 
 
 ```
@@ -402,7 +402,7 @@ count_deaths<-nCOV %>%
 count_deaths
 ```
 
-*__As per this dataset between 22 Jan till 9th Feb all the deaths due to nCOV have only been in Mainland China and Hong Kong.__*
+*__As per this dataset between 22 Jan till 9th Feb all the deaths due to COVID-19 have only been in Mainland China and Hong Kong.__*
 
 
 #### Let's see how many have recovered in each Country
@@ -428,7 +428,7 @@ Let's plot the data:
 
 hchart(count_recovered , type = "column", hcaes(x = count_recovered$Country , y = count_recovered$RecoveryRate),color="orange",name="Rate:") %>% 
       hc_exporting(enabled = TRUE) %>%
-      hc_title(text="Recovery rate of each country out of total nCOV Cases",align="center") %>%
+      hc_title(text="Recovery rate of each country out of total COVID-19 Cases",align="center") %>%
       hc_add_theme(hc_theme_elementary()) 
 
 
@@ -523,7 +523,7 @@ GermanyState<- nCOV %>%
 
 hchart(StateCasesChina, "treemap", hcaes(x =State , value = nConfirmed,color = nConfirmed) ) %>% 
       hc_exporting(enabled = TRUE) %>% 
-      hc_title(text="Tree map of States in China and confirmed Cases of nCOV",align="center") %>%
+      hc_title(text="Tree map of States in China and confirmed Cases of COVID-19",align="center") %>%
       hc_add_theme(hc_theme_elementary()) 
 
 ```
@@ -536,7 +536,7 @@ Let's see the most deaths were in which state:
 
 hchart(StateCasesChina, "treemap", hcaes(x =State , value = nDeaths,color = nDeaths) ) %>% 
       hc_exporting(enabled = TRUE) %>% 
-      hc_title(text="Tree map of States in China and confirmed deaths from nCOV",align="center") %>%
+      hc_title(text="Tree map of States in China and confirmed deaths from COVID-19",align="center") %>%
       hc_add_theme(hc_theme_elementary()) 
 
 ```
@@ -564,7 +564,7 @@ After __Hubei__ state most recoveries have been in State of __*Zhejiand, Hunan a
 
 hchart(USState, "pie", hcaes(x =State , y = nConfirmed,color = nConfirmed), name="count:" ) %>% 
       hc_exporting(enabled = TRUE) %>% 
-      hc_title(text="Tree map of States in US and confirmed Cases of nCOV",align="center") %>%
+      hc_title(text="Tree map of States in US and confirmed Cases of COVID-19",align="center") %>%
       hc_add_theme(hc_theme_elementary()) 
 
 
@@ -582,7 +582,7 @@ There have been no deaths in US during this time period and total of 3 people re
 
 hchart(AustraliaState, "pie", hcaes(x =State , y = nConfirmed,color = nConfirmed) ) %>% 
       hc_exporting(enabled = TRUE) %>% 
-      hc_title(text="Tree map of States in Australia and confirmed Cases of nCOV",align="center") %>%
+      hc_title(text="Tree map of States in Australia and confirmed Cases of COVID-19",align="center") %>%
       hc_add_theme(hc_theme_elementary()) 
 
 ```
@@ -597,7 +597,7 @@ For Australia most confirmed cases have been in __New South Wales__ followed by 
 
 hchart(CanadaState, "pie", hcaes(x =State , y = nConfirmed,color = nConfirmed) ) %>% 
       hc_exporting(enabled = TRUE) %>% 
-      hc_title(text="Tree map of States in Canada and confirmed Cases of nCOV",align="center") %>%
+      hc_title(text="Tree map of States in Canada and confirmed Cases of COVID-19",align="center") %>%
       hc_add_theme(hc_theme_elementary()) 
 
 ```
