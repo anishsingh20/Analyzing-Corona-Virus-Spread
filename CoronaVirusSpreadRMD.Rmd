@@ -496,7 +496,7 @@ GermanyState<- nCOV %>%
 ### Let's now plot the Statewise data 
 
 
-1) States affected in Mainland China
+##### 1) States affected in Mainland China
 
 ```{r message=FALSE,warning=FALSE}
 
@@ -536,7 +536,7 @@ After __Hubei__ state most recoveries have been in State of __*Zhejiand, Hunan a
 
 
 
-2) United States
+##### 2) United States
 
 
 ```{r message=FALSE,warning=FALSE}
@@ -555,7 +555,7 @@ There have been no deaths in US during this time period and total of 3 people re
 
 
 
-3) Australia
+##### 3) Australia
 
 ```{r message=FALSE,warning=FALSE}
 
@@ -570,7 +570,7 @@ For Australia most confirmed cases have been in __New South Wales__ followed by 
 
 
 
-4) Canada
+##### 4) Canada
 
 ```{r message=FALSE,warning=FALSE}
 
@@ -583,7 +583,7 @@ hchart(CanadaState, "pie", hcaes(x =State , y = nConfirmed,color = nConfirmed) )
 For Canada we can notice that most confirmed cases were from __British Columbia__ followed by __Ontario__ state. *There have been no fatalities or recoveries recorded between this time perios in Canada.*
 
 
-5) Germany 
+##### 5) Germany 
 
 In Germany there have been only 20 confirmed cases that too only in state of __Bavaria__. No deaths or Recoveries recorded in this period(22 Jan to 9th Feb 2020).
 
