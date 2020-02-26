@@ -141,6 +141,8 @@ So we can notice that the recovery rate of perople affected with nCOV virus is a
 
 ```{r warning=FALSE,message=FALSE}
 
+
+
 #let's make a stacked line graph of all the 3 variables:
 
 highchart() %>% 
@@ -149,7 +151,9 @@ highchart() %>%
   hc_add_series(name="Recoveries",data=nCOVDate$nRecovery) %>% 
   hc_add_series(name="Confirmed Cases", data=nCOVDate$nConfirmed) %>% 
   hc_colors(c("red","green","blue")) %>% 
-  hc_add_theme(hc_theme_elementary())
+  hc_add_theme(hc_theme_elementary()) %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Analysis of count of deaths,recoveries and cases for nCOV",align="center")
 
 
 
@@ -176,7 +180,9 @@ nCOVDateChina <- nCOV %>%
         hc_add_series(name = "Deaths", data= nCOVDateChina$nDeath) %>% 
         #to add colors
         hc_colors(c("green","blue","red")) %>%
-        hc_add_theme(hc_theme_elementary())
+        hc_add_theme(hc_theme_elementary()) %>% 
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="Analysis of count of deaths,recoveries and cases for nCOV in China",align="center")
 
 ```
 
