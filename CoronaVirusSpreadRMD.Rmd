@@ -187,6 +187,32 @@ nCOVDateChina <- nCOV %>%
 ```
 
 
+##### 2) United States
+
+```{r message=FALSE,warning=FALSE}
+
+nCOVDateChina <- nCOV %>%
+  filter(Country == "United States") %>% 
+  select(Date,Confirmed,Deaths,Recovered) %>% 
+  group_by(Date) %>%
+  summarise(nConfirmed=sum(Confirmed),nRecovery=sum(Recovered), nDeath=sum(Deaths)) 
+
+
+
+ highchart() %>% 
+        hc_xAxis(categories=nCOVDateChina$Date) %>% 
+        hc_add_series(name = "Confirmed Cases", data = nCOVDateChina$nConfirmed) %>% 
+        hc_add_series(name = "Recoveries", data = nCOVDateChina$nRecovery) %>%
+        hc_add_series(name = "Deaths", data= nCOVDateChina$nDeath) %>% 
+        #to add colors
+        hc_colors(c("green","blue","red")) %>%
+        hc_add_theme(hc_theme_elementary()) %>% 
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="Analysis of count of deaths,recoveries and cases for nCOV in China",align="center")
+
+
+```
+
 
 #### Let's do some country wise analysis
 
