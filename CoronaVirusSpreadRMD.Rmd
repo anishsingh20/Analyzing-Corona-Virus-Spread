@@ -146,9 +146,9 @@ So we can notice that the recovery rate of perople affected with nCOV virus is a
 highchart() %>% 
   hc_xAxis(categories=nCOVDate$Date) %>% 
   hc_add_series(name="Deaths", data=nCOVDate$nDeath) %>% 
-  hc_add_series(name="") %>% 
-  hc_add_series(name="") %>% 
-  hc_colors(c()) %>% 
+  hc_add_series(name="Recoveries",data=nCOVDate$nRecovery) %>% 
+  hc_add_series(name="Confirmed Cases", data=nCOVDate$nConfirmed) %>% 
+  hc_colors(c("red","green","blue")) %>% 
   hc_add_theme(hc_theme_elementary())
 
 
