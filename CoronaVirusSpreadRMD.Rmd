@@ -1,5 +1,5 @@
 ---
-title: "Corona Virus Spread Analysis"
+title: "Corona Virus Spread Analysis(COVID-19)"
 author: "Anish Singh Walia"
 date: "2/26/2020"
 output: html_document
@@ -11,11 +11,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## AIM
 
-The primary objective and aim of this project is to analyze the spread of Corona Virus worldwide. This dataset has data available from 22 Jan,2020 till 9th Feb 2020. The csv file is taken from WHO(World Health Organization).
+The primary objective and aim of this project is to analyze the spread of Corona Virus(COVID-19) worldwide. This dataset has data available from 22 Jan,2020 till 9th Feb 2020. The csv file is taken from WHO(World Health Organization).
 
-### What is Corona Virus(nCOV)
+### What is Corona Virus(COVID-19)
 
-Novel Coronavirus (nCoV) is a virus (more specifically, a coronavirus) identified as the cause of an outbreak of respiratory illness first detected in Wuhan, China. Early on, many of the patients in the outbreak in Wuhan, China reportedly had some link to a large seafood and animal market, suggesting animal-to-person spread. However, a growing number of patients reportedly have not had exposure to animal markets, indicating person-to-person spread is occurring. At this time, it’s unclear how easily or sustainably this virus is spreading between people
+Novel Coronavirus (COVID-19) is a virus (more specifically, a coronavirus) identified as the cause of an outbreak of respiratory illness first detected in Wuhan, China. Early on, many of the patients in the outbreak in Wuhan, China reportedly had some link to a large seafood and animal market, suggesting animal-to-person spread. However, a growing number of patients reportedly have not had exposure to animal markets, indicating person-to-person spread is occurring. At this time, it’s unclear how easily or sustainably this virus is spreading between people
 
 
 
@@ -137,7 +137,7 @@ death_rate
 
 ```
 
-So we can notice that the recovery rate of perople affected with nCOV virus is approxinately __4.7 %__, i.e only 4.7 % of people disgnosed with nCOV __recovered__ and the rest __died__. Hence the death rate is __95.3 %__ for nCOV.
+So we can notice that the recovery rate of perople affected with COVID-19 virus is approxinately __4.7 %__, i.e only 4.7 % of people disgnosed with COVID-19 __recovered__ and the rest __died__. Hence the death rate is __95.3 %__ for COVID-19.
 
 ```{r warning=FALSE,message=FALSE}
 
@@ -384,7 +384,7 @@ hchart(countcountry1 , type = "column", hcaes(x=countcountry1$Country, y= countc
 
 ```
 
-In in the above data frame we can notice that __Mainland China__ has around 284905 confirmed cases out of total 286573 nCOV csases and this makes sense. That makes Mainland China having 99.4 % of the total confirmed cases.
+In in the above data frame we can notice that __Mainland China__ has around 284905 confirmed cases out of total 286573 COVID-19 csases and this makes sense. That makes Mainland China having 99.4 % of the total confirmed cases.
 
 
 #### Let's find the number of Deaths occured in these countries.
@@ -507,7 +507,7 @@ hchart(StateCasesChina, "treemap", hcaes(x =State , value = nConfirmed,color = n
 
 ```
 
-We can notice in the above Tree map that most of the confirmed cases of nCOV virus are in State of __Hubei__ whose capital city is __Wuhan__, as it the city where it all started.
+We can notice in the above Tree map that most of the confirmed cases of COVID-19 virus are in State of __Hubei__ whose capital city is __Wuhan__, as it the city where it all started.
 
 Let's see the most deaths were in which state:
 
