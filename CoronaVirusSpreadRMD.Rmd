@@ -375,10 +375,10 @@ countcountry1<-count_country %>%
   arrange(desc(nCases))
         
 
-hchart(countcountry1 , type = "column", hcaes(x=countcountry1$Country, y= countcountry1$nCases ),color="purple") %>% 
+hchart(countcountry1 , type = "column", hcaes(x=countcountry1$Country, y= countcountry1$nCases ),color="purple",name="Count") %>% 
       hc_exporting(enabled = TRUE) %>%
       hc_title(text="Confirmed Cases grouped by Country",align="center") %>%
-      hc_add_theme(hc_theme_elementary()) 
+      hc_add_theme(hc_theme_elementary())
 
 
 
@@ -438,6 +438,27 @@ hchart(count_recovered , type = "column", hcaes(x = count_recovered$Country , y 
 In the above plot we can notice that __Australia__ has the highest Recovery rate followed by __Mainland China__. And other countries have recovery rates of 0.
 
 
+
+Let's Check the death rates in these countries now :
+
+```{r warning=FALSE,message=FALSE}
+
+count_deaths<-nCOV %>% 
+  group_by(Country) %>% 
+  select(Recovered,Confirmed,Deaths) %>% 
+  summarise(nRecovered=sum(Recovered),RecoveryRate=(nRecovered/sum(Confirmed))*100) %>%
+  mutate(DeathRate=(100-RecoveryRate)) %>% 
+  arrange(desc(DeathRate))
+
+
+hchart(count_deaths , type = "column", hcaes(x = count_deaths$Country , y = count_deaths$DeathRate),color="black",name="Death Rate:") %>% 
+      hc_exporting(enabled = TRUE) %>%
+      hc_title(text="Death rate of each country out of total COVID-19 Cases",align="center") %>%
+      hc_add_theme(hc_theme_elementary()) 
+
+```
+
+We can notice that in Countries like __Canada,China,Germany,Hong Kong__ there have been no recoveries from COVID-19 virus, but only deaths. The death rate is lowest for __Australia__ i.e, out of most people affected with COVID-19 virus, only 85% people died which is still a pretty large ratio. This explains the severity and how deadly this virus is.
 
 
 ### Let's check which province in China and Mainland China have been the most affected
