@@ -30,18 +30,11 @@ attach(nCOV)
 
 
 # Define UI for application that draws a histogram
-shinyUI(fluidPage(
-
-    # Application title
-    titlePanel("Analyzing COVID-19 Spread worldwide"),
-
-    # Sidebar with a slider input for number of bins
-    sidebarLayout(
-
-        # Show a plot of the generated distribution
-        mainPanel("This dataset contains data from 22 JAN 2020 till 9 FEB 2020.") , 
-    ), #end sidebarlayout
+dashboardPage(
     
     
     
-)) #end shinUI
+    
+    
+    
+) # end dashboard page
