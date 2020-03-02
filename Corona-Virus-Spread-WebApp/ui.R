@@ -33,7 +33,7 @@ attach(nCOV)
 # Define UI for application that draws a histogram
 dashboardPage(
     skin="black",
-    dashboardHeader(title="Analysing COVID-19 Spread worldwide between 22 Jan 2020 to 9 FEB 2020"),
+    dashboardHeader(title="COVID-19"),
     
     
     #dashboard sidebar
@@ -44,17 +44,18 @@ dashboardPage(
             menuItem("Main Menu", tabName = "tab1" ,icon=icon("dashboard")),
             menuItem("Major Countries affected", tabName = "tab12")
             
-        ), #end sidebarmenu
+        ) #end sidebarmenu
+        
     ), # end dashboardsidebar
     
     
     #dashboardBody
     dashboardBody(
         
-        
         tags$head(
             tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
         ),
+        
         
         #adding all the tabs
         tabItems(
@@ -68,11 +69,13 @@ dashboardPage(
             
             tabItem(tabName = "tab2",
                     
-                    h3("Top Most countries Affected with most COVID-19 cases",align="center")
+                    h3("Top Most countries Affected with most COVID-19 cases",align="center"),
+                    br()
+                    
                 
             ) #end tabitem 2
             
-        )
+        ) # end tabItems
         
     )#end dashboardBody
     
