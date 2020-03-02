@@ -38,19 +38,23 @@ dashboardPage(
     
     #dashboard sidebar
     dashboardSidebar(
+        
         sidebarMenu(
             
             menuItem("Main Menu", tabName = "tab1" ,icon=icon("dashboard")),
             menuItem("Major Countries affected", tabName = "tab12")
             
         ), #end sidebarmenu
-        
-        
-        
     ), # end dashboardsidebar
+    
     
     #dashboardBody
     dashboardBody(
+        
+        
+        tags$head(
+            tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
+        ),
         
         #adding all the tabs
         tabItems(
@@ -59,20 +63,17 @@ dashboardPage(
                     
                     h2("Analysing Corona Virus Spread from 22 Jan 2020 till 9th Feb 2020.",align="center",style="margin-top:-5px;"),
                     br()
-                
-                
-            ),
+                    
+            ), #end tabItem1
             
             tabItem(tabName = "tab2",
                     
-                    h3("Top Most countries Affected with most COVID-19 cases",align="center") ,
+                    h3("Top Most countries Affected with most COVID-19 cases",align="center")
                 
-            )
+            ) #end tabitem 2
             
         )
         
     )#end dashboardBody
     
-    
-    
-) # end dashboard page
+) # end dashboardPage
