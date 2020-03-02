@@ -13,11 +13,12 @@ require(dplyr)
 require(tidyr)
 require(shiny)
 require(shinydashboard)
-require(data.table)
+require(readr)
+require(anytime)
 
 #reading the dataset and doing some modifications
 
-nCOV<-read_csv("data/2019_nCoV_data.csv",col_names = TRUE)
+nCOV<-read_csv("../data/2019_nCoV_data.csv",col_names = TRUE)
 nCOV$Date<-anydate(nCOV$Date)
 #ommitting any NA values if there
 nCOV<-na.omit(nCOV)
@@ -31,7 +32,19 @@ attach(nCOV)
 
 # Define UI for application that draws a histogram
 dashboardPage(
+    skin="black",
+    dashboardHeader(title="Analysing COVID-19 Spread worldwide between 22 Jan 2020 to 9 FEB 2020"),
     
+    
+    #dashboard sidebar
+    dashboardSidebar(
+        sidebarMenu(
+            
+        ) #end sidebarmenu
+        
+        
+        
+    ) # end dashboardsidebar
     
     
     
