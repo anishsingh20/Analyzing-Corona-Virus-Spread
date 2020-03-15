@@ -14,7 +14,7 @@ require(dplyr)
 require(highcharter)
 require(ggplot2)
 require(readr)
-
+require(tidyr)
 
 
 
@@ -55,3 +55,17 @@ head(latestConf)
 
 
 All the above datasets are time series data sets i.e each date is a column.
+
+
+#### Let's make this wide dataset into a long dataset and do some cleaning
+
+
+```{r message=FALSE,warning=FALSE}
+
+latestConf_long<- gather(latestConf, Date, Count, `1/22/20`:`3/14/20` )
+
+latestConf_long <- latestConf_long %>% 
+  group_by(Date) %>%
+  summarise(nConfirmed=sum(Count) 
+
+```
