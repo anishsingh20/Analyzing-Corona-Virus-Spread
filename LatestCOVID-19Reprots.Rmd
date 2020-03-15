@@ -38,11 +38,20 @@ let's read the data now. I will be downloading the data directly from github. To
 
 urlConfirmed <- "https://raw.githubusercontent.com/anishsingh20/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
 
-urlDeaths<-
+urlDeaths<-"https://raw.githubusercontent.com/anishsingh20/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv"
 
-urlRecoveries<-
+urlRecoveries<-"https://raw.githubusercontent.com/anishsingh20/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv"
 
 latestConf<-read_csv(url(urlConfirmed))
 
+latestDeaths<-read_csv(url(urlDeaths))
+
+latestRecoveries<-read_csv(url(urlRecoveries))
+
+
+head(latestConf)
 
 ```
+
+
+All the above datasets are time series data sets i.e each date is a column.
