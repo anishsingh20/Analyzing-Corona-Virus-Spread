@@ -59,13 +59,31 @@ All the above datasets are time series data sets i.e each date is a column.
 
 #### Let's make this wide dataset into a long dataset and do some cleaning
 
+We will make a new dataframe with just the dates and confirmed cases on that particular day.
 
 ```{r message=FALSE,warning=FALSE}
 
 latestConf_long<- gather(latestConf, Date, Count, `1/22/20`:`3/14/20` )
 
-latestConf_long <- latestConf_long %>% 
+latestDeaths_long<- gather(latestDeaths, Date, Count, `1/22/20`:`3/14/20` )
+
+latestRecoveries_long<- gather(latestRecoveries, Date, Count, `1/22/20`:`3/14/20` )
+
+Date_latestConf_long <- latestConf_long %>% 
   group_by(Date) %>%
-  summarise(nConfirmed=sum(Count) 
+  summarise(nConfirmed=sum(Count)) %>% 
+  arrange((nConfirmed))
+
+
+Date_latestDeaths_long_date <- latestDeaths_long %>% 
+  group_by(Date) %>%
+  summarise(nDeaths=sum(Count)) %>% 
+  arrange((nDeaths))
+
+
+Date_latestRecoveries_long_date <- latestRecoveries_long %>% 
+  group_by(Date) %>%
+  summarise(nRecoveries=sum(Count)) %>% 
+  arrange((nRecoveries))
 
 ```
