@@ -7,6 +7,14 @@ output: html_document
 
 This document will contain the latest confirmed cases, deaths,recoveries and time series analysis of the COVID-19 cases in a real time fashion.
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r setup, include=FALSE,message=FALSE,warning=FALSE}
+
+
+require(dplyr)
+require(highcharter)
+require(ggplot2)
+require(readr)
+
+
+
 ```
