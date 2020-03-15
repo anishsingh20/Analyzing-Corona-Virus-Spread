@@ -17,4 +17,32 @@ require(readr)
 
 
 
+
+```
+
+
+let's read the data now. I will be downloading the data directly from github. To do so follow the below steps:
+
+1. Go to the github repository link where you have the CSV file
+
+2. Click on the raw option present on the top right of the data
+
+3. This will open a new window in the browser
+
+4. The link should be like https://raw.githubusercontent.com/..
+
+5. You have to use this link to download csv file from the Github
+
+
+```{r message=FALSE,warning=FALSE}
+
+urlConfirmed <- "https://raw.githubusercontent.com/anishsingh20/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
+
+urlDeaths<-
+
+urlRecoveries<-
+
+latestConf<-read_csv(url(urlConfirmed))
+
+
 ```
