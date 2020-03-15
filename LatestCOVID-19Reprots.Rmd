@@ -1,0 +1,10 @@
+---
+title: "Corona Virus Spread Analysis(COVID-19)"
+author: "Anish Singh Walia"
+date: "15/03/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
