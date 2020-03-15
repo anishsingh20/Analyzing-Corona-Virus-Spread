@@ -5,6 +5,8 @@ date: "15/03/2020"
 output: html_document
 ---
 
+This document will contain the latest confirmed cases, deaths,recoveries and time series analysis of the COVID-19 cases in a real time fashion.
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
