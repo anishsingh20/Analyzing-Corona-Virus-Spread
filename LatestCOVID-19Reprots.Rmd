@@ -138,3 +138,19 @@ hchart(Date_latestRecoveries_long_date, "spline", hcaes(x = Date,y = nRecoveries
 
 Let's now make a satcked line graph of comparing all the three parameters:
 
+
+```{r message=FALSE,warning=FALSE}
+
+
+highchart() %>% 
+  hc_xAxis(categories=Date_latestConf_long$Date) %>% 
+  hc_add_series(name="Deaths", data=Date_latestDeaths_long_date$nDeaths) %>% 
+  hc_add_series(name="Recoveries",data=Date_latestRecoveries_long_date$nRecoveries) %>% 
+  hc_add_series(name="Confirmed Cases", data=Date_latestConf_long$nConfirmed) %>% 
+  hc_colors(c("red","green","black")) %>% 
+  hc_add_theme(hc_theme_elementary()) %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Analysis of count of deaths,recoveries and cases for COVID-19",align="center")
+
+
+```
