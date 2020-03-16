@@ -60,7 +60,11 @@ Date_latestRecoveries_long_date <- latestRecoveries_long %>%
     arrange((nRecoveries))
 
 
-
+#making a dataset for sorting the countires in ascending order of cases for the dropdown
+CountrylatestConf_long<- latestConf_long %>% 
+    group_by(`Country/Region`) %>% 
+    summarise(nConf = sum(Count)) %>% 
+    arrange(desc(nConf))
 
 # Define UI for application that draws a histogram
 dashboardPage(
@@ -167,7 +171,7 @@ dashboardPage(
                             box(
                                 
                                 width = 12,
-                                selectInput("country" , label = "Select Country",choices = latestConf_long$`Country/Region`)
+                                selectInput("country" , label = "Select Country(Sorted by total COVID-19 case counts)",choices = CountrylatestConf_long[,1])
                             ),
                             
                             box(

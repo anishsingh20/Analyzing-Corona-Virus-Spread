@@ -53,20 +53,7 @@ Date_latestRecoveries_long_date <- latestRecoveries_long %>%
   arrange((nRecoveries))
 
 
-# data frame of countries and total cases per country
-CountrydfCase<- latestConf_long %>% 
-  group_by(`Country/Region`) %>% 
-  summarise(nConfirmed=sum(Count))
-
-
-CountrydfDeath<- latestDeaths_long %>% 
-  group_by(`Country/Region`) %>% 
-  summarise(nDeaths=sum(Count))
-
-
-CountrydfRecovery<- latestRecoveries_long %>% 
-  group_by(`Country/Region`) %>% 
-  summarise(nRecovered=sum(Count))
+ 
 
 
 library(shiny)
@@ -120,8 +107,44 @@ shinyServer(function(input, output) {
     
     
     output$CountryCases <- renderText({
+       
+      # Filtering the time series dataset for the country from the dropdown
+      df <- latestConf %>%
+        filter(`Country/Region` == input$country)
       
-     
+      #PICKING THE LAST COLUMN OF THE DATASET
+      lastcol <- ncol(df)
+      
+      #sum of all the counts from last column
+      sum(df[lastcol])
+        
+    })
+    
+    output$CountryDeaths <- renderText({
+      
+      # Filtering the time series dataset for the country from the dropdown
+      df <- latestDeaths %>%
+        filter(`Country/Region` == input$country)
+      
+      #PICKING THE LAST COLUMN OF THE DATASET
+      lastcol <- ncol(df)
+      
+      #sum of all the counts from last column
+      sum(df[lastcol])
+      
+    })
+    
+    output$CountryRecovered <- renderText({
+      
+      # Filtering the time series dataset for the country from the dropdown
+      df <- latestRecoveries %>%
+        filter(`Country/Region` == input$country)
+      
+      #PICKING THE LAST COLUMN OF THE DATASET
+      lastcol <- ncol(df)
+      
+      #sum of all the counts from last column
+      sum(df[lastcol])
       
     })
 
