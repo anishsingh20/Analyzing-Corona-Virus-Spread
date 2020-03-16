@@ -91,3 +91,32 @@ head(Date_latestConf_long)
 ```
 
 
+
+### Let's plot the data
+
+
+
+1) Number of COVID-19 cases confirmed every day:
+
+```{r message=FALSE,warning=FALSE}
+
+
+hchart(Date_latestConf_long, "spline", hcaes(x = Date,y = nConfirmed), name="Confirmed cases:",color="black") %>% 
+  hc_exporting(enabled = TRUE) %>%
+      hc_title(text="Increase in number of COVID-19 cases over time",align="center") %>%
+      hc_add_theme(hc_theme_elementary()) 
+
+```
+
+
+2) Number of Deaths occuring:
+
+```{r message=FALSE,warning=FALSE}
+
+
+hchart(Date_latestDeaths_long_date, "spline", hcaes(x = Date,y = nDeaths), name="Confirmed cases:",color="red") %>% 
+  hc_exporting(enabled = TRUE) %>%
+      hc_title(text="Increase in number of COVID-19 deaths over time",align="center") %>%
+      hc_add_theme(hc_theme_elementary()) 
+
+```
