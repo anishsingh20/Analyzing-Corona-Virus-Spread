@@ -61,4 +61,15 @@ shinyServer(function(input, output) {
       
       
     })  
-})
+    
+    
+    
+    output$StackedCOVID19 <- highchartOutput({
+      
+      
+      
+    })
+
+    
+   } #end function
+) #end shinyServer

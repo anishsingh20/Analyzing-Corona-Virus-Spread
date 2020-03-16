@@ -79,6 +79,7 @@ dashboardPage(
                     box(
                     
                         h3("Total confirmed Cases till date:", align="left") , 
+                        width=4,
                         textOutput("Confirmed"), #end text Output
                         #adding custom CSS for the text
                         tags$head(tags$style("#Confirmed{
@@ -95,7 +96,7 @@ dashboardPage(
                         
                         h3("Total deaths till date:", align="left") , 
                         textOutput("Deaths"), #end text Output
-                        
+                        width=4,
                         #adding custom CSS for the text
                         tags$head(tags$style("#Deaths{
                                  color: red;
@@ -109,13 +110,22 @@ dashboardPage(
                         
                         h3("Total Recoveries till date:", align="left") , 
                         textOutput("Recoveries"), #end text Output
+                        width=4,
                         tags$head(tags$style("#Recoveries{
                                  color: green;
                                  font-size: 20px;
                                  font-family:'Raleway', sans-serif;
                                  }"
                         )) #end head
-                    )
+                    ) ,
+                    
+                    
+                    box(
+                        
+                        highchartOutput("StackedCOVID19"),
+                        width=12
+                        
+                    )#end box
                     
                 ) #end fluid row
                     
