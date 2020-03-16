@@ -35,6 +35,11 @@ library(shiny)
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
 
-    
+    output$Confirmed <- renderText({
+      
+      lastcol<-ncol(latestConf) #getting the last column from the time series dataframe
+      sum(latestConf[lastcol]) #printing the sum of values in the column
+      
+    }) #end Confirmed 
 
 })
