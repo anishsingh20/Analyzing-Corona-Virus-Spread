@@ -133,3 +133,8 @@ hchart(Date_latestRecoveries_long_date, "spline", hcaes(x = Date,y = nRecoveries
       hc_add_theme(hc_theme_elementary()) 
 
 ```
+
+
+
+Let's now make a satcked line graph of comparing all the three parameters:
+
