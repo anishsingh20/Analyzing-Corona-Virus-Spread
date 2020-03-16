@@ -120,3 +120,16 @@ hchart(Date_latestDeaths_long_date, "spline", hcaes(x = Date,y = nDeaths), name=
       hc_add_theme(hc_theme_elementary()) 
 
 ```
+
+
+3) Number of Recoveries:
+
+```{r message=FALSE,warning=FALSE}
+
+
+hchart(Date_latestRecoveries_long_date, "spline", hcaes(x = Date,y = nRecoveries), name="Confirmed cases:",color="Green") %>% 
+  hc_exporting(enabled = TRUE) %>%
+      hc_title(text="Increase in number of COVID-19 Recoveries over time",align="center") %>%
+      hc_add_theme(hc_theme_elementary()) 
+
+```
