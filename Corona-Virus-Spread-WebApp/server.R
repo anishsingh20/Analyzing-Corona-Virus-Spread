@@ -53,6 +53,22 @@ Date_latestRecoveries_long_date <- latestRecoveries_long %>%
   arrange((nRecoveries))
 
 
+# data frame of countries and total cases per country
+CountrydfCase<- latestConf_long %>% 
+  group_by(`Country/Region`) %>% 
+  summarise(nConfirmed=sum(Count))
+
+
+CountrydfDeath<- latestDeaths_long %>% 
+  group_by(`Country/Region`) %>% 
+  summarise(nDeaths=sum(Count))
+
+
+CountrydfRecovery<- latestRecoveries_long %>% 
+  group_by(`Country/Region`) %>% 
+  summarise(nRecovered=sum(Count))
+
+
 library(shiny)
 
 # Define server logic required to draw a histogram
@@ -99,6 +115,13 @@ shinyServer(function(input, output) {
         hc_exporting(enabled = TRUE) %>%
         hc_title(text="Analysis of count of deaths,recoveries and cases for COVID-19 till date",align="center")
       
+      
+    })
+    
+    
+    output$CountryCases <- renderText({
+      
+     
       
     })
 

@@ -172,6 +172,7 @@ dashboardPage(
                             
                             box(
                                 
+                               h3("Total Cases:"),
                                textOutput("CountryCases"),
                                #adding custom CSS for the text
                                tags$head(tags$style("#CountryCases{
@@ -188,6 +189,7 @@ dashboardPage(
                             
                             box(
                                 
+                                h3("Total Deaths:"),
                                 textOutput("CountryDeaths"),
                                 #adding custom CSS for the text
                                 tags$head(tags$style("#CountryDeaths{
@@ -204,6 +206,7 @@ dashboardPage(
                             
                             box(
                                 
+                                h3("Total Recovered:"),
                                 textOutput("CountryRecovered"), 
                                 #adding custom CSS for the text
                                 tags$head(tags$style("#CountryRecovered{
