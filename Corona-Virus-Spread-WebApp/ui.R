@@ -36,6 +36,28 @@ latestDeaths_long<- gather(latestDeaths, Date, Count, `1/22/20`:ncol(latestDeath
 
 latestRecoveries_long<- gather(latestRecoveries, Date, Count, `1/22/20`:ncol(latestRecoveries) )
 
+latestConf_long<- gather(latestConf, Date, Count, `1/22/20`:ncol(latestConf))
+
+latestDeaths_long<- gather(latestDeaths, Date, Count, `1/22/20`:ncol(latestDeaths) )
+
+latestRecoveries_long<- gather(latestRecoveries, Date, Count, `1/22/20`:ncol(latestRecoveries) )
+
+Date_latestConf_long <- latestConf_long %>% 
+    group_by(Date) %>%
+    summarise(nConfirmed=sum(Count)) %>% 
+    arrange((nConfirmed))
+
+
+Date_latestDeaths_long_date <- latestDeaths_long %>% 
+    group_by(Date) %>%
+    summarise(nDeaths=sum(Count)) %>% 
+    arrange((nDeaths))
+
+
+Date_latestRecoveries_long_date <- latestRecoveries_long %>% 
+    group_by(Date) %>%
+    summarise(nRecoveries=sum(Count)) %>% 
+    arrange((nRecoveries))
 
 
 
@@ -52,7 +74,7 @@ dashboardPage(
         sidebarMenu(
             
             menuItem("Main Menu", tabName = "tab1" ,icon=icon("dashboard")),
-            menuItem("Major Countries affected", tabName = "tab12")
+            menuItem("Major Countries affected", tabName = "tab2")
             
         ) #end sidebarmenu
         
@@ -122,19 +144,91 @@ dashboardPage(
                     
                     box(
                         
-                        highchartOutput("StackedCOVID19"),
+                        highchartOutput("StackedCOVID"),
                         width=12
                         
                     )#end box
                     
                 ) #end fluid row
                     
-            ), #end tabItem1
+            ) , #end tabItem1
+            
+            
             
             tabItem(tabName = "tab2",
                     
-                    h3("Top Most countries Affected with most COVID-19 cases",align="center"),
-                    br()
+                    h3("Countries Affected with COVID-19 cases",align="center"),
+                    br(),
+                    
+                   fluidRow(
+                       
+                       column(12,
+                              
+                            box(
+                                
+                                width = 12,
+                                selectInput("country" , label = "Select Country",choices = latestConf_long$`Country/Region`)
+                            ),
+                            
+                            box(
+                                
+                               textOutput("CountryCases"),
+                               #adding custom CSS for the text
+                               tags$head(tags$style("#CountryCases{
+                                 font-size: 20px;
+                                 color:black;
+                                 font-family:'Raleway', sans-serif;
+                                 }"
+                               )
+                               ) ,# end head
+                                width=4
+                                
+                            ) ,
+                            
+                            
+                            box(
+                                
+                                textOutput("CountryDeaths"),
+                                #adding custom CSS for the text
+                                tags$head(tags$style("#CountryDeaths{
+                                 font-size: 20px;
+                                 color:red;
+                                 font-family:'Raleway', sans-serif;
+                                 }"
+                                )
+                                ),
+                                # end head
+                                width=4
+                                
+                            ),
+                            
+                            box(
+                                
+                                textOutput("CountryRecovered"), 
+                                #adding custom CSS for the text
+                                tags$head(tags$style("#CountryRecovered{
+                                 font-size: 20px;
+                                 color:green;
+                                 font-family:'Raleway', sans-serif;
+                                 }"
+                                )
+                                ), # end head
+                                width=4
+                                
+                            ) ,
+                            
+                            box(
+                                
+                                highchartOutput("CountryChart"),
+                                width=12
+                                
+                            ) 
+                              
+                            ) #end column
+                       
+                       
+                       
+                   ) #end FluidRow
                     
                 
             ) #end tabitem 2
