@@ -63,39 +63,58 @@ dashboardPage(
     dashboardBody(
         
         tags$head(
-            tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
+            tags$link(rel = "stylesheet", type = "text/css", href = "https://fonts.googleapis.com/css?family=Merriweather|Playfair+Display|Raleway")
         ),
-        
         
         #adding all the tabs
         tabItems(
             
             tabItem(tabName ="tab1",
                     
-                    h2("Analysing Corona Virus Spread from 22 Jan 2020 till 9th Feb 2020.",align="center",style="margin-top:-5px;"),
+                    h2("Analysing Corona Virus Spread",align="center",style="margin-top:-5px;"),
                     br() ,
                     
                 fluidRow(
                     
                     box(
                     
-                        h4("Total confirmed Cases till date:", align="left") , 
-                        textOutput("Confirmed")#end text Output
-        
+                        h3("Total confirmed Cases till date:", align="left") , 
+                        textOutput("Confirmed"), #end text Output
+                        #adding custom CSS for the text
+                        tags$head(tags$style("#Confirmed{
+                                 font-size: 20px;
+                                 color:black;
+                                 font-family:'Raleway', sans-serif;
+                                 }"
+                        )
+                        ) # end head
+                        
                     ), #end box
                     
                     box(
                         
-                        h4("Total deaths till date:", align="left") , 
-                        textOutput("Deaths") #end text Output
+                        h3("Total deaths till date:", align="left") , 
+                        textOutput("Deaths"), #end text Output
                         
+                        #adding custom CSS for the text
+                        tags$head(tags$style("#Deaths{
+                                 color: red;
+                                 font-size: 20px;
+                                 font-family:'Raleway', sans-serif;
+                                 }"
+                        )) #end head
                     ) ,
                     
                     box(
                         
-                        h4("Total Recoveries till date:", align="left") , 
-                        textOutput("Recoveries") #end text Output
-                        
+                        h3("Total Recoveries till date:", align="left") , 
+                        textOutput("Recoveries"), #end text Output
+                        tags$head(tags$style("#Recoveries{
+                                 color: green;
+                                 font-size: 20px;
+                                 font-family:'Raleway', sans-serif;
+                                 }"
+                        )) #end head
                     )
                     
                 ) #end fluid row

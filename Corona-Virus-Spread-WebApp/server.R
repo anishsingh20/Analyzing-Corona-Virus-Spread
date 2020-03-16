@@ -36,10 +36,29 @@ library(shiny)
 shinyServer(function(input, output) {
 
     output$Confirmed <- renderText({
+      #R-code goes inside this
       
       lastcol<-ncol(latestConf) #getting the last column from the time series dataframe
       sum(latestConf[lastcol]) #printing the sum of values in the column
       
     }) #end Confirmed 
+    
+    output$Deaths <- renderText({
+      
+      lastcol<-ncol(latestDeaths)
+      
+      sum(latestDeaths[lastcol])
+      
+      
+    })
 
+    
+    output$Recoveries <- renderText({
+      
+      lastcol<-ncol(latestRecoveries)
+      
+      sum(latestRecoveries[lastcol])
+      
+      
+    })  
 })
