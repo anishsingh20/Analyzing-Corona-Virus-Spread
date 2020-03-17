@@ -64,18 +64,20 @@ Date_latestRecoveries_long_date <- latestRecoveries_long %>%
 #which are the cases on that date and country)
 
 CountrylatestConf<- latestConf %>% 
-    #grouping by country
-    group_by(`Country/Region`) %>% 
-    
     #selecting column 2 i.e the country and last column which is the latest date added by WHO to the dataset
     select(2,ncol(latestConf)) 
 
 #renaming the last column of the above dataframe for ease of data manipulation
-   
-CountrylatestConf <- CountrylatestConf %>% 
-    group_by(`Country/Region`) %>% 
-    summarise(nCount = sum())
 
+colnames(CountrylatestConf) <- c("Country","LatestConf") 
+
+# now we manipulate the dataframe: grouping buy the country and summarising the sum of cases for that country on the most recent date
+CountrylatestConf <- CountrylatestConf %>% 
+    group_by(Country) %>% 
+    summarise(nCount = sum(LatestConf)) %>% 
+    arrange(desc(nCount))
+
+#the above dataset is the Count of confirmed cases for a country for the most recent date
 
 # Define UI for application that draws a histogram
 dashboardPage(
