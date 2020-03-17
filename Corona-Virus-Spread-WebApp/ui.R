@@ -60,11 +60,20 @@ Date_latestRecoveries_long_date <- latestRecoveries_long %>%
     arrange((nRecoveries))
 
 
-#making a dataset for sorting the countires in ascending order of cases for the dropdown
-CountrylatestConf_long<- latestConf_long %>% 
+#making a dataset for sorting the countires in ascending order of case count on the latest day for the dropdown
+CountrylatestConf<- latestConf %>% 
+    #grouping by country
     group_by(`Country/Region`) %>% 
-    summarise(nConf = sum(Count)) %>% 
-    arrange(desc(nConf))
+    
+    #selecting column 2 i.e the country and last column which is the latest date added by WHO to the dataset
+    select(2,ncol(latestConf)) 
+    
+   
+
+
+CountrylatestConf <- CountrylatestConf %>% 
+    mutate(nConfirmed = sum(CountrylatestConf[ncol(CountrylatestConf)]))
+
 
 # Define UI for application that draws a histogram
 dashboardPage(

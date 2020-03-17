@@ -10,47 +10,6 @@
 
 #reading the dataset and doing some modifications
 
-urlConfirmed <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
-
-urlDeaths<-"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv"
-
-urlRecoveries<-"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv"
-
-latestConf<-read_csv(url(urlConfirmed))
-
-latestDeaths<-read_csv(url(urlDeaths))
-
-latestRecoveries<-read_csv(url(urlRecoveries))
-
-latestConf_long<- gather(latestConf, Date, Count, `1/22/20`:ncol(latestConf))
-
-latestDeaths_long<- gather(latestDeaths, Date, Count, `1/22/20`:ncol(latestDeaths) )
-
-latestRecoveries_long<- gather(latestRecoveries, Date, Count, `1/22/20`:ncol(latestRecoveries) )
-
-
-latestConf_long<- gather(latestConf, Date, Count, `1/22/20`:ncol(latestConf))
-
-latestDeaths_long<- gather(latestDeaths, Date, Count, `1/22/20`:ncol(latestDeaths) )
-
-latestRecoveries_long<- gather(latestRecoveries, Date, Count, `1/22/20`:ncol(latestRecoveries) )
-
-Date_latestConf_long <- latestConf_long %>% 
-  group_by(Date) %>%
-  summarise(nConfirmed=sum(Count)) %>% 
-  arrange((nConfirmed))
-
-
-Date_latestDeaths_long_date <- latestDeaths_long %>% 
-  group_by(Date) %>%
-  summarise(nDeaths=sum(Count)) %>% 
-  arrange((nDeaths))
-
-
-Date_latestRecoveries_long_date <- latestRecoveries_long %>% 
-  group_by(Date) %>%
-  summarise(nRecoveries=sum(Count)) %>% 
-  arrange((nRecoveries))
 
 
  
@@ -61,6 +20,50 @@ library(shiny)
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
 
+  
+  urlConfirmed <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
+  
+  urlDeaths<-"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv"
+  
+  urlRecoveries<-"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv"
+  
+  latestConf<-read_csv(url(urlConfirmed))
+  
+  latestDeaths<-read_csv(url(urlDeaths))
+  
+  latestRecoveries<-read_csv(url(urlRecoveries))
+  
+  latestConf_long<- gather(latestConf, Date, Count, `1/22/20`:ncol(latestConf))
+  
+  latestDeaths_long<- gather(latestDeaths, Date, Count, `1/22/20`:ncol(latestDeaths) )
+  
+  latestRecoveries_long<- gather(latestRecoveries, Date, Count, `1/22/20`:ncol(latestRecoveries) )
+  
+  
+  latestConf_long<- gather(latestConf, Date, Count, `1/22/20`:ncol(latestConf))
+  
+  latestDeaths_long<- gather(latestDeaths, Date, Count, `1/22/20`:ncol(latestDeaths) )
+  
+  latestRecoveries_long<- gather(latestRecoveries, Date, Count, `1/22/20`:ncol(latestRecoveries) )
+  
+  Date_latestConf_long <- latestConf_long %>% 
+    group_by(Date) %>%
+    summarise(nConfirmed=sum(Count)) %>% 
+    arrange((nConfirmed))
+  
+  
+  Date_latestDeaths_long_date <- latestDeaths_long %>% 
+    group_by(Date) %>%
+    summarise(nDeaths=sum(Count)) %>% 
+    arrange((nDeaths))
+  
+  
+  Date_latestRecoveries_long_date <- latestRecoveries_long %>% 
+    group_by(Date) %>%
+    summarise(nRecoveries=sum(Count)) %>% 
+    arrange((nRecoveries))
+  
+  
     output$Confirmed <- renderText({
       #R-code goes inside this
       
