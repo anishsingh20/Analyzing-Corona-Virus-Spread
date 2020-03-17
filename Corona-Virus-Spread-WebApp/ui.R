@@ -60,7 +60,9 @@ Date_latestRecoveries_long_date <- latestRecoveries_long %>%
     arrange((nRecoveries))
 
 
-#making a dataset for sorting the countires in ascending order of case count on the latest day for the dropdown
+#making a dataframe on only the most latest cases on the most recent date(We simply extract the last column 
+#which are the cases on that date and country)
+
 CountrylatestConf<- latestConf %>% 
     #grouping by country
     group_by(`Country/Region`) %>% 
