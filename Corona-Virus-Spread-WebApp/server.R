@@ -210,6 +210,14 @@ shinyServer(function(input, output) {
       sum(df[lastcol])
       
     })
+    
+    
+    #country specific chart of cases
+    output$CountryChart <- renderHighchart({
+      
+      
+      
+    })
 
     
    } #end function
