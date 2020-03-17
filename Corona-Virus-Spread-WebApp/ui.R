@@ -69,12 +69,12 @@ CountrylatestConf<- latestConf %>%
     
     #selecting column 2 i.e the country and last column which is the latest date added by WHO to the dataset
     select(2,ncol(latestConf)) 
-    
+
+#renaming the last column of the above dataframe for ease of data manipulation
    
-
-
 CountrylatestConf <- CountrylatestConf %>% 
-    mutate(nConfirmed = sum(CountrylatestConf[ncol(CountrylatestConf)]))
+    group_by(`Country/Region`) %>% 
+    summarise(nCount = sum())
 
 
 # Define UI for application that draws a histogram
