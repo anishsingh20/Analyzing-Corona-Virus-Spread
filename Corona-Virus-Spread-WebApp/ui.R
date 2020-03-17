@@ -15,6 +15,7 @@ require(shiny)
 require(shinydashboard)
 require(readr)
 require(anytime)
+require(DT)
 
 #reading the dataset and doing some modifications
 
@@ -175,10 +176,10 @@ dashboardPage(
                     box(
                         width = 4,
                         h4("Total cases:"),
-                        tableOutput("LatestConf"),
-                        tags$head(tags$style("#Deaths{
-                                 color: red;
-                                 font-size: 20px;
+                        dataTableOutput("LatestConf"),
+                        tags$head(tags$style("#LatestConf{
+                                 color: black;
+                                 font-size: 15px;
                                  font-family:'Raleway', sans-serif;
                                  }"
                         )) #end head
@@ -190,31 +191,31 @@ dashboardPage(
                     box(
                         width = 4,
                         h4("Total Deaths:"),
-                        tableOutput("LatestDeath") ,
-                        tags$head(tags$style("#Deaths{
+                        dataTableOutput("LatestDeath") ,
+                        tags$head(tags$style("#LatestDeath{
                                  color: red;
-                                 font-size: 20px;
+                                 font-size: 15px;
                                  font-family:'Raleway', sans-serif;
                                  }"
                         )) #end head
                         
                         
-                    ),
+                    ), #end box
                     
                     #table of recoveries till date
                     box(
                         width = 4,
                         h4("Total Recoveries:"),
-                        tableOutput("LatestRecovered") ,
-                        tags$head(tags$style("#Deaths{
-                                 color: red;
-                                 font-size: 20px;
+                        dataTableOutput("LatestRecovered") ,
+                        tags$head(tags$style("#LatestRecovered{
+                                 color: green;
+                                 font-size: 15px;
                                  font-family:'Raleway', sans-serif;
                                  }"
                         )) #end head
                         
                         
-                    )
+                    ) #end box
                     
                 ) #end fluid row
                     
