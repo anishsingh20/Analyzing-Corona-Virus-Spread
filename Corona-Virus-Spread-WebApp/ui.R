@@ -164,7 +164,57 @@ dashboardPage(
                         highchartOutput("StackedCOVID"),
                         width=12
                         
-                    )#end box
+                    ), #end box
+                    
+                    br(),
+                    hr(),
+                    br(),
+                    
+                    h3("Table of Countires and most Recent Cases till date",align="center"), 
+                    #table of most comfirmed cases till date
+                    box(
+                        width = 4,
+                        h4("Total cases:"),
+                        tableOutput("LatestConf"),
+                        tags$head(tags$style("#Deaths{
+                                 color: red;
+                                 font-size: 20px;
+                                 font-family:'Raleway', sans-serif;
+                                 }"
+                        )) #end head
+                        
+                        
+                    ),#end box
+                    
+                    #table of most death cases till date
+                    box(
+                        width = 4,
+                        h4("Total Deaths:"),
+                        tableOutput("LatestDeath") ,
+                        tags$head(tags$style("#Deaths{
+                                 color: red;
+                                 font-size: 20px;
+                                 font-family:'Raleway', sans-serif;
+                                 }"
+                        )) #end head
+                        
+                        
+                    ),
+                    
+                    #table of recoveries till date
+                    box(
+                        width = 4,
+                        h4("Total Recoveries:"),
+                        tableOutput("LatestRecovered") ,
+                        tags$head(tags$style("#Deaths{
+                                 color: red;
+                                 font-size: 20px;
+                                 font-family:'Raleway', sans-serif;
+                                 }"
+                        )) #end head
+                        
+                        
+                    )
                     
                 ) #end fluid row
                     
@@ -184,7 +234,7 @@ dashboardPage(
                             box(
                                 
                                 width = 12,
-                                selectInput("country" , label = "Select Country(Sorted by total COVID-19 case counts)",choices = CountrylatestConf_long[,1])
+                                selectInput("country" , label = "Select Country(Sorted by total COVID-19 case counts)",choices = CountrylatestConf[,1])
                             ),
                             
                             box(

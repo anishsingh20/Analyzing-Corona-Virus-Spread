@@ -64,6 +64,49 @@ shinyServer(function(input, output) {
     arrange((nRecoveries))
   
   
+#Below are the dataframes of most recent deaths, cases, and recoveries till date:
+  
+  
+  CountrylatestConf<- latestConf %>% 
+    #selecting column 2 i.e the country and last column which is the latest date added by WHO to the dataset
+    select(2,ncol(latestConf)) 
+  
+  #renaming the last column of the above dataframe for ease of data manipulation
+  
+  colnames(CountrylatestConf) <- c("Country","LatestConf") 
+  
+  # now we manipulate the dataframe: grouping buy the country and summarising the sum of cases for that country on the most recent date
+  CountrylatestConf <- CountrylatestConf %>% 
+    group_by(Country) %>% 
+    summarise(nCount = sum(LatestConf)) %>% 
+    arrange(desc(nCount))
+  
+  
+  #dataframe of latest deaths 
+  CountrylatestDeath <- latestDeaths %>% 
+    select(2,ncol(latestDeaths)) 
+  
+  colnames(CountrylatestDeath) <- c("Country","LatestDeath") 
+  
+  CountrylatestDeath <- CountrylatestDeath %>% 
+    group_by(Country) %>% 
+    summarise(nCount = sum(LatestDeath)) %>% 
+    arrange(desc(nCount))
+  
+  #dataframe of latest Recoveries
+ 
+  CountrylatestRecovered <- latestRecoveries %>% 
+    select(2,ncol(latestRecoveries)) 
+  
+  colnames(CountrylatestRecovered) <- c("Country","LatestRecovered") 
+  
+  CountrylatestRecovered <- CountrylatestRecovered %>% 
+    group_by(Country) %>% 
+    summarise(nCount = sum(LatestRecovered)) %>% 
+    arrange(desc(nCount))
+    
+  
+  
     output$Confirmed <- renderText({
       #R-code goes inside this
       
@@ -108,6 +151,22 @@ shinyServer(function(input, output) {
       
     })
     
+    output$LatestConf <- renderTable({
+      
+      CountrylatestConf
+      
+    }) #end Table1
+    
+    output$LatestDeath <- renderTable({
+      
+      CountrylatestDeath
+    }) #end table2 
+    
+    output$LatestRecovered <-renderTable({
+      
+      CountrylatestRecovered
+      
+    }) #end table 3
     
     output$CountryCases <- renderText({
        
