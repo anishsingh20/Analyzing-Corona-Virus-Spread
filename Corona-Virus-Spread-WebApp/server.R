@@ -8,15 +8,6 @@
 #
 
 
-#reading the dataset and doing some modifications
-
-new_df_country <- latestConf_long %>% 
-  select(`Country/Region`,Date,Count) %>%
-  filter(`Country/Region` == "US") %>% 
-  group_by(Date) %>% 
-  summarise(nCount=sum(Count)) %>% 
-  arrange(nCount)
-
  
 
 library(shiny)
@@ -32,6 +23,9 @@ require(DT)
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
 
+  
+  # adding all the data reads inside the Shiny Server function. So that each time the datset is updated it reflects in the app. 
+  
   
   urlConfirmed <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
   
