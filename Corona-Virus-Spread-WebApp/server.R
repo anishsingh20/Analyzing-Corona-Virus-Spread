@@ -10,15 +10,23 @@
 
 #reading the dataset and doing some modifications
 
-new_df_country_conf <- latestConf_long %>% 
+new_df_country <- latestConf_long %>% 
   select(`Country/Region`,Date,Count) %>%
-  filter(`Country/Region` == "India") %>% 
+  filter(`Country/Region` == "US") %>% 
   group_by(Date) %>% 
-  summarise(nCount=sum(Count))
+  summarise(nCount=sum(Count)) %>% 
+  arrange(nCount)
 
  
 
 library(shiny)
+require(highcharter)
+require(dplyr)
+require(tidyr)
+require(shiny)
+require(shinydashboard)
+require(readr)
+require(anytime)
 require(DT)
 
 # Define server logic required to draw a histogram
@@ -223,23 +231,37 @@ shinyServer(function(input, output) {
         select(`Country/Region`,Date,Count) %>%
         filter(`Country/Region` == input$country) %>% 
         group_by(Date) %>% 
-        summarise(nConf=sum(Count))
+        summarise(nConf=sum(Count)) %>% 
+        arrange(nConf)
       
       #Dataframe of deaths for the selected country
       new_df_country_death <- latestDeaths_long %>% 
         select(`Country/Region`,Date,Count) %>%
-        filter(`Country/Region` == "India") %>% 
+        filter(`Country/Region` == input$country) %>% 
         group_by(Date) %>% 
-        summarise(nDeaths=sum(Count))
+        summarise(nDeaths=sum(Count)) %>% 
+        arrange(nDeaths)
       
       #Dataframe of recoveries of the selected country
       new_df_country_recovered <- latestRecoveries_long %>% 
         select(`Country/Region`,Date,Count) %>%
-        filter(`Country/Region` == "India") %>% 
+        filter(`Country/Region` == input$country) %>% 
         group_by(Date) %>% 
-        summarise(nRecovered=sum(Count))
+        summarise(nRecovered=sum(Count)) %>% 
+        arrange(nRecovered)
       
       
+     
+      
+      highchart() %>% 
+        hc_xAxis(categories=new_df_country_conf$Date) %>% 
+        hc_add_series(name="Deaths", data=new_df_country_death$nDeaths) %>% 
+        hc_add_series(name="Recoveries",data=new_df_country_recovered$nRecovered) %>% 
+        hc_add_series(name="Confirmed Cases", data=new_df_country_conf $nConf) %>% 
+        hc_colors(c("red","green","black")) %>% 
+        hc_add_theme(hc_theme_elementary()) %>% 
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="Analysis of count of deaths,recoveries for and cases for COVID-19 till date",align="center")
       
         
         
