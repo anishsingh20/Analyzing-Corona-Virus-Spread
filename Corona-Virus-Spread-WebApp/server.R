@@ -152,7 +152,7 @@ shinyServer(function(input, output) {
         hc_colors(c("red","green","black")) %>% 
         hc_add_theme(hc_theme_elementary()) %>% 
         hc_exporting(enabled = TRUE) %>%
-        hc_title(text="Analysis of count of deaths,recoveries and cases for COVID-19 till date",align="center")
+        hc_title(text="Analysis of count of deaths,recoveries and cases for COVID-19 till date(Cumalative count)",align="center")
       
       
     })
@@ -255,7 +255,7 @@ shinyServer(function(input, output) {
         hc_colors(c("red","green","black")) %>% 
         hc_add_theme(hc_theme_elementary()) %>% 
         hc_exporting(enabled = TRUE) %>%
-        hc_title(text="Time series Analysis of count of deaths,recoveries for and cases for COVID-19 till date",align="center")
+        hc_title(text="Time series Analysis of count of deaths,recoveries for and cases for COVID-19 till date(Cumalative count)",align="center")
       
         
         
