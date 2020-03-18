@@ -157,6 +157,13 @@ shinyServer(function(input, output) {
       
     })
     
+    output$countCountries <- renderText({
+      
+      #this counts the no of rows in the dataset which is the number of countries/regions affected by COVID-19
+       nrow(CountrylatestConf)
+      
+    })
+    
     output$LatestConf <- renderDataTable({
       
       CountrylatestConf

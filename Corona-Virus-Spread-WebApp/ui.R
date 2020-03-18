@@ -82,7 +82,7 @@ CountrylatestConf <- CountrylatestConf %>%
 
 # Define UI for application that draws a histogram
 dashboardPage(
-    skin="black",
+    skin="blue",
     dashboardHeader(title="COVID-19"),
     
     
@@ -118,12 +118,12 @@ dashboardPage(
                     
                     box(
                     
-                        h3("Total confirmed Cases till date:", align="left") , 
-                        width=4,
+                        h4("Total confirmed Cases till date:", align="left") , 
+                        width=3,
                         textOutput("Confirmed"), #end text Output
                         #adding custom CSS for the text
                         tags$head(tags$style("#Confirmed{
-                                 font-size: 20px;
+                                 font-size: 18px;
                                  color:black;
                                  font-family:'Raleway', sans-serif;
                                  }"
@@ -134,13 +134,13 @@ dashboardPage(
                     
                     box(
                         
-                        h3("Total deaths till date:", align="left") , 
+                        h4("Total deaths till date:", align="left") , 
                         textOutput("Deaths"), #end text Output
-                        width=4,
+                        width=3,
                         #adding custom CSS for the text
                         tags$head(tags$style("#Deaths{
                                  color: red;
-                                 font-size: 20px;
+                                 font-size: 18px;
                                  font-family:'Raleway', sans-serif;
                                  }"
                         )) #end head
@@ -148,16 +148,33 @@ dashboardPage(
                     
                     box(
                         
-                        h3("Total Recoveries till date:", align="left") , 
+                        h4("Total Recoveries till date:", align="left") , 
                         textOutput("Recoveries"), #end text Output
-                        width=4,
+                        width=3,
                         tags$head(tags$style("#Recoveries{
                                  color: green;
-                                 font-size: 20px;
+                                 font-size: 18px;
                                  font-family:'Raleway', sans-serif;
                                  }"
                         )) #end head
-                    ) ,
+                    ) , #end box 
+                    
+                    box(
+                        
+                        h4("Countries/Regions Affected:"),
+                        width=3,
+                        textOutput("countCountries"),
+                        tags$head(tags$style("#countCountries{
+                                 color: black;
+                                 font-size: 18px;
+                                 font-family:'Raleway', sans-serif;
+                                 }"
+                        )) #end head
+                        
+                    ),#end box
+                    
+                    br(),
+                    br(),
                     
                     
                     box(
@@ -170,6 +187,7 @@ dashboardPage(
                     br(),
                     hr(),
                     br(),
+                    
                     
                     h3("Table of Countires and most Recent Cases till date",align="center"), 
                     #table of most comfirmed cases till date
