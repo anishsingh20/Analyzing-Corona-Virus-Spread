@@ -175,7 +175,7 @@ dashboardPage(
                     #table of most comfirmed cases till date
                     box(
                         width = 4,
-                        h4("Total cases:"),
+                        h3("Total cases:"),
                         dataTableOutput("LatestConf"),
                         tags$head(tags$style("#LatestConf{
                                  color: black;
@@ -190,7 +190,7 @@ dashboardPage(
                     #table of most death cases till date
                     box(
                         width = 4,
-                        h4("Total Deaths:"),
+                        h3("Total Deaths:"),
                         dataTableOutput("LatestDeath") ,
                         tags$head(tags$style("#LatestDeath{
                                  color: red;
@@ -205,7 +205,7 @@ dashboardPage(
                     #table of recoveries till date
                     box(
                         width = 4,
-                        h4("Total Recoveries:"),
+                        h3("Total Recoveries:"),
                         dataTableOutput("LatestRecovered") ,
                         tags$head(tags$style("#LatestRecovered{
                                  color: green;

@@ -14,7 +14,6 @@
 
  
 
-
 library(shiny)
 require(DT)
 
@@ -215,6 +214,23 @@ shinyServer(function(input, output) {
     #country specific chart of cases
     output$CountryChart <- renderHighchart({
       
+      #creating a new data frame with only the selected country from user
+      new_df_country_conf <- latestConf_long %>% 
+        filter(`Country/Region` == input$country) %>% 
+        select(Date,Count) %>%
+        summarise(nCount=sum(Count))
+      
+      new_df_country_deaths <- latestDeaths_long %>% 
+        filter(`Country/Region` == input$country) %>% 
+        select(Date,Count) %>%
+        summarise(nCount=sum(Count))
+      
+      new_df_country_recovered <- latestRecoveries_long %>% 
+        filter(`Country/Region` == input$country) %>% 
+        select(Date,Count) %>%
+        summarise(nCount=sum(Count))
+        
+        
       
       
     })
