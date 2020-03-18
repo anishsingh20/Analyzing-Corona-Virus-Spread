@@ -10,7 +10,11 @@
 
 #reading the dataset and doing some modifications
 
-
+new_df_country_conf <- latestConf_long %>% 
+  select(`Country/Region`,Date,Count) %>%
+  filter(`Country/Region` == "India") %>% 
+  group_by(Date) %>% 
+  summarise(nCount=sum(Count))
 
  
 
@@ -216,19 +220,27 @@ shinyServer(function(input, output) {
       
       #creating a new data frame with only the selected country from user
       new_df_country_conf <- latestConf_long %>% 
+        select(`Country/Region`,Date,Count) %>%
         filter(`Country/Region` == input$country) %>% 
-        select(Date,Count) %>%
-        summarise(nCount=sum(Count))
+        group_by(Date) %>% 
+        summarise(nConf=sum(Count))
       
-      new_df_country_deaths <- latestDeaths_long %>% 
-        filter(`Country/Region` == input$country) %>% 
-        select(Date,Count) %>%
-        summarise(nCount=sum(Count))
+      #Dataframe of deaths for the selected country
+      new_df_country_death <- latestDeaths_long %>% 
+        select(`Country/Region`,Date,Count) %>%
+        filter(`Country/Region` == "India") %>% 
+        group_by(Date) %>% 
+        summarise(nDeaths=sum(Count))
       
+      #Dataframe of recoveries of the selected country
       new_df_country_recovered <- latestRecoveries_long %>% 
-        filter(`Country/Region` == input$country) %>% 
-        select(Date,Count) %>%
-        summarise(nCount=sum(Count))
+        select(`Country/Region`,Date,Count) %>%
+        filter(`Country/Region` == "India") %>% 
+        group_by(Date) %>% 
+        summarise(nRecovered=sum(Count))
+      
+      
+      
         
         
       
