@@ -304,10 +304,10 @@ shinyServer(function(input, output) {
     output$statesdata_death <- renderDataTable({
       
       #dataframe with country,states and most recent cases
-      df_state <- LatestDeath %>% 
+      df_state <- latestDeaths %>% 
         filter(!is.na(`Province/State`)) %>% 
         #picking the last column which is the cumalative case cound for the latest date.
-        select(1,2,ncol(LatestDeath))
+        select(1,2,ncol(latestDeaths))
       
       colnames(df_state) <- c("State","Country","nCount") 
       
@@ -323,7 +323,20 @@ shinyServer(function(input, output) {
     
     output$statesdata_recovered <- renderDataTable({
       
+      #dataframe with country,states and most recent cases
+      df_state <- latestRecoveries %>% 
+        filter(!is.na(`Province/State`)) %>% 
+        #picking the last column which is the cumalative case cound for the latest date.
+        select(1,2,ncol(latestRecoveries))
       
+      colnames(df_state) <- c("State","Country","nCount") 
+      
+      #filtering the selected country and grouping by the State and summarising the total cases
+      df_specific_country <- df_state %>% 
+        filter(Country == input$countryState) %>% 
+        group_by(State) %>% 
+        summarise(nRecovered=sum(nCount)) %>% 
+        arrange(desc(nRecovered))
       
       
       

@@ -351,6 +351,9 @@ dashboardPage(
             #Tab for state wise analysis
             tabItem(tabName = "tab3",
                     
+                    
+                fluidRow(
+                    
                     column(12,
                            
                            box(
@@ -394,6 +397,8 @@ dashboardPage(
                            
                            
                 )#end column
+                
+            ) #end fluid row 
                     
                 
                 
