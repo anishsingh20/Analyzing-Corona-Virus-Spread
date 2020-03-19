@@ -80,6 +80,22 @@ CountrylatestConf <- CountrylatestConf %>%
 
 #the above dataset is the Count of confirmed cases for a country for the most recent date
 
+
+
+#making a new dataset for Countries which have states in the dataset
+State_data_country <- latestConf %>% 
+    filter(!is.na(`Province/State`)) %>% 
+    select(1,2,ncol(latestConf))
+   
+    
+
+#dataset
+State_data <- latestConf_long %>% 
+    filter(!is.na(`Province/State`)) %>% 
+    group_by(`Province/State`) %>% 
+    summarise(nCount= sum(Count)) %>% 
+    arrange(desc(nCount))
+
 # Define UI for application that draws a histogram
 dashboardPage(
     skin="blue",
