@@ -328,7 +328,18 @@ dashboardPage(
             
             
             #Tab for state wise analysis
-            tabItem(tabName = "tab3"
+            tabItem(tabName = "tab3",
+                    
+                    column(12,
+                           
+                           box(
+                               width = 12,
+                               selectInput("countryState" , label = "Select Country(Sorted by total COVID-19 case counts)",choices = CountrylatestConf[,1])
+                           ),
+                           
+                           
+                )#end column
+                    
                 
                 
             ) #end tab3
