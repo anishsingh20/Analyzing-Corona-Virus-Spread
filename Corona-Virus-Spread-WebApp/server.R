@@ -20,6 +20,13 @@ require(readr)
 require(anytime)
 require(DT)
 
+
+#filtering only those rows which have State data
+State_data <- latestConf_long %>% 
+  filter(!is.na(`Province/State`))
+
+
+
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
 
