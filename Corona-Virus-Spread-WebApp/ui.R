@@ -356,7 +356,35 @@ dashboardPage(
                            box(
                                width = 12,
                                selectInput("countryState" , label = "Select Country(Only those which have state-wise cases and data being recorded)",choices = State_data_country[,1])
-                           )
+                           ),
+                           
+                           br(),
+                           
+                           br(),
+                           
+                           box(
+                               width=4,
+                               
+                               h3("Cumalative Confirmed cases:"),
+                               dataTableOutput("statesdata_conf")
+                               
+                           ), #end box
+                           
+                           box(
+                               width=4,
+                               
+                               h3("Cumalative deaths:"),
+                               dataTableOutput("statesdata_death")
+                               
+                           ), #end box
+                           
+                           box(
+                               width=4,
+                               
+                               h3("Cumalative Recoveries:"),
+                               dataTableOutput("statesdata_recovered")
+                               
+                           ) #end box
                            
                            
                 )#end column
