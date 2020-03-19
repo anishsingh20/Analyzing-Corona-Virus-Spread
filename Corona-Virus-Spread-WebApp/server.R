@@ -23,7 +23,10 @@ require(DT)
 
 #filtering only those rows which have State data
 State_data <- latestConf_long %>% 
-  filter(!is.na(`Province/State`))
+  filter(!is.na(`Province/State`)) %>% 
+  group_by(`Province/State`) %>% 
+  summarise(nCount= sum(Count))
+  
 
 
 
