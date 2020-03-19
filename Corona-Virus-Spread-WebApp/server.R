@@ -22,10 +22,6 @@ require(DT)
 
 
 #filtering only those rows which have State data
-State_data_country <- latestConf %>% 
-  filter(!is.na(`Province/State`)) %>% 
-  select(1,2,ncol(latestConf))
-
   
 
 
@@ -279,6 +275,44 @@ shinyServer(function(input, output) {
       
       
     })
+    
+    
+    output$statesdata_conf <- renderDataTable({
+      
+      
+      #dataframe with country,states and most recent cases
+      df_state <- latestConf %>% 
+        filter(!is.na(`Province/State`)) %>% 
+        #picking the last column which is the cumalative case cound for the latest date.
+        select(1,2,ncol(latestConf))
+      
+      colnames(df_state) <- c("State","Country","nCount") 
+      
+      #filtering the selected country and grouping by the State and summarising the total cases
+      df_specific_country <- df_state %>% 
+        filter(Country == input$countryState) %>% 
+        group_by(State) %>% 
+        summarise(nConf=sum(nCount)) %>% 
+        arrange(desc(nConf))
+      
+      
+      df_specific_country
+      
+    })
+    
+    
+    output$statesdata_death <- renderDataTable({
+      
+    }) #end states death
+    
+    
+    output$statesdata_recovered <- renderDataTable({
+      
+      
+      
+      
+      
+    }) #end states_recovered
 
     
    } #end function

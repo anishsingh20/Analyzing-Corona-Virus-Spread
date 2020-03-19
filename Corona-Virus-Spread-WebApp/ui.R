@@ -97,9 +97,9 @@ State_data_country <- State_data_country %>%
     group_by(Country) %>% 
     summarise(nCount=sum(Count))
 
+colnames(df_state) <- c("State","Country","nCount") 
+
     
-
-
 
 # Define UI for application that draws a histogram
 dashboardPage(
