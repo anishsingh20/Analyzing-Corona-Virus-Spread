@@ -82,17 +82,20 @@ CountrylatestConf <- CountrylatestConf %>%
 
 
 
-#making a new dataset for Countries which have states in the dataset
+#making a new dataset for Countries which have State data in the dataset(for tab3 selectInput)
 State_data_country <- latestConf %>% 
     #we will only have countries whose state data is available and not NA
     filter(!is.na(`Province/State`)) %>% 
-    select(2,ncol(latestConf)) %>% 
-    colnames(State_data_country) <- c("Country","Count") %>% 
+    select(2,ncol(latestConf))
+
+
+#changing the col names
+colnames(State_data_country) <- c("Country","Count") 
     
     
 State_data_country <- State_data_country %>%     
     group_by(Country) %>% 
-    summarise(nCount=sum(Count)) %>% 
+    summarise(nCount=sum(Count))
 
     
 
@@ -353,7 +356,7 @@ dashboardPage(
                            box(
                                width = 12,
                                selectInput("countryState" , label = "Select Country(Only those which have state-wise data being recorded)",choices = State_data_country[,1])
-                           ),
+                           )
                            
                            
                 )#end column
