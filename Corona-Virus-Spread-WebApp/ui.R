@@ -366,6 +366,8 @@ dashboardPage(
                                width=4,
                                
                                h3("Cumalative Confirmed cases:"),
+                               p("Sorted by max case counts"),
+                               br(),
                                dataTableOutput("statesdata_conf")
                                
                            ), #end box
@@ -374,6 +376,8 @@ dashboardPage(
                                width=4,
                                
                                h3("Cumalative deaths:"),
+                               p("Sorted by max Deaths"),
+                               br(),
                                dataTableOutput("statesdata_death")
                                
                            ), #end box
@@ -382,6 +386,8 @@ dashboardPage(
                                width=4,
                                
                                h3("Cumalative Recoveries:"),
+                               p("Sorted by max Recoveries"),
+                               br(),
                                dataTableOutput("statesdata_recovered")
                                
                            ) #end box
