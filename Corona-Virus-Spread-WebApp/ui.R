@@ -355,7 +355,7 @@ dashboardPage(
                            
                            box(
                                width = 12,
-                               selectInput("countryState" , label = "Select Country(Only those which have state-wise data being recorded)",choices = State_data_country[,1])
+                               selectInput("countryState" , label = "Select Country(Only those which have state-wise cases and data being recorded)",choices = State_data_country[,1])
                            )
                            
                            
