@@ -84,17 +84,19 @@ CountrylatestConf <- CountrylatestConf %>%
 
 #making a new dataset for Countries which have states in the dataset
 State_data_country <- latestConf %>% 
+    #we will only have countries whose state data is available and not NA
     filter(!is.na(`Province/State`)) %>% 
-    select(1,2,ncol(latestConf))
-   
+    select(2,ncol(latestConf)) %>% 
+    colnames(State_data_country) <- c("Country","Count") %>% 
+    
+    
+State_data_country <- State_data_country %>%     
+    group_by(Country) %>% 
+    summarise(nCount=sum(Count)) %>% 
+
     
 
-#dataset
-State_data <- latestConf_long %>% 
-    filter(!is.na(`Province/State`)) %>% 
-    group_by(`Province/State`) %>% 
-    summarise(nCount= sum(Count)) %>% 
-    arrange(desc(nCount))
+
 
 # Define UI for application that draws a histogram
 dashboardPage(
@@ -350,7 +352,7 @@ dashboardPage(
                            
                            box(
                                width = 12,
-                               selectInput("countryState" , label = "Select Country(Sorted by total COVID-19 case counts)",choices = CountrylatestConf[,1])
+                               selectInput("countryState" , label = "Select Country(Only those which have state-wise data being recorded)",choices = State_data_country[,1])
                            ),
                            
                            
