@@ -103,7 +103,7 @@ colnames(df_state) <- c("State","Country","nCount")
 
 # Define UI for application that draws a histogram
 dashboardPage(
-    skin="blue",
+    skin="red",
     dashboardHeader(title="COVID-19"),
     
     
