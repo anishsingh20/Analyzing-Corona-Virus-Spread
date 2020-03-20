@@ -345,6 +345,7 @@ shinyServer(function(input, output) {
     
     output$states_conf_chart <- renderHighchart({
       
+      
     })
     
     output$states_death_chart <- renderHighchart({
