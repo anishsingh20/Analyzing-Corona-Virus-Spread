@@ -370,10 +370,50 @@ shinyServer(function(input, output) {
     
     output$states_death_chart <- renderHighchart({
       
+      
+      #dataframe with country,states and most recent cases
+      df_state <- latestDeaths %>% 
+        filter(!is.na(`Province/State`)) %>% 
+        #picking the last column which is the cumalative case cound for the latest date.
+        select(1,2,ncol(latestDeaths))
+      
+      colnames(df_state) <- c("State","Country","nCount") 
+      
+      #filtering the selected country and grouping by the State and summarising the total cases
+      df_specific_country <- df_state %>% 
+        filter(Country == input$countryState) %>% 
+        group_by(State) %>% 
+        summarise(nDeaths=sum(nCount)) %>% 
+        arrange(desc(nDeaths))
+      
+      
+      hchart(df_specific_country, "column", hcaes(x = State,y = nDeaths), name="Deaths:",color="red") %>% 
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="Number of deaths by NOVID-19",align="center") %>%
+        hc_add_theme(hc_theme_elementary()) 
     })
     
     output$states_recovered_chart <- renderHighchart({
       
+      #dataframe with country,states and most recent cases
+      df_state <- latestRecoveries %>% 
+        filter(!is.na(`Province/State`)) %>% 
+        #picking the last column which is the cumalative case cound for the latest date.
+        select(1,2,ncol(latestRecoveries))
+      
+      colnames(df_state) <- c("State","Country","nCount") 
+      
+      #filtering the selected country and grouping by the State and summarising the total cases
+      df_specific_country <- df_state %>% 
+        filter(Country == input$countryState) %>% 
+        group_by(State) %>% 
+        summarise(nRecovered=sum(nCount)) %>% 
+        arrange(desc(nRecovered))
+      
+      hchart(df_specific_country, "column", hcaes(x = State,y = nRecovered), name="Recoveries:",color="green") %>% 
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="Number of Recoveries from COVID-19",align="center") %>%
+        hc_add_theme(hc_theme_elementary()) 
     })
     
     
