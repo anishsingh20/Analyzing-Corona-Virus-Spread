@@ -343,5 +343,19 @@ shinyServer(function(input, output) {
     }) #end states_recovered
 
     
+    output$states_conf_chart <- renderHighchart({
+      
+    })
+    
+    output$states_death_chart <- renderHighchart({
+      
+    })
+    
+    output$states_recovered_chart <- renderHighchart({
+      
+    })
+    
+    
+    
    } #end function
 ) #end shinyServer
