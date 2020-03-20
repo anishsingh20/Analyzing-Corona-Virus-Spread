@@ -345,6 +345,26 @@ shinyServer(function(input, output) {
     
     output$states_conf_chart <- renderHighchart({
       
+      #dataframe with country,states and most recent cases
+      df_state <- latestConf %>% 
+        filter(!is.na(`Province/State`)) %>% 
+        #picking the last column which is the cumalative case cound for the latest date.
+        select(1,2,ncol(latestConf))
+      
+      colnames(df_state) <- c("State","Country","nCount") 
+      
+      #filtering the selected country and grouping by the State and summarising the total cases
+      df_specific_country <- df_state %>% 
+        filter(Country == input$countryState) %>% 
+        group_by(State) %>% 
+        summarise(nConf=sum(nCount)) %>% 
+        arrange(desc(nConf))
+      
+      
+      hchart(df_specific_country, "column", hcaes(x = State,y = nConf), name="Confirmed cases:",color="black") %>% 
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="Number of COVID-19 cases",align="center") %>%
+        hc_add_theme(hc_theme_elementary()) 
       
     })
     

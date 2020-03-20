@@ -399,7 +399,7 @@ dashboardPage(
                            box(
                                width=4,
                                
-                               h3("Barplot"),
+                               h3("Barplot of total cased in respective states:"),
                                p("Sorted by max case counts"),
                                br(),
                                highchartOutput("states_conf_chart")
@@ -409,7 +409,7 @@ dashboardPage(
                            box(
                                width=4,
                                
-                               h3("Barplot"),
+                               h3("Barplot of total deaths in respective states:"),
                                p("Sorted by max Deaths"),
                                br(),
                                highchartOutput("states_death_chart")
@@ -419,7 +419,7 @@ dashboardPage(
                            box(
                                width=4,
                                
-                               h3("Barplot"),
+                               h3("Barplot of total recoveries in respective states:"),
                                p("Sorted by max Recoveries"),
                                br(),
                                highchartOutput("states_recovered_chart")
