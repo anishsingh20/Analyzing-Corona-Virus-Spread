@@ -393,7 +393,39 @@ dashboardPage(
                                br(),
                                dataTableOutput("statesdata_recovered")
                                
+                           ), #end box
+                           
+                           
+                           box(
+                               width=4,
+                               
+                               h3("Barplot"),
+                               p("Sorted by max case counts"),
+                               br(),
+                               highchartOutput("states_conf_chart")
+                               
+                           ), #end box
+                           
+                           box(
+                               width=4,
+                               
+                               h3("Barplot"),
+                               p("Sorted by max Deaths"),
+                               br(),
+                               highchartOutput("states_death_chart")
+                               
+                           ), #end box
+                           
+                           box(
+                               width=4,
+                               
+                               h3("Barplot"),
+                               p("Sorted by max Recoveries"),
+                               br(),
+                               highchartOutput("states_recovered_chart")
+                               
                            ) #end box
+                           
                            
                            
                 )#end column
