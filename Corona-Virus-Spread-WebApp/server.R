@@ -427,7 +427,7 @@ shinyServer(function(input, output) {
     
     
     #world map of cases
-    output$worldmap1 <- renderPlot({
+    output$worldmap1 <- renderLeaflet({
       
       
       map_data_conf <- latestConf_long %>% 
