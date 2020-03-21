@@ -389,7 +389,7 @@ shinyServer(function(input, output) {
       
       hchart(df_specific_country, "column", hcaes(x = State,y = nDeaths), name="Deaths:",color="red") %>% 
         hc_exporting(enabled = TRUE) %>%
-        hc_title(text="Number of deaths by NOVID-19",align="center") %>%
+        hc_title(text="Number of deaths by COVID-19",align="center") %>%
         hc_add_theme(hc_theme_elementary()) 
     })
     

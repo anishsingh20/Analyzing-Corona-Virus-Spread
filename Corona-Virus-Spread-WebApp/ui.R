@@ -114,7 +114,8 @@ dashboardPage(
             
             menuItem("Main Menu", tabName = "tab1" ,icon=icon("dashboard")),
             menuItem("Major Countries affected", tabName = "tab2") ,
-            menuItem(" States/Province affected", tabName = "tab3")
+            menuItem(" States/Province affected", tabName = "tab3") ,
+            menuItem("Geospatial Analysis",tabName = "map",icon = icon("map"))
             
         ) #end sidebarmenu
         
@@ -434,7 +435,20 @@ dashboardPage(
                     
                 
                 
-            ) #end tab3
+            ), #end tab3
+            
+            
+            tabItem(tabName = "map",
+                    
+                    
+                    fluidRow(
+                        
+                        
+                        
+                    ) #end fluidRow
+                
+                
+            ) #end tab4(Map)
             
         ) # end tabItems
         
