@@ -443,6 +443,27 @@ dashboardPage(
                     
                     fluidRow(
                         
+                        column(12,
+                               
+                               
+                               box(width=12
+                                   
+                               ),
+                               
+                               box(width=12
+                                   
+                               ),
+                               
+                               
+                               box(width=12
+                                   
+                               )
+                            
+                            
+                            
+                            
+                        )
+                        
                         
                         
                     ) #end fluidRow
