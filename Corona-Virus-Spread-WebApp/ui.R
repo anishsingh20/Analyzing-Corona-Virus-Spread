@@ -446,27 +446,28 @@ dashboardPage(
                         column(12,
                                
                                
-                               box(width=12
+                               box(width=12,
                                    
-                               ),
-                               
-                               box(width=12
+                                   h3("Confirmed COVID-19 Cases world map")
                                    
-                               ),
+                               ), #end box
                                
-                               
-                               box(width=12
+                               box(width=12,
                                    
-                               )
+                                   h3("World map of deaths due to COVID-19")
+                                   
+                               ), #end box
+                               
+                               
+                               box(width=12,
+                                   
+                                   h3("World map of Recoveries from COVID-19")
+                                   
+                               ) #end box
                             
-                            
-                            
-                            
-                        )
+                            ) # end column
                         
-                        
-                        
-                    ) #end fluidRow
+                     ) #end fluidRow
                 
                 
             ) #end tab4(Map)
