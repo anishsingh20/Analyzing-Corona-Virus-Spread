@@ -454,7 +454,7 @@ dashboardPage(
                                box(width=12,
                                    
                                    h3("Confirmed COVID-19 Cases world map"),
-                                   plotOutput("worldmap1")
+                                   leafletOutput("worldmap1")
                                    
                                    
                                ), #end box
@@ -462,7 +462,7 @@ dashboardPage(
                                box(width=12,
                                    
                                    h3("World map of deaths due to COVID-19"),
-                                   plotOutput("worldmap2")
+                                   leafletOutput("worldmap2")
                                    
                                    
                                ), #end box
@@ -471,7 +471,7 @@ dashboardPage(
                                box(width=12,
                                    
                                    h3("World map of Recoveries from COVID-19") ,
-                                   plotOutput("worldmap3")
+                                   leafletOutput("worldmap3")
                                    
                                ) #end box
                             
