@@ -20,6 +20,10 @@ require(readr)
 require(anytime)
 require(DT)
 
+library(tmap)    # for static and interactive maps
+library(leaflet) # for interactive maps
+library(mapview) # for interactive maps
+library(ggplot2) # tidyverse vis package
 
 #filtering only those rows which have State data
   
