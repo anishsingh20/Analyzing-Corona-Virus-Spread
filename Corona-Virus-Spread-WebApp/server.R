@@ -20,10 +20,15 @@ require(readr)
 require(anytime)
 require(DT)
 
-library(tmap)    # for static and interactive maps
+
+library(maps)    # for static and interactive maps
 library(leaflet) # for interactive maps
 library(mapview) # for interactive maps
 library(ggplot2) # tidyverse vis package
+
+library(ggthemes)
+
+library(gganimate)
 
 #filtering only those rows which have State data
   
@@ -420,6 +425,18 @@ shinyServer(function(input, output) {
         hc_add_theme(hc_theme_elementary()) 
     })
     
+    
+    #world map of cases
+    output$worldmap1 <- renderPlot({
+      
+      
+      map_data_conf <- latestConf_long %>% 
+        select(Lat,Long,Date,Count)
+        
+  
+      
+      
+    })
     
     
    } #end function
