@@ -457,7 +457,14 @@ dashboardPage(
                                box(width=12,
                                    
                                    h3("Confirmed COVID-19 Cases world map"),
-                                   highchartOutput("worldmap1")
+                                   highchartOutput("worldmap1"),
+                                   tags$head(tags$style("#worldmap1{
+                                    height: 500px; 
+                                    min-width: 310px; 
+                                    max-width: 800px; 
+                                    margin: 0 auto; 
+                                 }"
+                                   )) # end head
                                    
                                    
                                ), #end box
@@ -465,7 +472,14 @@ dashboardPage(
                                box(width=12,
                                    
                                    h3("World map of deaths due to COVID-19"),
-                                   highchartOutput("worldmap2")
+                                   highchartOutput("worldmap2"),
+                                   tags$head(tags$style("#worldmap2{
+                                    height: 500px; 
+                                    min-width: 310px; 
+                                    max-width: 800px; 
+                                    margin: 0 auto; 
+                                    }"
+                                   ))# end head
                                    
                                    
                                ), #end box
@@ -474,7 +488,14 @@ dashboardPage(
                                box(width=12,
                                    
                                    h3("World map of Recoveries from COVID-19") ,
-                                   highchartOutput("worldmap3")
+                                   highchartOutput("worldmap3"),
+                                   tags$head(tags$style("#worldmap3{
+                                    height: 500px; 
+                                    min-width: 310px; 
+                                    max-width: 800px; 
+                                    margin: 0 auto; 
+                                 }"
+                                   )) #end head
                                    
                                ) #end box
                             
