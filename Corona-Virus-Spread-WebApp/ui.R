@@ -121,9 +121,9 @@ dashboardPage(
         sidebarMenu(
             
             menuItem("Main Menu", tabName = "tab1" ,icon=icon("dashboard")),
-            menuItem("Major Countries affected", tabName = "tab2"),
-            menuItem("States/Province affected", tabName = "tab3"),
-            menuItem("Daily Change in Cases", tabName = "tab4"),
+            menuItem("Major Countries affected", tabName = "tab2",icon= icon("globe")),
+            menuItem("States/Province affected", tabName = "tab3",icon= icon("cog")),
+            menuItem("Daily Change in Cases", tabName = "tab4",icon=icon("calendar")),
             menuItem("Geospatial Analysis",tabName = "map",icon = icon("map"))
             
         ) #end sidebarmenu
@@ -457,10 +457,11 @@ dashboardPage(
                            box( width=4,
                                 
                                 h4("Daily Change in number of active cases:"),
-                                dataTableOutput("caseChanges"),
+                                p("The difference is cases recorded in last 2 days:"),
+                                textOutput("caseChanges"),
                                 #adding custom CSS for the text
                                 tags$head(tags$style("#caseChanges{
-                                 font-size: 15px;
+                                 font-size: 20px;
                                  color:black;
                                  font-family:'Raleway', sans-serif;
                                  }"
@@ -472,10 +473,11 @@ dashboardPage(
                                width=4 ,
                                
                                h4("Daily Changes in number of Deaths:"),
-                               dataTableOutput("deathChanges"),
+                               p("The difference is deaths recorded in last 2 days:"),
+                               textOutput("deathChanges"),
                                #adding custom CSS for the text
                                tags$head(tags$style("#deathChanges{
-                                 font-size: 15px;
+                                 font-size: 20px;
                                  color:red;
                                  font-family:'Raleway', sans-serif;
                                  }"
@@ -488,10 +490,11 @@ dashboardPage(
                            box(
                                width=4,
                                h4("Daily Changes in number of recoveries"),
-                               dataTableOutput("recoveryChanges"), 
+                               p("The difference is recoveries recorded in last 2 days:"),
+                               textOutput("recoveryChanges"), 
                                #adding custom CSS for the text
                                tags$head(tags$style("#recoveryChanges{
-                                 font-size: 15px;
+                                 font-size: 20px;
                                  color:green;
                                  font-family:'Raleway', sans-serif;
                                  }"

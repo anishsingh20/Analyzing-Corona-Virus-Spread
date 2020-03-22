@@ -426,17 +426,32 @@ shinyServer(function(input, output) {
     })
     
     
-    output$caseChanges <- renderDataTable({
+    output$caseChanges <- renderText({
+      
+      last_col <- ncol(latestConf)
+      
+      changes_df <- latestConf %>% 
+        filter(`Country/Region` == input$countryChanges) %>% 
+        select(last_col-1,last_col)
+      
+      #changing the names
+      colnames(changes_df) <- c("Prev_Day","Today")
+     
+       changes_df <- changes_df %>% 
+        mutate(Change = Today-Prev_Day) %>% #finding the difference
+        summarise(Total_change=sum(Change))
+      
+       changes_df$Total_change
       
     })
     
     
-    output$deathChanges <- renderDataTable({
+    output$deathChanges <- renderText({
       
     })
     
     
-    output$recoveryChanges <- renderDataTable({
+    output$recoveryChanges <- renderText({
       
     })
     
