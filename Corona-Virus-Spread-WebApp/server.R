@@ -429,11 +429,22 @@ shinyServer(function(input, output) {
     #world map of cases
     output$worldmap1 <- renderHighchart({
       
+      #getting the last column of the dataframe which has the latest cumulative count of cases
+      last_col <- ncol(latestConf)
       
-      map_data_conf <- latestConf_long %>% 
-        select(Lat,Long,Date,Count)
+      
+      map_data_conf <- latestConf %>% 
+        select(Lat,Long,2,last_col)
+      
+      colnames(map_data_conf) <- c("lat","lon","country","count") 
         
-    hcmap("custom/world-robinson-highres") 
+      
+    mapdata <- get_data_from_map(download_map_data("custom/world-robinson-highres"))
+    glimpse(mapdata)  
+    
+    hcmap("custom/world-robinson-highres", data = map_data_conf)  %>% 
+      hc_add_series(data = map_data_conf, type = "mapbubble", name = "Count", maxSize = '10%') %>%
+      hc_mapNavigation(enabled = TRUE)
        
       
     })
