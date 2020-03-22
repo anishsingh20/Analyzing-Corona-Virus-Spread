@@ -123,6 +123,7 @@ dashboardPage(
             menuItem("Main Menu", tabName = "tab1" ,icon=icon("dashboard")),
             menuItem("Major Countries affected", tabName = "tab2") ,
             menuItem(" States/Province affected", tabName = "tab3") ,
+            menuItem("Daily Changes in Cases", tabName = "tab4"),
             menuItem("Geospatial Analysis",tabName = "map",icon = icon("map"))
             
         ) #end sidebarmenu
@@ -446,6 +447,29 @@ dashboardPage(
             ), #end tab3
             
             
+            #tab to record daily changes in cases
+            tabItem(tabName="tab4" ,
+                
+                    fluidRow(
+                        
+                        column(12,
+                               
+                               h3("Daily changes in COVID-19 cases, deaths and recoveries:",align="center"),
+                               br(),
+                               br(),
+                               box(
+                                   
+                                   width = 12,
+                                   selectInput("country" , label = "Select Country(Sorted by total COVID-19 case counts)",choices = CountrylatestConf[,1])
+                               )
+                        
+                        ) #end column
+                    ) #end fluid row
+                
+                
+            ), #end tab4
+            
+            
             tabItem(tabName = "map",
                     
                     
@@ -504,7 +528,7 @@ dashboardPage(
                      ) #end fluidRow
                 
                 
-            ) #end tab4(Map)
+            ) #end tab5(Map)
             
         ) # end tabItems
         
