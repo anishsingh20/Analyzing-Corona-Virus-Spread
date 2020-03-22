@@ -440,18 +440,18 @@ shinyServer(function(input, output) {
       
       #getting difference in names of countries between 2 datasets for joining them:
       
-      df_name<-data.frame(unique(map_data_conf$country,mapdata$name))
+   #   df_name<-data.frame(unique(map_data_conf$country,mapdata$name))
       
-    mapdata <- get_data_from_map(download_map_data("custom/world-robinson-highres"))
-    glimpse(mapdata)  
+   # mapdata <- get_data_from_map(download_map_data("custom/world-robinson-highres"))
+  #  glimpse(mapdata)  
     
-    hcmap("custom/world-robinson-highres", data = map_data_conf, value="count",
-          joinBy = c("name","country"),name="COVID-19",
-          dataLabels = list(enabled=TRUE, format= "{point.name}"),
-          borderColor = "#FAFAFA", borderWidth = 0.1,
-          tooltip = list(valueDecimals = 2, valuePrefix = "#", valueSuffix = " Cases"))  %>% 
-      hc_add_series(data = map_data_conf, type = "mappoint", name = "Count", maxSize = '10%') %>%
-      hc_mapNavigation(enabled = TRUE)
+  #  hcmap("custom/world-robinson-highres", data = map_data_conf, value="count",
+   #       joinBy = c("name","country"),name="COVID-19",
+    #      dataLabels = list(enabled=TRUE, format= "{point.name}"),
+     #     borderColor = "#FAFAFA", borderWidth = 0.1,
+      #    tooltip = list(valueDecimals = 2, valuePrefix = "#", valueSuffix = " Cases"))  %>% 
+      #hc_add_series(data = map_data_conf, type = "mappoint", name = "Count", maxSize = '10%') %>%
+      #hc_mapNavigation(enabled = TRUE)
        
       
     })

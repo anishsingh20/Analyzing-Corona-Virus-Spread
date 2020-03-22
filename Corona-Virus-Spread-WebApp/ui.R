@@ -121,9 +121,9 @@ dashboardPage(
         sidebarMenu(
             
             menuItem("Main Menu", tabName = "tab1" ,icon=icon("dashboard")),
-            menuItem("Major Countries affected", tabName = "tab2") ,
-            menuItem(" States/Province affected", tabName = "tab3") ,
-            menuItem("Daily Changes in Cases", tabName = "tab4"),
+            menuItem("Major Countries affected", tabName = "tab2"),
+            menuItem("States/Province affected", tabName = "tab3"),
+            menuItem("Daily Change in Cases", tabName = "tab4"),
             menuItem("Geospatial Analysis",tabName = "map",icon = icon("map"))
             
         ) #end sidebarmenu
@@ -275,7 +275,6 @@ dashboardPage(
             ) , #end tabItem1
             
             
-            
             tabItem(tabName = "tab2",
                     
                     h3("Countries Affected with COVID-19 cases",align="center"),
@@ -291,7 +290,7 @@ dashboardPage(
                                 selectInput("country" , label = "Select Country(Sorted by total COVID-19 case counts)",choices = CountrylatestConf[,1])
                             ),
                             
-                            box(
+                            box( width=4,
                                 
                                h3("Total Cases:"),
                                textOutput("CountryCases"),
@@ -301,14 +300,12 @@ dashboardPage(
                                  color:black;
                                  font-family:'Raleway', sans-serif;
                                  }"
-                               )
-                               ) ,# end head
-                                width=4
-                                
-                            ) ,
+                               )) # end head
+                        ) ,
                             
                             
                             box(
+                                width=4 ,
                                 
                                 h3("Total Deaths:"),
                                 textOutput("CountryDeaths"),
@@ -318,15 +315,14 @@ dashboardPage(
                                  color:red;
                                  font-family:'Raleway', sans-serif;
                                  }"
-                                )
-                                ),
-                                # end head
-                                width=4
+                                )) # end head
+                               
+                                
                                 
                             ),
                             
                             box(
-                                
+                                width=4,
                                 h3("Total Recovered:"),
                                 textOutput("CountryRecovered"), 
                                 #adding custom CSS for the text
@@ -335,9 +331,8 @@ dashboardPage(
                                  color:green;
                                  font-family:'Raleway', sans-serif;
                                  }"
-                                )
-                                ), # end head
-                                width=4
+                                )) # end head
+                              
                                 
                             ) ,
                             
@@ -348,11 +343,11 @@ dashboardPage(
                                 
                             ) 
                               
-                            ) #end column
+                    ) #end column
                        
                        
                        
-                   ) #end FluidRow
+                ) #end FluidRow
                     
                 
             ), #end tabitem 2
@@ -434,12 +429,7 @@ dashboardPage(
                                br(),
                                highchartOutput("states_recovered_chart")
                                
-                           ), #end box
-                           
-                           
-                           
-                           
-                           
+                           ) #end box
                            
                 )#end column
                 
@@ -451,77 +441,75 @@ dashboardPage(
             
             
             #tab to record daily changes in cases
-            tabItem(tabName="tab4" ,
-                
+            tabItem(tabName = "tab4",
+                    
+                    
                     fluidRow(
                         
-                        column(12,
+                    column(12,
+                           
+                           box(
                                
-                               h3("Daily changes in COVID-19 cases, deaths and recoveries:",align="center"),
-                               br(),
-                               br(),
-                               box(
-                                   
-                                   width = 12,
-                                   selectInput("country" , label = "Select Country(Sorted by total COVID-19 case counts)",choices = CountrylatestConf[,1])
-                               ),
-                               
-                               box(
-                                   
-                                   h3("Change in active case counts:"),
-                                   textOutput("caseChange"),
-                                   #adding custom CSS for the text
-                                   tags$head(tags$style("#caseChange{
-                                 font-size: 20px;
+                               width = 12,
+                               selectInput("countryChanges" , label = "Select Country(Sorted by total COVID-19 case counts)",choices = CountrylatestConf[,1])
+                           ),
+                           
+                           box( width=4,
+                                
+                                h4("Daily Change in number of active cases:"),
+                                dataTableOutput("caseChanges"),
+                                #adding custom CSS for the text
+                                tags$head(tags$style("#caseChanges{
+                                 font-size: 15px;
                                  color:black;
                                  font-family:'Raleway', sans-serif;
                                  }"
-                                   )
-                                   ) ,# end head
-                                   width=4
-                                   
-                               ) ,
+                                )) # end head
+                           ) ,
+                           
+                           
+                           box(
+                               width=4 ,
                                
-                               
-                               box(
-                                   
-                                   h3("Change in number of deaths:"),
-                                   textOutput("deathChange"),
-                                   #adding custom CSS for the text
-                                   tags$head(tags$style("#deathChange{
-                                 font-size: 20px;
+                               h4("Daily Changes in number of Deaths:"),
+                               dataTableOutput("deathChanges"),
+                               #adding custom CSS for the text
+                               tags$head(tags$style("#deathChanges{
+                                 font-size: 15px;
                                  color:red;
                                  font-family:'Raleway', sans-serif;
                                  }"
-                                   )
-                                   ),
-                                   # end head
-                                   width=4
-                                   
-                               ),
+                               )) # end head
                                
-                               box(
-                                   
-                                   h3("Canges in Recoveries: "),
-                                   textOutput("recoveryChange"), 
-                                   #adding custom CSS for the text
-                                   tags$head(tags$style("#recoveryChange{
-                                 font-size: 20px;
+                               
+                               
+                           ),
+                           
+                           box(
+                               width=4,
+                               h4("Daily Changes in number of recoveries"),
+                               dataTableOutput("recoveryChanges"), 
+                               #adding custom CSS for the text
+                               tags$head(tags$style("#recoveryChanges{
+                                 font-size: 15px;
                                  color:green;
                                  font-family:'Raleway', sans-serif;
                                  }"
-                                   )
-                                   ), # end head
-                                   width=4
-                                   
-                               )
+                               )) # end head
+                               
+                               
+                           )
+                           
+                           
+                               
+                               
+                               
+                     ) #end column
                         
-                        ) #end column
-                    ) #end fluid row
+                        
+               ) #end fluid row
                 
-                
-            ), #end tab4
-            
+         ) , #end tab item 4
             
             tabItem(tabName = "map",
                     
@@ -534,30 +522,14 @@ dashboardPage(
                                box(width=12,
                                    
                                    h3("Confirmed COVID-19 Cases world map"),
-                                   highchartOutput("worldmap1"),
-                                   tags$head(tags$style("#worldmap1{
-                                    height: 500px; 
-                                    min-width: 310px; 
-                                    max-width: 800px; 
-                                    margin: 0 auto; 
-                                 }"
-                                   )) # end head
-                                   
-                                   
+                                   highchartOutput("worldmap1")
+                
                                ), #end box
                                
                                box(width=12,
                                    
                                    h3("World map of deaths due to COVID-19"),
-                                   highchartOutput("worldmap2"),
-                                   tags$head(tags$style("#worldmap2{
-                                    height: 500px; 
-                                    min-width: 310px; 
-                                    max-width: 800px; 
-                                    margin: 0 auto; 
-                                    }"
-                                   ))# end head
-                                   
+                                   highchartOutput("worldmap2")
                                    
                                ), #end box
                                
@@ -565,14 +537,7 @@ dashboardPage(
                                box(width=12,
                                    
                                    h3("World map of Recoveries from COVID-19") ,
-                                   highchartOutput("worldmap3"),
-                                   tags$head(tags$style("#worldmap3{
-                                    height: 500px; 
-                                    min-width: 310px; 
-                                    max-width: 800px; 
-                                    margin: 0 auto; 
-                                 }"
-                                   )) #end head
+                                   highchartOutput("worldmap3")
                                    
                                ) #end box
                             
