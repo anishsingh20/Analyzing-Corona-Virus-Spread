@@ -434,7 +434,10 @@ dashboardPage(
                                br(),
                                highchartOutput("states_recovered_chart")
                                
-                           ) #end box
+                           ), #end box
+                           
+                           
+                           
                            
                            
                            
@@ -461,6 +464,56 @@ dashboardPage(
                                    
                                    width = 12,
                                    selectInput("country" , label = "Select Country(Sorted by total COVID-19 case counts)",choices = CountrylatestConf[,1])
+                               ),
+                               
+                               box(
+                                   
+                                   h3("Change in active case counts:"),
+                                   textOutput("caseChange"),
+                                   #adding custom CSS for the text
+                                   tags$head(tags$style("#caseChange{
+                                 font-size: 20px;
+                                 color:black;
+                                 font-family:'Raleway', sans-serif;
+                                 }"
+                                   )
+                                   ) ,# end head
+                                   width=4
+                                   
+                               ) ,
+                               
+                               
+                               box(
+                                   
+                                   h3("Change in number of deaths:"),
+                                   textOutput("deathChange"),
+                                   #adding custom CSS for the text
+                                   tags$head(tags$style("#deathChange{
+                                 font-size: 20px;
+                                 color:red;
+                                 font-family:'Raleway', sans-serif;
+                                 }"
+                                   )
+                                   ),
+                                   # end head
+                                   width=4
+                                   
+                               ),
+                               
+                               box(
+                                   
+                                   h3("Canges in Recoveries: "),
+                                   textOutput("recoveryChange"), 
+                                   #adding custom CSS for the text
+                                   tags$head(tags$style("#recoveryChange{
+                                 font-size: 20px;
+                                 color:green;
+                                 font-family:'Raleway', sans-serif;
+                                 }"
+                                   )
+                                   ), # end head
+                                   width=4
+                                   
                                )
                         
                         ) #end column
