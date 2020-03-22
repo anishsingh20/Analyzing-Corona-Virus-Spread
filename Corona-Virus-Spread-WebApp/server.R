@@ -438,7 +438,7 @@ shinyServer(function(input, output) {
       colnames(changes_df) <- c("Prev_Day","Today")
      
        changes_df <- changes_df %>% 
-        mutate(Change = Today-Prev_Day) %>% #finding the difference
+        mutate(Change = abs(Today-Prev_Day)) %>% #finding the difference
         summarise(Total_change=sum(Change))
       
        changes_df$Total_change
@@ -458,7 +458,7 @@ shinyServer(function(input, output) {
       colnames(changes_df) <- c("Prev_Day","Today")
       
       changes_df <- changes_df %>% 
-        mutate(Change = Today-Prev_Day) %>% #finding the difference
+        mutate(Change = abs(Today-Prev_Day)) %>% #finding the difference
         summarise(Total_change=sum(Change))
       
       changes_df$Total_change
@@ -478,7 +478,7 @@ shinyServer(function(input, output) {
       colnames(changes_df) <- c("Prev_Day","Today")
       
       changes_df <- changes_df %>% 
-        mutate(Change = Today-Prev_Day) %>% #finding the difference
+        mutate(Change = abs(Today-Prev_Day)) %>% #finding the difference
         summarise(Total_change=sum(Change))
       
       changes_df$Total_change

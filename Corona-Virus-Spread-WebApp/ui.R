@@ -459,6 +459,7 @@ dashboardPage(
                                 h4("Daily Change in number of active cases:"),
                                 p("The difference in cases recorded in last 2 days:"),
                                 textOutput("caseChanges"),
+                                dataTableOutput("caseTable"),
                                
                                 #adding custom CSS for the text
                                 tags$head(tags$style("#caseChanges{
@@ -476,6 +477,8 @@ dashboardPage(
                                h4("Daily Changes in number of Deaths:"),
                                p("The difference in deaths recorded in last 2 days:"),
                                textOutput("deathChanges"),
+                               dataTableOutput("deathTable"),
+                               
                                #adding custom CSS for the text
                                tags$head(tags$style("#deathChanges{
                                  font-size: 25px;
@@ -493,6 +496,7 @@ dashboardPage(
                                h4("Daily Changes in number of recoveries"),
                                p("The difference in recoveries recorded in last 2 days:"),
                                textOutput("recoveryChanges"), 
+                               dataTableOutput("RecoveryTable"),
                                #adding custom CSS for the text
                                tags$head(tags$style("#recoveryChanges{
                                  font-size: 25px;
