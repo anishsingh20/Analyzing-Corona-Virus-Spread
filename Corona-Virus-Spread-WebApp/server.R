@@ -426,6 +426,21 @@ shinyServer(function(input, output) {
     })
     
     
+    output$caseChanges <- renderDataTable({
+      
+    })
+    
+    
+    output$deathChanges <- renderDataTable({
+      
+    })
+    
+    
+    output$recoveryChanges <- renderDataTable({
+      
+    })
+    
+    
     #world map of cases
     output$worldmap1 <- renderHighchart({
       
