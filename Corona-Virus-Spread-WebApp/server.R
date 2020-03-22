@@ -488,13 +488,41 @@ shinyServer(function(input, output) {
     
     output$caseTable <- renderDataTable({
       
+      last_col <- ncol(latestConf)
+      
+      df <- latestConf %>% 
+        filter(`Country/Region` == input$countryChanges) %>% 
+        select(`Province/State`,last_col-1,last_col) 
+       
+      
+      
+      df
+        
     })
     
     output$deathTable <- renderDataTable({
       
+      last_col <- ncol(latestDeaths)
+      
+      df <- latestDeaths %>% 
+        filter(`Country/Region` == input$countryChanges) %>% 
+        select(`Province/State`,last_col-1,last_col)
+      
+      
+      df
+      
     })
     
     output$RecoveryTable <- renderDataTable({
+      
+      last_col <- ncol(latestRecoveries)
+      
+      df <- latestRecoveries %>% 
+        filter(`Country/Region` == input$countryChanges) %>% 
+        select(`Province/State`,last_col-1,last_col)
+      
+      
+      df
       
       
       
@@ -539,7 +567,7 @@ shinyServer(function(input, output) {
       map_data_death <- latestDeaths_long %>% 
         select(Lat,Long,Date,Count)
       
-      hcmap("custom/world-robinson-highres") 
+    #  hcmap("custom/world-robinson-highres") 
       
       
     })
@@ -552,7 +580,7 @@ shinyServer(function(input, output) {
       map_data_recovered <- latestRecoveries_long %>% 
         select(Lat,Long,Date,Count)
       
-      hcmap("custom/world-robinson-highres") 
+      #hcmap("custom/world-robinson-highres") 
       
       
     })
