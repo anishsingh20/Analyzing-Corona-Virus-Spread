@@ -448,10 +448,41 @@ shinyServer(function(input, output) {
     
     output$deathChanges <- renderText({
       
+      last_col <- ncol(latestDeaths)
+      
+      changes_df <- latestDeaths %>% 
+        filter(`Country/Region` == input$countryChanges) %>% 
+        select(last_col-1,last_col)
+      
+      #changing the names
+      colnames(changes_df) <- c("Prev_Day","Today")
+      
+      changes_df <- changes_df %>% 
+        mutate(Change = Today-Prev_Day) %>% #finding the difference
+        summarise(Total_change=sum(Change))
+      
+      changes_df$Total_change
+      
     })
     
     
     output$recoveryChanges <- renderText({
+      
+      last_col <- ncol(latestRecoveries)
+      
+      changes_df <- latestRecoveries %>% 
+        filter(`Country/Region` == input$countryChanges) %>% 
+        select(last_col-1,last_col)
+      
+      #changing the names
+      colnames(changes_df) <- c("Prev_Day","Today")
+      
+      changes_df <- changes_df %>% 
+        mutate(Change = Today-Prev_Day) %>% #finding the difference
+        summarise(Total_change=sum(Change))
+      
+      changes_df$Total_change
+      
       
     })
     

@@ -457,11 +457,12 @@ dashboardPage(
                            box( width=4,
                                 
                                 h4("Daily Change in number of active cases:"),
-                                p("The difference is cases recorded in last 2 days:"),
+                                p("The difference in cases recorded in last 2 days:"),
                                 textOutput("caseChanges"),
+                               
                                 #adding custom CSS for the text
                                 tags$head(tags$style("#caseChanges{
-                                 font-size: 20px;
+                                 font-size: 25px;
                                  color:black;
                                  font-family:'Raleway', sans-serif;
                                  }"
@@ -473,11 +474,11 @@ dashboardPage(
                                width=4 ,
                                
                                h4("Daily Changes in number of Deaths:"),
-                               p("The difference is deaths recorded in last 2 days:"),
+                               p("The difference in deaths recorded in last 2 days:"),
                                textOutput("deathChanges"),
                                #adding custom CSS for the text
                                tags$head(tags$style("#deathChanges{
-                                 font-size: 20px;
+                                 font-size: 25px;
                                  color:red;
                                  font-family:'Raleway', sans-serif;
                                  }"
@@ -490,11 +491,11 @@ dashboardPage(
                            box(
                                width=4,
                                h4("Daily Changes in number of recoveries"),
-                               p("The difference is recoveries recorded in last 2 days:"),
+                               p("The difference in recoveries recorded in last 2 days:"),
                                textOutput("recoveryChanges"), 
                                #adding custom CSS for the text
                                tags$head(tags$style("#recoveryChanges{
-                                 font-size: 20px;
+                                 font-size: 25px;
                                  color:green;
                                  font-family:'Raleway', sans-serif;
                                  }"
