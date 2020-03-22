@@ -102,9 +102,12 @@ State_data_country <- State_data_country %>%
     group_by(Country) %>% 
     summarise(nCount=sum(Count))
 
-colnames(df_state) <- c("State","Country","nCount") 
 
-    
+map_data_conf <- latestConf_long %>% 
+    select(Lat,Long,Date,Count)
+
+
+
 
 # Define UI for application that draws a histogram
 dashboardPage(
@@ -454,7 +457,7 @@ dashboardPage(
                                box(width=12,
                                    
                                    h3("Confirmed COVID-19 Cases world map"),
-                                   leafletOutput("worldmap1")
+                                   highchartOutput("worldmap1")
                                    
                                    
                                ), #end box
@@ -462,7 +465,7 @@ dashboardPage(
                                box(width=12,
                                    
                                    h3("World map of deaths due to COVID-19"),
-                                   leafletOutput("worldmap2")
+                                   highchartOutput("worldmap2")
                                    
                                    
                                ), #end box
@@ -471,7 +474,7 @@ dashboardPage(
                                box(width=12,
                                    
                                    h3("World map of Recoveries from COVID-19") ,
-                                   leafletOutput("worldmap3")
+                                   highchartOutput("worldmap3")
                                    
                                ) #end box
                             

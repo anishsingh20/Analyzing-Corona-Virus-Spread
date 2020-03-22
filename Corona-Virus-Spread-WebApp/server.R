@@ -427,13 +427,38 @@ shinyServer(function(input, output) {
     
     
     #world map of cases
-    output$worldmap1 <- renderLeaflet({
+    output$worldmap1 <- renderHighchart({
       
       
       map_data_conf <- latestConf_long %>% 
         select(Lat,Long,Date,Count)
         
-  
+    hcmap("custom/world-robinson-highres") 
+       
+      
+    })
+    
+    
+    output$worldmap2 <- renderHighchart({
+      
+      
+      map_data_death <- latestDeaths_long %>% 
+        select(Lat,Long,Date,Count)
+      
+      hcmap("custom/world-robinson-highres") 
+      
+      
+    })
+    
+    
+    
+    output$worldmap3 <- renderHighchart({
+      
+      
+      map_data_recovered <- latestRecoveries_long %>% 
+        select(Lat,Long,Date,Count)
+      
+      hcmap("custom/world-robinson-highres") 
       
       
     })
