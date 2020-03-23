@@ -219,13 +219,16 @@ dashboardPage(
                     br(),
                     hr(),
                     br(),
+                    br(),
                     
                     
                     h3("Table of Countires and most Recent Cases till date",align="center"), 
+                    br(),
                     #table of most comfirmed cases till date
                     box(
                         width = 4,
                         h3("Total cases:"),
+                        p("Sorted by Case counts in desending order:"),
                         br(),
                         dataTableOutput("LatestConf"),
                         tags$head(tags$style("#LatestConf{
@@ -242,6 +245,7 @@ dashboardPage(
                     box(
                         width = 4,
                         h3("Total Deaths:"),
+                        p("Sorted by number deaths in desending order:"),
                         br(),
                         dataTableOutput("LatestDeath") ,
                         tags$head(tags$style("#LatestDeath{
@@ -258,6 +262,7 @@ dashboardPage(
                     box(
                         width = 4,
                         h3("Total Recoveries:"),
+                        p("Sorted by no of recoveries in desending order:"),
                         br(),
                         dataTableOutput("LatestRecovered") ,
                         tags$head(tags$style("#LatestRecovered{
@@ -457,7 +462,7 @@ dashboardPage(
                            box( width=4,
                                 
                                 h4("Daily Change in number of active cases:"),
-                                p("The difference in cases recorded in last 2 days:"),
+                                p("The increase in cases recorded in last 2 days:"),
                                 textOutput("caseChanges"),
                                 br(),
                                 br(),
@@ -477,7 +482,7 @@ dashboardPage(
                                width=4 ,
                                
                                h4("Daily Changes in number of Deaths:"),
-                               p("The difference in deaths recorded in last 2 days:"),
+                               p("The increase in deaths recorded in last 2 days:"),
                                textOutput("deathChanges"),
                                br(),
                                br(),
@@ -498,7 +503,7 @@ dashboardPage(
                            box(
                                width=4,
                                h4("Daily Changes in number of recoveries"),
-                               p("The difference in recoveries recorded in last 2 days:"),
+                               p("The increase in recoveries recorded in last 2 days:"),
                                textOutput("recoveryChanges"), 
                                br(),
                                br(),
