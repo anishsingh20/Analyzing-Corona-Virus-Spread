@@ -123,17 +123,14 @@ shinyServer(function(input, output) {
     arrange(desc(nCount))
   
   #dataframe of latest Recoveries
- 
-  CountrylatestRecovered <- latestRecoveries %>% 
-    select(2,ncol(latestRecoveries)) 
-  
-  colnames(CountrylatestRecovered) <- c("Country","LatestRecovered") 
-  
-  CountrylatestRecovered <- CountrylatestRecovered %>% 
-    group_by(Country) %>% 
-    summarise(nCount = sum(LatestRecovered)) %>% 
+ CountrylatestRecovered <- latest_day_cases %>% 
+    select(Country_Region,Recovered) %>% 
+    group_by(Country_Region) %>% 
+    summarise(nCount=sum(Recovered)) %>% 
     arrange(desc(nCount))
-    
+  
+#changing the names  
+colnames(CountrylatestRecovered) <- c("Country","nCount")
   
   
     output$Confirmed <- renderText({
@@ -204,6 +201,7 @@ shinyServer(function(input, output) {
     output$LatestRecovered <-renderDataTable({
       
       CountrylatestRecovered
+     
       
     }) #end table 3
     
