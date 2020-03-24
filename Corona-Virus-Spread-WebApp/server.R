@@ -42,17 +42,19 @@ shinyServer(function(input, output) {
   # adding all the data reads inside the Shiny Server function. So that each time the datset is updated it reflects in the app. 
   
   
-  urlConfirmed <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
+  urlConfirmed <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
   
-  urlDeaths<-"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv"
+  urlDeaths<-"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
   
   urlRecoveries<-"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv"
   
   latestConf<-read_csv(url(urlConfirmed))
   
+  
   latestDeaths<-read_csv(url(urlDeaths))
   
   latestRecoveries<-read_csv(url(urlRecoveries))
+  
   
   latestConf_long<- gather(latestConf, Date, Count, `1/22/20`:ncol(latestConf))
   
@@ -132,7 +134,9 @@ shinyServer(function(input, output) {
       #R-code goes inside this
       
       lastcol<-ncol(latestConf) #getting the last column from the time series dataframe
-      sum(latestConf[lastcol]) #printing the sum of values in the column
+  
+  
+      sum(latestConf[lastcol],na.rm = TRUE) #printing the sum of values in the column, and removing any NA values
       
     }) #end Confirmed 
     
@@ -140,7 +144,7 @@ shinyServer(function(input, output) {
       
       lastcol<-ncol(latestDeaths)
       
-      sum(latestDeaths[lastcol])
+      sum(latestDeaths[lastcol],na.rm = TRUE)
       
       
     })
@@ -150,7 +154,7 @@ shinyServer(function(input, output) {
       
       lastcol<-ncol(latestRecoveries)
       
-      sum(latestRecoveries[lastcol])
+      sum(latestRecoveries[lastcol],na.rm = TRUE)
       
       
     })  
@@ -206,7 +210,7 @@ shinyServer(function(input, output) {
       lastcol <- ncol(df)
       
       #sum of all the counts from last column
-      sum(df[lastcol])
+      sum(df[lastcol],na.rm = TRUE)
         
     })
     
@@ -220,7 +224,7 @@ shinyServer(function(input, output) {
       lastcol <- ncol(df)
       
       #sum of all the counts from last column
-      sum(df[lastcol])
+      sum(df[lastcol],na.rm = TRUE)
       
     })
     
@@ -234,7 +238,7 @@ shinyServer(function(input, output) {
       lastcol <- ncol(df)
       
       #sum of all the counts from last column
-      sum(df[lastcol])
+      sum(df[lastcol],na.rm = TRUE)
       
     })
     
