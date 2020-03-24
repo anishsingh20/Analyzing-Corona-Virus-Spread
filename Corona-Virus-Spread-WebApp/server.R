@@ -158,9 +158,10 @@ shinyServer(function(input, output) {
     
     output$Recoveries <- renderText({
       
-      lastcol<-ncol(latestRecoveries)
+      #lastcol<-ncol(latestRecoveries)
       
-      sum(latestRecoveries[lastcol],na.rm = TRUE)
+      #sum(latestRecoveries[lastcol],na.rm = TRUE)
+      sum(latest_day_cases$Recovered)
       
       
     })  
@@ -543,30 +544,7 @@ shinyServer(function(input, output) {
     #world map of cases
     output$worldmap1 <- renderHighchart({
       
-      #getting the last column of the dataframe which has the latest cumulative count of cases
-      last_col <- ncol(latestConf)
-      
-      
-      map_data_conf <- latestConf %>% 
-        select(Lat,Long,2,last_col)
-      
-      colnames(map_data_conf) <- c("lat","lon","country","count") 
-      
-      #getting difference in names of countries between 2 datasets for joining them:
-      
-   #   df_name<-data.frame(unique(map_data_conf$country,mapdata$name))
-      
-   # mapdata <- get_data_from_map(download_map_data("custom/world-robinson-highres"))
-  #  glimpse(mapdata)  
-    
-  #  hcmap("custom/world-robinson-highres", data = map_data_conf, value="count",
-   #       joinBy = c("name","country"),name="COVID-19",
-    #      dataLabels = list(enabled=TRUE, format= "{point.name}"),
-     #     borderColor = "#FAFAFA", borderWidth = 0.1,
-      #    tooltip = list(valueDecimals = 2, valuePrefix = "#", valueSuffix = " Cases"))  %>% 
-      #hc_add_series(data = map_data_conf, type = "mappoint", name = "Count", maxSize = '10%') %>%
-      #hc_mapNavigation(enabled = TRUE)
-       
+     
       
     })
     
@@ -574,10 +552,9 @@ shinyServer(function(input, output) {
     output$worldmap2 <- renderHighchart({
       
       
-      map_data_death <- latestDeaths_long %>% 
-        select(Lat,Long,Date,Count)
       
-    #  hcmap("custom/world-robinson-highres") 
+      
+    
       
       
     })
@@ -587,11 +564,7 @@ shinyServer(function(input, output) {
     output$worldmap3 <- renderHighchart({
       
       
-      map_data_recovered <- latestRecoveries_long %>% 
-        select(Lat,Long,Date,Count)
-      
-      #hcmap("custom/world-robinson-highres") 
-      
+    
       
     })
     
