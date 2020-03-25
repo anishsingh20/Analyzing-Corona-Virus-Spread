@@ -54,6 +54,12 @@ shinyServer(function(input, output) {
   latest_day_cases<- read_csv(url(latest_day))
   
   
+  #previous day data
+  prev_day <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/03-23-2020.csv"
+  
+  prev_day_cases<- read_csv(url(prev_day))
+  
+  
   latestConf<-read_csv(url(urlConfirmed))
   
   
@@ -355,10 +361,10 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
     output$states_conf_chart <- renderHighchart({
       
       #dataframe with country,states and most recent cases
-      df_state <- latestConf %>% 
-        filter(!is.na(`Province/State`)) %>% 
+      df_state <- latest_day_cases %>% 
+        filter(!is.na(Province_State)) %>% 
         #picking the last column which is the cumalative case cound for the latest date.
-        select(1,2,ncol(latestConf))
+        select(3,4,8)
       
       colnames(df_state) <- c("State","Country","nCount") 
       
@@ -381,10 +387,10 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
       
       
       #dataframe with country,states and most recent cases
-      df_state <- latestDeaths %>% 
-        filter(!is.na(`Province/State`)) %>% 
+      df_state <- latest_day_cases %>% 
+        filter(!is.na(Province_State)) %>% 
         #picking the last column which is the cumalative case cound for the latest date.
-        select(1,2,ncol(latestDeaths))
+        select(3,4,9)
       
       colnames(df_state) <- c("State","Country","nCount") 
       
@@ -405,10 +411,10 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
     output$states_recovered_chart <- renderHighchart({
       
       #dataframe with country,states and most recent cases
-      df_state <- latestRecoveries %>% 
-        filter(!is.na(`Province/State`)) %>% 
+      df_state <- latest_day_cases %>% 
+        filter(!is.na(Province_State)) %>% 
         #picking the last column which is the cumalative case cound for the latest date.
-        select(1,2,ncol(latestRecoveries))
+        select(3,4,10)
       
       colnames(df_state) <- c("State","Country","nCount") 
       
