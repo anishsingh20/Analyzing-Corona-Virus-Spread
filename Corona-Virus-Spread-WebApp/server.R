@@ -49,7 +49,7 @@ shinyServer(function(input, output) {
   urlRecoveries<-"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv"
   
   #reading the latest day cases data frame:
-  latest_day <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/03-23-2020.csv"
+  latest_day <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/03-24-2020.csv"
   
   latest_day_cases<- read_csv(url(latest_day))
   
@@ -170,12 +170,12 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
       highchart() %>% 
         hc_xAxis(categories=Date_latestConf_long$Date) %>% 
         hc_add_series(name="Deaths", data=Date_latestDeaths_long_date$nDeaths) %>% 
-        hc_add_series(name="Recoveries",data=Date_latestRecoveries_long_date$nRecoveries) %>% 
+       # hc_add_series(name="Recoveries",data=Date_latestRecoveries_long_date$nRecoveries) %>% 
         hc_add_series(name="Confirmed Cases", data=Date_latestConf_long$nConfirmed) %>% 
         hc_colors(c("red","green","black")) %>% 
         hc_add_theme(hc_theme_elementary()) %>% 
         hc_exporting(enabled = TRUE) %>%
-        hc_title(text="Analysis of count of deaths,recoveries and cases for COVID-19 till date(Cumalative count)",align="center")
+        hc_title(text="Analysis of count of deaths and cases for COVID-19 till date(Cumalative count)",align="center")
       
       
     })
@@ -236,14 +236,13 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
     output$CountryRecovered <- renderText({
       
       # Filtering the time series dataset for the country from the dropdown
-      df <- latestRecoveries %>%
-        filter(`Country/Region` == input$country)
+      df <- latest_day_cases %>%
+        filter(Country_Region == input$country)
       
-      #PICKING THE LAST COLUMN OF THE DATASET
-      lastcol <- ncol(df)
+      sum(df$Recovered)
       
-      #sum of all the counts from last column
-      sum(df[lastcol],na.rm = TRUE)
+
+      
       
     })
     

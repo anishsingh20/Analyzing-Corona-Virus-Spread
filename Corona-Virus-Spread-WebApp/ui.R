@@ -24,17 +24,27 @@ library(ggplot2) # tidyverse vis package
 
 #reading the dataset and doing some modifications
 
-urlConfirmed <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
+urlConfirmed <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
 
-urlDeaths<-"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv"
+urlDeaths<-"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
 
 urlRecoveries<-"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv"
 
+#reading the latest day cases data frame:
+latest_day <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/03-23-2020.csv"
+
+latest_day_cases<- read_csv(url(latest_day))
+
+
 latestConf<-read_csv(url(urlConfirmed))
+
 
 latestDeaths<-read_csv(url(urlDeaths))
 
 latestRecoveries<-read_csv(url(urlRecoveries))
+
+
+
 
 latestConf_long<- gather(latestConf, Date, Count, `1/22/20`:ncol(latestConf))
 
