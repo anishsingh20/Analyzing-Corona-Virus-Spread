@@ -98,10 +98,10 @@ CountrylatestConf <- CountrylatestConf %>%
 
 
 #making a new dataset for Countries which have State data in the dataset(for tab3 selectInput)
-State_data_country <- latestConf %>% 
+State_data_country <- latest_day_cases %>% 
     #we will only have countries whose state data is available and not NA
-    filter(!is.na(`Province/State`)) %>% 
-    select(2,ncol(latestConf))
+    filter(!is.na(Province_State)) %>% 
+    select(Country_Region,Confirmed)
 
 
 #changing the col names

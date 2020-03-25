@@ -274,7 +274,7 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
         hc_add_series(name="Deaths", data=new_df_country_death$nDeaths) %>% 
         #hc_add_series(name="Recoveries",data=new_df_country_recovered$nRecovered) %>% 
         hc_add_series(name="Confirmed Cases", data=new_df_country_conf $nConf) %>% 
-        hc_colors(c("red","green","black")) %>% 
+        hc_colors(c("red","black")) %>% 
         hc_add_theme(hc_theme_elementary()) %>% 
         hc_exporting(enabled = TRUE) %>%
         hc_title(text="Time series Analysis of count of deaths and cases for COVID-19 till date(Cumalative count)",align="center")
@@ -290,10 +290,10 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
       
       
       #dataframe with country,states and most recent cases
-      df_state <- latestConf %>% 
-        filter(!is.na(`Province/State`)) %>% 
+      df_state <- latest_day_cases %>% 
+        filter(!is.na(Province_State)) %>% 
         #picking the last column which is the cumalative case cound for the latest date.
-        select(1,2,ncol(latestConf))
+        select(3,4,8)
       
       colnames(df_state) <- c("State","Country","nCount") 
       
@@ -313,10 +313,10 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
     output$statesdata_death <- renderDataTable({
       
       #dataframe with country,states and most recent cases
-      df_state <- latestDeaths %>% 
-        filter(!is.na(`Province/State`)) %>% 
+      df_state <- latest_day_cases %>% 
+        filter(!is.na(Province_State)) %>% 
         #picking the last column which is the cumalative case cound for the latest date.
-        select(1,2,ncol(latestDeaths))
+        select(3,4,9)
       
       colnames(df_state) <- c("State","Country","nCount") 
       
@@ -333,10 +333,10 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
     output$statesdata_recovered <- renderDataTable({
       
       #dataframe with country,states and most recent cases
-      df_state <- latestRecoveries %>% 
-        filter(!is.na(`Province/State`)) %>% 
+      df_state <- latest_day_cases %>% 
+        filter(!is.na(Province_State)) %>% 
         #picking the last column which is the cumalative case cound for the latest date.
-        select(1,2,ncol(latestRecoveries))
+        select(3,4,10)
       
       colnames(df_state) <- c("State","Country","nCount") 
       
