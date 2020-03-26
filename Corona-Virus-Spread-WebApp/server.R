@@ -538,15 +538,90 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
     
     output$ChangeCountryConfChart <- renderHighchart({
       
+      last_col <- ncol(latestConf)
+      
+      df <- latestConf %>% 
+        select(`Country/Region`,last_col-1,last_col) 
+        
+        
+      colnames(df) <- c("Country","Prev_Day","Today")
+      
+      #This is a data frame of Increase in Conf cases in past 2 days
+        df <- df %>% 
+        mutate(Change = abs(Today-Prev_Day)) %>% #finding the difference
+        group_by(Country) %>% 
+        summarise(Total_change=sum(Change)) %>% 
+        arrange(desc(Total_change)) %>% 
+        top_n(50)
+        
+        
+        hchart(df, "column", hcaes(x = Country,y = Total_change), name="Daily Increase(Past 2 days)",color="purple") %>% 
+          hc_exporting(enabled = TRUE) %>%
+          hc_title(text="Daily Incraese in number of confirmed COVID-19 cases(past 2 days, Top 50 countries)",align="center") %>%
+          hc_add_theme(hc_theme_elementary()) 
+      
+      
+      
+  
+      
     })
     
     
     output$ChangeCountryDeathChart <- renderHighchart({
       
+      
+      last_col <- ncol(latestDeaths)
+      
+      df <- latestDeaths %>% 
+        select(`Country/Region`,last_col-1,last_col) 
+      
+      
+      colnames(df) <- c("Country","Prev_Day","Today")
+      
+      #This is a data frame of Increase in Conf cases in past 2 days
+      df <- df %>% 
+        mutate(Change = abs(Today-Prev_Day)) %>% #finding the difference
+        group_by(Country) %>% 
+        summarise(Total_change=sum(Change)) %>% 
+        arrange(desc(Total_change)) %>% 
+        top_n(50)
+      
+      
+      hchart(df, "column", hcaes(x = Country,y = Total_change), name="Daily Increase(Past 2 days)",color="red") %>% 
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="Daily Incraese in number of Deaths by COVID-19 (past 2 days, Top 50 countries)",align="center") %>%
+        hc_add_theme(hc_theme_elementary()) 
+      
+      
+      
     })
     
     
     output$ChangeCountryRecoverChart <- renderHighchart({
+      
+      last_col <- ncol(latestRecoveries)
+      
+      df <- latestRecoveries %>% 
+        select(`Country/Region`,last_col-1,last_col) 
+      
+      
+      colnames(df) <- c("Country","Prev_Day","Today")
+      
+      #This is a data frame of Increase in Conf cases in past 2 days
+      df <- df %>% 
+        mutate(Change = abs(Today-Prev_Day)) %>% #finding the difference
+        group_by(Country) %>% 
+        summarise(Total_change=sum(Change)) %>% 
+        arrange(desc(Total_change)) %>% 
+        top_n(50)
+      
+      
+      hchart(df, "column", hcaes(x = Country,y = Total_change), name="Daily Increase(Past 2 days)",color="green") %>% 
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="Daily Incraese in number of recoveries by COVID-19(past 2 days, Top 50 countries)",align="center") %>%
+        hc_add_theme(hc_theme_elementary()) 
+      
+      
       
     })
     
