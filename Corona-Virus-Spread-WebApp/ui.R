@@ -28,10 +28,10 @@ urlConfirmed <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/maste
 
 urlDeaths<-"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
 
-urlRecoveries<-"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv"
+urlRecoveries<-"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv"
 
 #reading the latest day cases data frame:
-latest_day <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/03-24-2020.csv"
+latest_day <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/03-25-2020.csv"
 
 latest_day_cases<- read_csv(url(latest_day))
 
@@ -50,13 +50,8 @@ latestConf_long<- gather(latestConf, Date, Count, `1/22/20`:ncol(latestConf))
 
 latestDeaths_long<- gather(latestDeaths, Date, Count, `1/22/20`:ncol(latestDeaths) )
 
-latestRecoveries_long<- gather(latestRecoveries, Date, Count, `1/22/20`:ncol(latestRecoveries) )
+latestRecoveries_long<- gather(latestRecoveries, Date, Count, `1/22/2020`:ncol(latestRecoveries) )
 
-latestConf_long<- gather(latestConf, Date, Count, `1/22/20`:ncol(latestConf))
-
-latestDeaths_long<- gather(latestDeaths, Date, Count, `1/22/20`:ncol(latestDeaths) )
-
-latestRecoveries_long<- gather(latestRecoveries, Date, Count, `1/22/20`:ncol(latestRecoveries) )
 
 Date_latestConf_long <- latestConf_long %>% 
     group_by(Date) %>%
