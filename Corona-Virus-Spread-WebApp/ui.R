@@ -523,7 +523,33 @@ dashboardPage(
                                )) # end head
                                
                                
-                           )
+                           ) ,
+                           
+                          #charts of daily changes of COVID-19 cases 
+                           box(
+                               width = 12,
+                               
+                               
+                               highchartOutput("ChangeCountryConfChart")
+                           ),
+                          
+                          #Daily changes bar plot of countries
+                          box(
+                              width = 12,
+                              
+                              
+                              highchartOutput("ChangeCountryConfChart")
+                          ),
+                          
+                          
+                          #Daily changes bar plot for recoveries
+                          box(
+                              width = 12,
+                              
+                              
+                              highchartOutput("ChangeCountryConfChart")
+                          )
+                          
                            
                            
                                
