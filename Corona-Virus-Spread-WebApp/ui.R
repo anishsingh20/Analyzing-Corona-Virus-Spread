@@ -538,7 +538,7 @@ dashboardPage(
                               width = 12,
                               
                               
-                              highchartOutput("ChangeCountryConfChart")
+                              highchartOutput("ChangeCountryDeathChart")
                           ),
                           
                           
@@ -547,7 +547,7 @@ dashboardPage(
                               width = 12,
                               
                               
-                              highchartOutput("ChangeCountryConfChart")
+                              highchartOutput("ChangeCountryRecoverChart")
                           )
                           
                            
