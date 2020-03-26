@@ -536,6 +536,21 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
     })
     
     
+    output$ChangeCountryConfChart <- renderHighchart({
+      
+    })
+    
+    
+    output$ChangeCountryDeathChart <- renderHighchart({
+      
+    })
+    
+    
+    output$ChangeCountryRecoverChart <- renderHighchart({
+      
+    })
+    
+    
     
     #world map of cases
     output$worldmap1 <- renderHighchart({
