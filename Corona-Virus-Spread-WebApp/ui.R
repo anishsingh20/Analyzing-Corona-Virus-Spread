@@ -21,6 +21,7 @@ library(tmap)    # for static and interactive maps
 library(leaflet) # for interactive maps
 library(mapview) # for interactive maps
 library(ggplot2) # tidyverse vis package
+require(plotly)
 
 #reading the dataset and doing some modifications
 
@@ -50,7 +51,7 @@ latestConf_long<- gather(latestConf, Date, Count, `1/22/20`:ncol(latestConf))
 
 latestDeaths_long<- gather(latestDeaths, Date, Count, `1/22/20`:ncol(latestDeaths) )
 
-latestRecoveries_long<- gather(latestRecoveries, Date, Count, `1/22/2020`:ncol(latestRecoveries) )
+latestRecoveries_long<- gather(latestRecoveries, Date, Count, `1/22/20`:ncol(latestRecoveries) )
 
 
 Date_latestConf_long <- latestConf_long %>% 
@@ -565,36 +566,24 @@ dashboardPage(
             tabItem(tabName = "map",
                     
                     
-                    fluidRow(
+                  #  fluidRow(
                         
-                        column(12,
+                  #      column(12,
                                
                                
-                               box(width=12,
+                              
                                    
                                    h3("Confirmed COVID-19 Cases world map"),
-                                   highchartOutput("worldmap1")
-                
-                               ), #end box
-                               
-                               box(width=12,
-                                   
-                                   h3("World map of deaths due to COVID-19"),
-                                   highchartOutput("worldmap2")
-                                   
-                               ), #end box
-                               
-                               
-                               box(width=12,
-                                   
-                                   h3("World map of Recoveries from COVID-19") ,
-                                   highchartOutput("worldmap3")
-                                   
-                               ) #end box
+                                   leafletOutput("worldmap1") ,
+                                   tags$head(tags$style("#worldmap1{
+                                            width:80% ;
+                                            height:80%;
+                                
+                                        }" ))
                             
-                            ) # end column
+                          #  ) # end column
                         
-                     ) #end fluidRow
+                   #  ) #end fluidRow
                 
                 
             ) #end tab5(Map)

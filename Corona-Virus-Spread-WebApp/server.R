@@ -15,10 +15,12 @@ require(highcharter)
 require(dplyr)
 require(tidyr)
 require(shiny)
+require(plotly)
 require(shinydashboard)
 require(readr)
 require(anytime)
 require(DT)
+require(sp)
 
 
 library(maps)    # for static and interactive maps
@@ -49,15 +51,10 @@ shinyServer(function(input, output) {
   urlRecoveries<-"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv"
   
   #reading the latest day cases data frame:
-  latest_day <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/03-25-2020.csv"
+  latest_day <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/03-26-2020.csv"
   
   latest_day_cases<- read_csv(url(latest_day))
-  
-  
-  #previous day data
-  prev_day <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/03-24-2020.csv"
-  
-  prev_day_cases<- read_csv(url(prev_day))
+
   
   
   latestConf<-read_csv(url(urlConfirmed))
@@ -72,7 +69,7 @@ shinyServer(function(input, output) {
   
   latestDeaths_long<- gather(latestDeaths, Date, Count, `1/22/20`:ncol(latestDeaths) )
   
-  latestRecoveries_long<- gather(latestRecoveries, Date, Count, `1/22/2020`:ncol(latestRecoveries) )
+  latestRecoveries_long<- gather(latestRecoveries, Date, Count, `1/22/20`:ncol(latestRecoveries) )
   
 
   
@@ -628,7 +625,14 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
     
     
     #world map of cases
-    output$worldmap1 <- renderHighchart({
+    output$worldmap1 <- renderPlotly({
+      
+      #getting the world data
+      world <- map_data("world")
+      
+     
+      
+    
       
      
       
