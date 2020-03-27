@@ -121,9 +121,13 @@ shinyServer(function(input, output) {
     arrange(desc(nCount))
   
   #dataframe of latest Recoveries
- CountrylatestRecovered <- latest_day_cases %>% 
-    select(Country_Region,Recovered) %>% 
-    group_by(Country_Region) %>% 
+ CountrylatestRecovered <- latestRecoveries %>% 
+    select(`Country/Region`,ncol(latestRecoveries)) 
+ 
+ colnames(CountrylatestRecovered) <- c("Country","Recovered")
+ 
+ CountrylatestRecovered <- CountrylatestRecovered %>%    
+    group_by(Country) %>% 
     summarise(nCount=sum(Recovered)) %>% 
     arrange(desc(nCount))
   
@@ -153,11 +157,11 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
     
     output$Recoveries <- renderText({
       
-      #lastcol<-ncol(latestRecoveries)
+      lastcol<-ncol(latestRecoveries)
       
-      #sum(latestRecoveries[lastcol],na.rm = TRUE)
+      sum(latestRecoveries[lastcol],na.rm = TRUE)
       
-      sum(latest_day_cases$Recovered)
+     
       
       
     })  
@@ -235,10 +239,14 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
     output$CountryRecovered <- renderText({
       
       # Filtering the time series dataset for the country from the dropdown
-      df <- latest_day_cases %>%
-        filter(Country_Region == input$country)
+      df <- latestRecoveries %>%
+        filter(`Country/Region` == input$country)
       
-      sum(df$Recovered)
+      #PICKING THE LAST COLUMN OF THE DATASET
+      lastcol <- ncol(df)
+      
+      #sum of all the counts from last column
+      sum(df[lastcol],na.rm = TRUE)
   
     })
     
@@ -294,10 +302,10 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
       
       
       #dataframe with country,states and most recent cases
-      df_state <- latest_day_cases %>% 
-        filter(!is.na(Province_State)) %>% 
+      df_state <- latestConf %>% 
+        filter(!is.na(`Province/State`)) %>% 
         #picking the last column which is the cumalative case cound for the latest date.
-        select(3,4,8)
+        select(1,2,ncol(latestConf))
       
       colnames(df_state) <- c("State","Country","nCount") 
       
@@ -317,10 +325,10 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
     output$statesdata_death <- renderDataTable({
       
       #dataframe with country,states and most recent cases
-      df_state <- latest_day_cases %>% 
-        filter(!is.na(Province_State)) %>% 
+      df_state <- latestDeaths %>% 
+        filter(!is.na(`Province/State`)) %>% 
         #picking the last column which is the cumalative case cound for the latest date.
-        select(3,4,9)
+        select(1,2,ncol(latestDeaths))
       
       colnames(df_state) <- c("State","Country","nCount") 
       
@@ -337,10 +345,10 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
     output$statesdata_recovered <- renderDataTable({
       
       #dataframe with country,states and most recent cases
-      df_state <- latest_day_cases %>% 
-        filter(!is.na(Province_State)) %>% 
+      df_state <- latestConf %>% 
+        filter(!is.na(`Province/State`)) %>% 
         #picking the last column which is the cumalative case cound for the latest date.
-        select(3,4,10)
+        select(1,2,ncol(latestRecoveries))
       
       colnames(df_state) <- c("State","Country","nCount") 
       
@@ -359,10 +367,10 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
     output$states_conf_chart <- renderHighchart({
       
       #dataframe with country,states and most recent cases
-      df_state <- latest_day_cases %>% 
-        filter(!is.na(Province_State)) %>% 
+      df_state <- latestConf %>% 
+        filter(!is.na(`Province/State`)) %>% 
         #picking the last column which is the cumalative case cound for the latest date.
-        select(3,4,8)
+        select(1,2,ncol(latestConf))
       
       colnames(df_state) <- c("State","Country","nCount") 
       
@@ -385,10 +393,10 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
       
       
       #dataframe with country,states and most recent cases
-      df_state <- latest_day_cases %>% 
-        filter(!is.na(Province_State)) %>% 
+      df_state <- latestDeaths %>% 
+        filter(!is.na(`Province/State`)) %>% 
         #picking the last column which is the cumalative case cound for the latest date.
-        select(3,4,9)
+        select(1,2,ncol(latestDeaths))
       
       colnames(df_state) <- c("State","Country","nCount") 
       
@@ -409,10 +417,10 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
     output$states_recovered_chart <- renderHighchart({
       
       #dataframe with country,states and most recent cases
-      df_state <- latest_day_cases %>% 
-        filter(!is.na(Province_State)) %>% 
+      df_state <- latestRecoveries %>% 
+        filter(!is.na(`Province/State`)) %>% 
         #picking the last column which is the cumalative case cound for the latest date.
-        select(3,4,10)
+        select(1,2,ncol(latestRecoveries))
       
       colnames(df_state) <- c("State","Country","nCount") 
       
