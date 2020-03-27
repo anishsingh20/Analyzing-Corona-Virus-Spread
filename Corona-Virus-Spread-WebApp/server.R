@@ -50,10 +50,7 @@ shinyServer(function(input, output) {
   
   urlRecoveries<-"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv"
   
-  #reading the latest day cases data frame:
-  latest_day <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/03-26-2020.csv"
   
-  latest_day_cases<- read_csv(url(latest_day))
 
   
   
