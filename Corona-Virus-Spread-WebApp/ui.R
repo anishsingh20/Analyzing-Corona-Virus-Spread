@@ -218,6 +218,27 @@ dashboardPage(
                         
                     ), #end box
                     
+                    box(
+                        
+                        highchartOutput("DailyIncLineGraph"),
+                        width=4
+                        
+                    ),
+                    
+                    box(
+                        
+                        highchartOutput("DailyIncLineGraphDeaths"),
+                        width=4
+                        
+                    ),
+                    
+                    box(
+                        
+                        highchartOutput("DailyIncLineGraphRecovered"),
+                        width=4
+                        
+                    ),
+                    
                     br(),
                     hr(),
                     br(),

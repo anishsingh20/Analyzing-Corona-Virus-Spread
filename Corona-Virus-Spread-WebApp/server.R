@@ -173,6 +173,27 @@ shinyServer(function(input, output) {
       
     })
     
+    #A daily increase line graph
+    output$DailyIncLineGraph <- renderHighchart({
+      
+    })
+    
+    
+    output$DailyIncLineGraphDeaths <- renderHighchart({
+      
+    })
+    
+    
+    output$DailyIncLineGraphRecovered <- renderHighchart({
+      
+      
+      
+    })
+      
+      
+    
+    
+    
     output$countCountries <- renderText({
       
       #this counts the no of rows in the dataset which is the number of countries/regions affected by COVID-19
