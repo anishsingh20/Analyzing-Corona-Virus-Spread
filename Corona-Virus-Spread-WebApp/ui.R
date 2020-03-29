@@ -89,16 +89,17 @@ CountrylatestConf <- CountrylatestConf %>%
 
 
 #making a new dataset for Countries which have State data in the dataset(for tab3 selectInput)
-State_data_country <- latest_day_cases %>% 
+State_data_country <- latestRecoveries %>% 
     #we will only have countries whose state data is available and not NA
-    filter(!is.na(Province_State)) %>% 
-    select(Country_Region,Confirmed)
+    filter(!is.na(`Province/State`)) %>% 
+    select(`Country/Region`,ncol(latestRecoveries))
 
 
 #changing the col names
 colnames(State_data_country) <- c("Country","Count") 
     
-    
+
+#state data only for countries which have their state data being recorded    
 State_data_country <- State_data_country %>%     
     group_by(Country) %>% 
     summarise(nCount=sum(Count))
@@ -410,7 +411,7 @@ dashboardPage(
                            box(
                                width=4,
                                
-                               h3("Barplot of total cased in respective states:"),
+                               h3("Barplot of total confirmed cases in respective states:"),
                                p("Sorted by max case counts"),
                                br(),
                                highchartOutput("states_conf_chart")

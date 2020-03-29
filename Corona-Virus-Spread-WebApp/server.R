@@ -15,12 +15,10 @@ require(highcharter)
 require(dplyr)
 require(tidyr)
 require(shiny)
-require(plotly)
 require(shinydashboard)
 require(readr)
 require(anytime)
 require(DT)
-require(sp)
 
 
 library(maps)    # for static and interactive maps
@@ -37,6 +35,7 @@ library(gganimate)
 
 
 
+
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
 
@@ -50,17 +49,11 @@ shinyServer(function(input, output) {
   
   urlRecoveries<-"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv"
   
-  
-
-  
-  
   latestConf<-read_csv(url(urlConfirmed))
-  
   
   latestDeaths<-read_csv(url(urlDeaths))
   
   latestRecoveries<-read_csv(url(urlRecoveries))
-  
   
   latestConf_long<- gather(latestConf, Date, Count, `1/22/20`:ncol(latestConf))
   
@@ -68,7 +61,12 @@ shinyServer(function(input, output) {
   
   latestRecoveries_long<- gather(latestRecoveries, Date, Count, `1/22/20`:ncol(latestRecoveries) )
   
-
+  
+  latestConf_long<- gather(latestConf, Date, Count, `1/22/20`:ncol(latestConf))
+  
+  latestDeaths_long<- gather(latestDeaths, Date, Count, `1/22/20`:ncol(latestDeaths) )
+  
+  latestRecoveries_long<- gather(latestRecoveries, Date, Count, `1/22/20`:ncol(latestRecoveries) )
   
   Date_latestConf_long <- latestConf_long %>% 
     group_by(Date) %>%
@@ -118,27 +116,24 @@ shinyServer(function(input, output) {
     arrange(desc(nCount))
   
   #dataframe of latest Recoveries
- CountrylatestRecovered <- latestRecoveries %>% 
-    select(`Country/Region`,ncol(latestRecoveries)) 
  
- colnames(CountrylatestRecovered) <- c("Country","Recovered")
- 
- CountrylatestRecovered <- CountrylatestRecovered %>%    
-    group_by(Country) %>% 
-    summarise(nCount=sum(Recovered)) %>% 
-    arrange(desc(nCount))
+  CountrylatestRecovered <- latestRecoveries %>% 
+    select(2,ncol(latestRecoveries)) 
   
-#changing the names  
-colnames(CountrylatestRecovered) <- c("Country","nCount")
+  colnames(CountrylatestRecovered) <- c("Country","LatestRecovered") 
+  
+  CountrylatestRecovered <- CountrylatestRecovered %>% 
+    group_by(Country) %>% 
+    summarise(nCount = sum(LatestRecovered)) %>% 
+    arrange(desc(nCount))
+    
   
   
     output$Confirmed <- renderText({
       #R-code goes inside this
       
       lastcol<-ncol(latestConf) #getting the last column from the time series dataframe
-  
-  
-      sum(latestConf[lastcol],na.rm = TRUE) #printing the sum of values in the column, and removing any NA values
+      sum(latestConf[lastcol]) #printing the sum of values in the column
       
     }) #end Confirmed 
     
@@ -146,7 +141,7 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
       
       lastcol<-ncol(latestDeaths)
       
-      sum(latestDeaths[lastcol],na.rm = TRUE)
+      sum(latestDeaths[lastcol])
       
       
     })
@@ -156,9 +151,7 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
       
       lastcol<-ncol(latestRecoveries)
       
-      sum(latestRecoveries[lastcol],na.rm = TRUE)
-      
-     
+      sum(latestRecoveries[lastcol])
       
       
     })  
@@ -175,7 +168,7 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
         hc_colors(c("red","green","black")) %>% 
         hc_add_theme(hc_theme_elementary()) %>% 
         hc_exporting(enabled = TRUE) %>%
-        hc_title(text="Analysis of count of deaths and cases for COVID-19 till date(Cumalative count)",align="center")
+        hc_title(text="Analysis of count of deaths,recoveries and cases for COVID-19 till date(Cumalative count)",align="center")
       
       
     })
@@ -201,7 +194,6 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
     output$LatestRecovered <-renderDataTable({
       
       CountrylatestRecovered
-     
       
     }) #end table 3
     
@@ -215,7 +207,7 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
       lastcol <- ncol(df)
       
       #sum of all the counts from last column
-      sum(df[lastcol],na.rm = TRUE)
+      sum(df[lastcol])
         
     })
     
@@ -229,7 +221,7 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
       lastcol <- ncol(df)
       
       #sum of all the counts from last column
-      sum(df[lastcol],na.rm = TRUE)
+      sum(df[lastcol])
       
     })
     
@@ -243,8 +235,8 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
       lastcol <- ncol(df)
       
       #sum of all the counts from last column
-      sum(df[lastcol],na.rm = TRUE)
-  
+      sum(df[lastcol])
+      
     })
     
     
@@ -268,13 +260,13 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
         arrange(nDeaths)
       
       #Dataframe of recoveries of the selected country
-     
       new_df_country_recovered <- latestRecoveries_long %>% 
         select(`Country/Region`,Date,Count) %>%
-        filter(`Country/Region`==input$country) %>% 
+        filter(`Country/Region` == input$country) %>% 
         group_by(Date) %>% 
         summarise(nRecovered=sum(Count)) %>% 
         arrange(nRecovered)
+      
       
      
       
@@ -286,7 +278,7 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
         hc_colors(c("red","green","black")) %>% 
         hc_add_theme(hc_theme_elementary()) %>% 
         hc_exporting(enabled = TRUE) %>%
-        hc_title(text="Time series Analysis of count of deaths and cases for COVID-19 till date(Cumalative count)",align="center")
+        hc_title(text="Time series Analysis of count of deaths,recoveries for and cases for COVID-19 till date(Cumalative count)",align="center")
       
         
         
@@ -342,7 +334,7 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
     output$statesdata_recovered <- renderDataTable({
       
       #dataframe with country,states and most recent cases
-      df_state <- latestConf %>% 
+      df_state <- latestRecoveries %>% 
         filter(!is.na(`Province/State`)) %>% 
         #picking the last column which is the cumalative case cound for the latest date.
         select(1,2,ncol(latestRecoveries))
@@ -414,6 +406,7 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
     output$states_recovered_chart <- renderHighchart({
       
       #dataframe with country,states and most recent cases
+     
       df_state <- latestRecoveries %>% 
         filter(!is.na(`Province/State`)) %>% 
         #picking the last column which is the cumalative case cound for the latest date.
@@ -432,214 +425,20 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
         hc_exporting(enabled = TRUE) %>%
         hc_title(text="Number of Recoveries from COVID-19",align="center") %>%
         hc_add_theme(hc_theme_elementary()) 
-    })
-    
-    
-    output$caseChanges <- renderText({
-      
-      last_col <- ncol(latestConf)
-      
-      changes_df <- latestConf %>% 
-        filter(`Country/Region` == input$countryChanges) %>% 
-        select(last_col-1,last_col)
-      
-      #changing the names
-      colnames(changes_df) <- c("Prev_Day","Today")
-     
-       changes_df <- changes_df %>% 
-        mutate(Change = abs(Today-Prev_Day)) %>% #finding the difference
-        summarise(Total_change=sum(Change))
-      
-       changes_df$Total_change
       
     })
-    
-    
-    output$deathChanges <- renderText({
-      
-      last_col <- ncol(latestDeaths)
-      
-      changes_df <- latestDeaths %>% 
-        filter(`Country/Region` == input$countryChanges) %>% 
-        select(last_col-1,last_col)
-      
-      #changing the names
-      colnames(changes_df) <- c("Prev_Day","Today")
-      
-      changes_df <- changes_df %>% 
-        mutate(Change = abs(Today-Prev_Day)) %>% #finding the difference
-        summarise(Total_change=sum(Change))
-      
-      changes_df$Total_change
-      
-    })
-    
-    
-    output$recoveryChanges <- renderText({
-      
-      last_col <- ncol(latestRecoveries)
-      
-      changes_df <- latestRecoveries %>% 
-        filter(`Country/Region` == input$countryChanges) %>% 
-        select(last_col-1,last_col)
-      
-      #changing the names
-      colnames(changes_df) <- c("Prev_Day","Today")
-      
-      changes_df <- changes_df %>% 
-        mutate(Change = abs(Today-Prev_Day)) %>% #finding the difference
-        summarise(Total_change=sum(Change))
-      
-      changes_df$Total_change
-
-      
-    })
-    
-    output$caseTable <- renderDataTable({
-      
-      last_col <- ncol(latestConf)
-      
-      df <- latestConf %>% 
-        filter(`Country/Region` == input$countryChanges) %>% 
-        select(`Province/State`,last_col-1,last_col) 
-       
-      
-      
-      df
-        
-    })
-    
-    output$deathTable <- renderDataTable({
-      
-      last_col <- ncol(latestDeaths)
-      
-      df <- latestDeaths %>% 
-        filter(`Country/Region` == input$countryChanges) %>% 
-        select(`Province/State`,last_col-1,last_col)
-      
-      
-      df
-      
-    })
-    
-    output$RecoveryTable <- renderDataTable({
-      
-      last_col <- ncol(latestRecoveries)
-      
-      df <- latestRecoveries %>% 
-        filter(`Country/Region` == input$countryChanges) %>% 
-        select(`Province/State`,last_col-1,last_col)
-      
-      
-      df
-      
-      
-      
-    })
-    
-    
-    output$ChangeCountryConfChart <- renderHighchart({
-      
-      last_col <- ncol(latestConf)
-      
-      df <- latestConf %>% 
-        select(`Country/Region`,last_col-1,last_col) 
-        
-        
-      colnames(df) <- c("Country","Prev_Day","Today")
-      
-      #This is a data frame of Increase in Conf cases in past 2 days
-        df <- df %>% 
-        mutate(Change = abs(Today-Prev_Day)) %>% #finding the difference
-        group_by(Country) %>% 
-        summarise(Total_change=sum(Change)) %>% 
-        arrange(desc(Total_change)) %>% 
-        top_n(50)
-        
-        
-        hchart(df, "column", hcaes(x = Country,y = Total_change), name="Daily Increase(Past 2 days)",color="purple") %>% 
-          hc_exporting(enabled = TRUE) %>%
-          hc_title(text="Daily Incraese in number of confirmed COVID-19 cases(past 2 days, Top 50 countries)",align="center") %>%
-          hc_add_theme(hc_theme_elementary()) 
-      
-      
-      
-  
-      
-    })
-    
-    
-    output$ChangeCountryDeathChart <- renderHighchart({
-      
-      
-      last_col <- ncol(latestDeaths)
-      
-      df <- latestDeaths %>% 
-        select(`Country/Region`,last_col-1,last_col) 
-      
-      
-      colnames(df) <- c("Country","Prev_Day","Today")
-      
-      #This is a data frame of Increase in Conf cases in past 2 days
-      df <- df %>% 
-        mutate(Change = abs(Today-Prev_Day)) %>% #finding the difference
-        group_by(Country) %>% 
-        summarise(Total_change=sum(Change)) %>% 
-        arrange(desc(Total_change)) %>% 
-        top_n(50)
-      
-      
-      hchart(df, "column", hcaes(x = Country,y = Total_change), name="Daily Increase(Past 2 days)",color="red") %>% 
-        hc_exporting(enabled = TRUE) %>%
-        hc_title(text="Daily Incraese in number of Deaths by COVID-19 (past 2 days, Top 50 countries)",align="center") %>%
-        hc_add_theme(hc_theme_elementary()) 
-      
-      
-      
-    })
-    
-    
-    output$ChangeCountryRecoverChart <- renderHighchart({
-      
-      last_col <- ncol(latestRecoveries)
-      
-      df <- latestRecoveries %>% 
-        select(`Country/Region`,last_col-1,last_col) 
-      
-      
-      colnames(df) <- c("Country","Prev_Day","Today")
-      
-      #This is a data frame of Increase in Conf cases in past 2 days
-      df <- df %>% 
-        mutate(Change = abs(Today-Prev_Day)) %>% #finding the difference
-        group_by(Country) %>% 
-        summarise(Total_change=sum(Change)) %>% 
-        arrange(desc(Total_change)) %>% 
-        top_n(50)
-      
-      
-      hchart(df, "column", hcaes(x = Country,y = Total_change), name="Daily Increase(Past 2 days)",color="green") %>% 
-        hc_exporting(enabled = TRUE) %>%
-        hc_title(text="Daily Incraese in number of recoveries by COVID-19(past 2 days, Top 50 countries)",align="center") %>%
-        hc_add_theme(hc_theme_elementary()) 
-      
-      
-      
-    })
-    
     
     
     #world map of cases
-    output$worldmap1 <- renderPlotly({
+    output$worldmap1 <- renderHighchart({
       
-      #getting the world data
-      world <- map_data("world")
       
-     
-      
-    
-      
-     
+      map_data_conf <- latestConf_long %>% 
+        select(Lat,Long,Date,Count)
+        
+    hcmap()  %>% 
+      hc_add_series(data=map_data_conf, type="mapbubble")
+       
       
     })
     
@@ -647,9 +446,10 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
     output$worldmap2 <- renderHighchart({
       
       
+      map_data_death <- latestDeaths_long %>% 
+        select(Lat,Long,Date,Count)
       
-      
-    
+      hcmap() 
       
       
     })
@@ -659,7 +459,11 @@ colnames(CountrylatestRecovered) <- c("Country","nCount")
     output$worldmap3 <- renderHighchart({
       
       
-    
+      map_data_recovered <- latestRecoveries_long %>% 
+        select(Lat,Long,Date,Count)
+      
+      hcmap() 
+      
       
     })
     
