@@ -478,9 +478,8 @@ dashboardPage(
                            
                            box(width=12,
                                 
-                               highchartOutput("CountryChangeCasesChart"), 
-                                
-                                
+                               highchartOutput("CountryChangeCasesChart")
+                               
                                 ) ,
                            
                            br(),
@@ -489,9 +488,10 @@ dashboardPage(
                            box( width=4,
                                 
                                 h4("Daily Change in number of active cases:"),
-                                p("The increase in cases recorded in last 2 days:"),
+                                p("The increase in cases recorded on the previous day:"),
                                 textOutput("caseChanges"),
                                 br(),
+                                p("In the below table,second column 'nConf' represents the cumulative case count and the third column represents the Daily tracked cases on the specific date. " ),
                                 br(),
                                 dataTableOutput("caseTable"),
                                
@@ -509,9 +509,10 @@ dashboardPage(
                                width=4 ,
                                
                                h4("Daily Changes in number of Deaths:"),
-                               p("The increase in deaths recorded in last 2 days:"),
+                               p("The increase in deaths recorded on the previous day:"),
                                textOutput("deathChanges"),
                                br(),
+                               p("In the below table,second column 'nDeaths' represents the cumulative deaths and the third column represents the Daily tracked deaths on the specific date. " ),
                                br(),
                                dataTableOutput("deathTable"),
                                
@@ -530,9 +531,10 @@ dashboardPage(
                            box(
                                width=4,
                                h4("Daily Changes in number of recoveries"),
-                               p("The increase in recoveries recorded in last 2 days:"),
+                               p("The increase in recoveries on the previous day:"),
                                textOutput("recoveryChanges"), 
                                br(),
+                               p("In the below table,second column 'nRecovered' represents the cumulative recoveries and the third column represents the Daily tracked recoveries on the specific date. " ),
                                br(),
                                dataTableOutput("RecoveryTable"),
                                #adding custom CSS for the text
@@ -545,37 +547,7 @@ dashboardPage(
                                )) # end head
                                
                                
-                           ) ,
-                           
-                          #charts of daily changes of COVID-19 cases 
-                           box(
-                               width = 12,
-                               
-                               
-                               highchartOutput("ChangeCountryConfChart")
-                           ),
-                          
-                          #Daily changes bar plot of countries
-                          box(
-                              width = 12,
-                              
-                              
-                              highchartOutput("ChangeCountryDeathChart")
-                          ),
-                          
-                          
-                          #Daily changes bar plot for recoveries
-                          box(
-                              width = 12,
-                              
-                              
-                              highchartOutput("ChangeCountryRecoverChart")
-                          )
-                          
-                           
-                           
-                               
-                               
+                           ) #end box
                                
                      ) #end column
                         

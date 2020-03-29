@@ -225,6 +225,51 @@ shinyServer(function(input, output) {
     
     output$CountryChangeCasesChart <- renderHighchart({
       
+      #Conf cases date dataset
+      ChangeConfdf <- latestConf_long %>% 
+        filter(`Country/Region` == input$countryChanges) %>% 
+        group_by(Date) %>% 
+        summarise(nConf = sum(Count)) 
+      
+      #ordering the dates
+      ChangeConfdf <- ChangeConfdf[order(as.Date(ChangeConfdf$Date, format="%m/%d/%Y")),]
+      
+      #adding a new column of daily changes in cases
+      ChangeConfdf <- ChangeConfdf %>% mutate(Daily_Confirmed = (nConf - lag(nConf)))
+      
+      
+      
+      #death dataset
+      ChangeDeathdf <- latestDeaths_long %>% 
+        filter(`Country/Region` == input$countryChanges) %>% 
+        group_by(Date) %>% 
+        summarise(nDeaths = sum(Count))
+      
+      #ordering the dates
+      ChangeDeathdf <- ChangeDeathdf[order(as.Date(ChangeDeathdf$Date, format="%m/%d/%Y")),]
+      
+      ChangeDeathdf <- ChangeDeathdf %>% mutate(Daily_Deaths = (nDeaths - lag(nDeaths)))
+      
+      #recovery dataset
+      ChangeRecdf <- latestRecoveries_long %>% 
+        filter(`Country/Region` == input$countryChanges) %>% 
+        group_by(Date) %>% 
+        summarise(nRecovered = sum(Count))
+      
+      #ordering the dates
+      ChangeRecdf <- ChangeRecdf[order(as.Date(ChangeRecdf$Date, format="%m/%d/%Y")),]
+      
+      ChangeRecdf <- ChangeRecdf %>% mutate(Daily_Recovered = (nRecovered - lag(nRecovered)))
+      
+      highchart() %>% 
+        hc_xAxis(categories=ChangeConfdf$Date) %>% 
+        hc_add_series(name="Deaths", data=ChangeDeathdf$Daily_Deaths) %>% 
+        hc_add_series(name="Recoveries",data=ChangeRecdf$Daily_Recovered) %>% 
+        hc_add_series(name="Confirmed Cases", data=ChangeConfdf$Daily_Confirmed) %>% 
+        hc_colors(c("red","green","purple")) %>% 
+        hc_add_theme(hc_theme_elementary()) %>% 
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="Change in cases recorded on each date",align="center")
       
       
     })
@@ -487,40 +532,90 @@ shinyServer(function(input, output) {
     })
     
     
-    #world map of cases
-    output$worldmap1 <- renderHighchart({
+    
+    output$caseChanges <- renderText({
+      
+      #Conf cases date dataset
+      ChangeConfdf <- latestConf_long %>% 
+        filter(`Country/Region` == input$countryChanges) %>% 
+        group_by(Date) %>% 
+        summarise(nConf = sum(Count)) 
+      
+      #ordering the dates
+      ChangeConfdf <- ChangeConfdf[order(as.Date(ChangeConfdf$Date, format="%m/%d/%Y")),]
+      
+      #adding a new column of daily changes in cases
+      ChangeConfdf <- ChangeConfdf %>% mutate(Daily_Confirmed = (nConf - lag(nConf)))
+      
+      case= (ChangeConfdf[nrow(ChangeConfdf),3])
+      
+      case$Daily_Confirmed
+      
+    })
+    
+    output$caseTable <- renderDataTable({
+      
+      #Conf cases date dataset
+      ChangeConfdf <- latestConf_long %>% 
+        filter(`Country/Region` == input$countryChanges) %>% 
+        group_by(Date) %>% 
+        summarise(nConf = sum(Count)) 
+      
+      #ordering the dates
+      ChangeConfdf <- ChangeConfdf[order(as.Date(ChangeConfdf$Date, format="%m/%d/%Y")),]
+      
+      #adding a new column of daily changes in cases
+      ChangeConfdf <- ChangeConfdf %>% mutate(Daily_Confirmed = (nConf - lag(nConf)))
+      
+      ChangeConfdf
+    })
+    
+    output$deathChanges <- renderText({
+      
+      #Conf cases date dataset
+      ChangeDeathdf <- latestDeaths_long %>% 
+        filter(`Country/Region` == input$countryChanges) %>% 
+        group_by(Date) %>% 
+        summarise(nDeaths = sum(Count)) 
+      
+      #ordering the dates
+      ChangeDeathdf <- ChangeDeathdf[order(as.Date(ChangeDeathdf$Date, format="%m/%d/%Y")),]
+      
+      #adding a new column of daily changes in cases
+      ChangeDeathdf <- ChangeDeathdf %>% mutate(Daily_Deaths = (nDeaths - lag(nDeaths)))
+      
+      case = (ChangeDeathdf[nrow(ChangeDeathdf),3])
+      
+      case$Daily_Deaths
+    })
+    
+    output$deathTable <- renderDataTable({
+      
+      #Conf cases date dataset
+      ChangeDeathdf <- latestDeaths_long %>% 
+        filter(`Country/Region` == input$countryChanges) %>% 
+        group_by(Date) %>% 
+        summarise(nDeaths = sum(Count)) 
+      
+      #ordering the dates
+      ChangeDeathdf <- ChangeDeathdf[order(as.Date(ChangeDeathdf$Date, format="%m/%d/%Y")),]
+      
+      #adding a new column of daily changes in cases
+      ChangeDeathdf <- ChangeDeathdf %>% mutate(Daily_Deaths = (nDeaths - lag(nDeaths)))
+      
+      ChangeDeathdf
+      
+    })
+    
+    output$recoveryChanges <- renderText({
       
       
-      map_data_conf <- latestConf_long %>% 
-        select(Lat,Long,Date,Count)
-        
-    hcmap()  %>% 
-      hc_add_series(data=map_data_conf, type="mapbubble")
-       
       
     })
     
     
-    output$worldmap2 <- renderHighchart({
+    output$RecoveryTable <- renderDataTable({
       
-      
-      map_data_death <- latestDeaths_long %>% 
-        select(Lat,Long,Date,Count)
-      
-      hcmap() 
-      
-      
-    })
-    
-    
-    
-    output$worldmap3 <- renderHighchart({
-      
-      
-      map_data_recovered <- latestRecoveries_long %>% 
-        select(Lat,Long,Date,Count)
-      
-      hcmap() 
       
       
     })
