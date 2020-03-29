@@ -218,24 +218,14 @@ dashboardPage(
                         
                     ), #end box
                     
-                    box(
-                        
-                        highchartOutput("DailyIncLineGraph"),
-                        width=4
-                        
-                    ),
+                    br(),
+                    h3("Cases tracked on each day",align="center"),
+                    br(),
                     
                     box(
                         
-                        highchartOutput("DailyIncLineGraphDeaths"),
-                        width=4
-                        
-                    ),
-                    
-                    box(
-                        
-                        highchartOutput("DailyIncLineGraphRecovered"),
-                        width=4
+                        highchartOutput("StackedDailyIncLineGraph"),
+                        width=12
                         
                     ),
                     
@@ -481,6 +471,20 @@ dashboardPage(
                                width = 12,
                                selectInput("countryChanges" , label = "Select Country(Sorted by total COVID-19 case counts)",choices = CountrylatestConf[,1])
                            ),
+                           
+                           br(),
+                           h3("Daily change in cases for the Country"),
+                           br(),
+                           
+                           box(width=12,
+                                
+                               highchartOutput("CountryChangeCasesChart"), 
+                                
+                                
+                                ) ,
+                           
+                           br(),
+                           br(),
                            
                            box( width=4,
                                 
