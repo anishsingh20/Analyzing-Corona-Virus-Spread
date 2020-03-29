@@ -473,7 +473,7 @@ dashboardPage(
                            ),
                            
                            br(),
-                           h3("Daily change in cases for the Country"),
+                           h3("Daily change in cases for the Country", align = "center"),
                            br(),
                            
                            box(width=12,
@@ -488,7 +488,7 @@ dashboardPage(
                            box( width=4,
                                 
                                 h4("Daily Change in number of active cases:"),
-                                p("The increase in cases recorded on the previous day:"),
+                                p("The number of cases recorded on the previous day:"),
                                 textOutput("caseChanges"),
                                 br(),
                                 p("In the below table,second column 'nConf' represents the cumulative case count and the third column represents the Daily tracked cases on the specific date. " ),
@@ -509,7 +509,7 @@ dashboardPage(
                                width=4 ,
                                
                                h4("Daily Changes in number of Deaths:"),
-                               p("The increase in deaths recorded on the previous day:"),
+                               p("The number of deaths recorded on the previous day:"),
                                textOutput("deathChanges"),
                                br(),
                                p("In the below table,second column 'nDeaths' represents the cumulative deaths and the third column represents the Daily tracked deaths on the specific date. " ),
@@ -531,7 +531,7 @@ dashboardPage(
                            box(
                                width=4,
                                h4("Daily Changes in number of recoveries"),
-                               p("The increase in recoveries on the previous day:"),
+                               p("The number of recoveries recorded on the previous day:"),
                                textOutput("recoveryChanges"), 
                                br(),
                                p("In the below table,second column 'nRecovered' represents the cumulative recoveries and the third column represents the Daily tracked recoveries on the specific date. " ),

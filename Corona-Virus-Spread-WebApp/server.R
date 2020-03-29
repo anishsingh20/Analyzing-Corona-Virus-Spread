@@ -609,12 +609,38 @@ shinyServer(function(input, output) {
     
     output$recoveryChanges <- renderText({
       
+      ChangeRecdf <- latestRecoveries_long %>% 
+        filter(`Country/Region` == input$countryChanges) %>% 
+        group_by(Date) %>% 
+        summarise(nRecovered = sum(Count))
       
+      #ordering the dates
+      ChangeRecdf <- ChangeRecdf[order(as.Date(ChangeRecdf$Date, format="%m/%d/%Y")),]
+      
+      #finding daily change in cases
+      ChangeRecdf <- ChangeRecdf %>% mutate(Daily_Recovered = (nRecovered - lag(nRecovered)))
+      
+      case = (ChangeRecdf[nrow(ChangeRecdf),3])
+      
+      case$Daily_Recovered
       
     })
     
     
     output$RecoveryTable <- renderDataTable({
+      
+      ChangeRecdf <- latestRecoveries_long %>% 
+        filter(`Country/Region` == input$countryChanges) %>% 
+        group_by(Date) %>% 
+        summarise(nRecovered = sum(Count))
+      
+      #ordering the dates
+      ChangeRecdf <- ChangeRecdf[order(as.Date(ChangeRecdf$Date, format="%m/%d/%Y")),]
+      
+      #finding daily change in cases
+      ChangeRecdf <- ChangeRecdf %>% mutate(Daily_Recovered = (nRecovered - lag(nRecovered)))
+      
+      ChangeRecdf
       
       
       
