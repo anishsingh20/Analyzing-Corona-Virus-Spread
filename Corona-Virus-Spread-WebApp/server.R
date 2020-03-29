@@ -217,7 +217,7 @@ shinyServer(function(input, output) {
         hc_colors(c("red","green","purple")) %>% 
         hc_add_theme(hc_theme_elementary()) %>% 
         hc_exporting(enabled = TRUE) %>%
-        hc_title(text="Change in cases recorded on each date",align="center")
+        hc_title(text="New cases recorded on each date",align="center")
       
       
     })
@@ -269,7 +269,7 @@ shinyServer(function(input, output) {
         hc_colors(c("red","green","purple")) %>% 
         hc_add_theme(hc_theme_elementary()) %>% 
         hc_exporting(enabled = TRUE) %>%
-        hc_title(text="Change in cases recorded on each date",align="center")
+        hc_title(text="Number of New cases,Deaths and Recoveries recorded on each date",align="center")
       
       
     })
