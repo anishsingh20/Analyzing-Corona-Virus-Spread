@@ -211,9 +211,9 @@ shinyServer(function(input, output) {
       
       highchart() %>% 
         hc_xAxis(categories=ChangeConfdf$Date) %>% 
-        hc_add_series(name="Deaths", data=ChangeDeathdf$Daily_Deaths) %>% 
-        hc_add_series(name="Recoveries",data=ChangeRecdf$Daily_Recovered) %>% 
-        hc_add_series(name="Confirmed Cases", data=ChangeConfdf$Daily_Confirmed) %>% 
+        hc_add_series(name="New Deaths", data=ChangeDeathdf$Daily_Deaths) %>% 
+        hc_add_series(name="New Recoveries",data=ChangeRecdf$Daily_Recovered) %>% 
+        hc_add_series(name="New Confirmed Cases", data=ChangeConfdf$Daily_Confirmed) %>% 
         hc_colors(c("red","green","purple")) %>% 
         hc_add_theme(hc_theme_elementary()) %>% 
         hc_exporting(enabled = TRUE) %>%
@@ -263,9 +263,9 @@ shinyServer(function(input, output) {
       
       highchart() %>% 
         hc_xAxis(categories=ChangeConfdf$Date) %>% 
-        hc_add_series(name="Deaths", data=ChangeDeathdf$Daily_Deaths) %>% 
-        hc_add_series(name="Recoveries",data=ChangeRecdf$Daily_Recovered) %>% 
-        hc_add_series(name="Confirmed Cases", data=ChangeConfdf$Daily_Confirmed) %>% 
+        hc_add_series(name="New Deaths", data=ChangeDeathdf$Daily_Deaths) %>% 
+        hc_add_series(name="New Recoveries",data=ChangeRecdf$Daily_Recovered) %>% 
+        hc_add_series(name="New Confirmed Cases", data=ChangeConfdf$Daily_Confirmed) %>% 
         hc_colors(c("red","green","purple")) %>% 
         hc_add_theme(hc_theme_elementary()) %>% 
         hc_exporting(enabled = TRUE) %>%
