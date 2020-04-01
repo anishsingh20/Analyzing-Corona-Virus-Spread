@@ -126,7 +126,8 @@ dashboardPage(
             menuItem("Major Countries affected", tabName = "tab2",icon= icon("globe")),
             menuItem("States/Province affected", tabName = "tab3",icon= icon("cog")),
             menuItem("Daily Change in Cases", tabName = "tab4",icon=icon("calendar")),
-            menuItem("Geospatial Analysis",tabName = "map",icon = icon("map"))
+            menuItem("Geospatial Analysis",tabName = "map",icon = icon("map")),
+            menuItem(("About"))
             
         ) #end sidebarmenu
         
@@ -579,7 +580,15 @@ dashboardPage(
                    #  ) #end fluidRow
                 
                 
-            ) #end tab5(Map)
+            ), #end tab5(Map)
+         
+         
+         tabItem(
+             tabName = "About",
+             
+             
+             
+         )#end tabItem
             
         ) # end tabItems
         
