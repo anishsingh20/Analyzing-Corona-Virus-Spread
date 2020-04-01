@@ -592,7 +592,20 @@ dashboardPage(
                  a("Johns Hopkins University",href="https://github.com/CSSEGISandData/COVID-19",target="_blank"),
                  p("The data refreshes on a daily basis."),
                  h3("Github link to this App made using R and Shiny:"),
-                 a("Analyzing COVID-19 spred worldwide",link="https://github.com/anishsingh20/Analyzing-Corona-Virus-Spread",target="_blank")
+                 a("Analyzing COVID-19 spread worldwide",href="https://github.com/anishsingh20/Analyzing-Corona-Virus-Spread",target="_blank"),
+                 br(),
+                 h3("Go ahead and checkout the code. Use it as a reference to develop your own dashboards in R."),
+                 h3("Made with love from:"),
+                 tags$ol(
+                     
+                     tags$li(a("Anish Singh Walia",href="https://github.com/anishsingh20",target="_blank")),
+                     tags$li(a("LinkedIn",href="https://www.linkedin.com/in/anish-singh-walia-924529103/",target="_blank")),
+                     tags$li(a("Medium",href="https://medium.com/@anishsingh20",target="_blank")),
+                     tags$li(a("DataSciencePlus",href="https://datascienceplus.com/author/anish-singh-walia/",target="_blank"))
+                     
+                 ) #end tags
+                 
+                 
                  
              ) #end box
              
