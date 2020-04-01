@@ -126,7 +126,6 @@ dashboardPage(
             menuItem("Major Countries affected", tabName = "tab2",icon= icon("globe")),
             menuItem("States/Province affected", tabName = "tab3",icon= icon("cog")),
             menuItem("Daily Change in Cases", tabName = "tab4",icon=icon("calendar")),
-            menuItem("Geospatial Analysis",tabName = "map",icon = icon("map")),
             menuItem("About",tabName = "about", icon= icon("award"))
             
         ) #end sidebarmenu
@@ -147,6 +146,7 @@ dashboardPage(
             tabItem(tabName ="tab1",
                     
                     h2("Analysing Corona Virus Spread",align="center",style="margin-top:-5px;"),
+                    p("(Data refreshed on a daily basis,i.e once a day)",align="center"),
                     br() ,
                     
                 fluidRow(
@@ -556,32 +556,6 @@ dashboardPage(
                ) #end fluid row
                 
          ) , #end tab item 4
-            
-            tabItem(tabName = "map",
-                    
-                    
-                  #  fluidRow(
-                        
-                  #      column(12,
-                               
-                               
-                              
-                                   
-                                   h3("Confirmed COVID-19 Cases world map"),
-                                   leafletOutput("worldmap1") ,
-                                   tags$head(tags$style("#worldmap1{
-                                            width:80% ;
-                                            height:80%;
-                                
-                                        }" ))
-                            
-                          #  ) # end column
-                        
-                   #  ) #end fluidRow
-                
-                
-            ), #end tab5(Map)
-         
          
          tabItem(
              tabName = "about",
