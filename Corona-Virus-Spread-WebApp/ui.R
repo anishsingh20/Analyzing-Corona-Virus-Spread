@@ -584,7 +584,17 @@ dashboardPage(
          
          
          tabItem(
-             tabName = "about"
+             tabName = "about",
+             
+             box(
+                 width = 12,
+                 h2("The Data source:"),
+                 a("Johns Hopkins University",href="https://github.com/CSSEGISandData/COVID-19",target="_blank"),
+                 p("The data refreshes on a daily basis."),
+                 h3("Github link to this App made using R and Shiny:"),
+                 a("Analyzing COVID-19 spred worldwide",link="https://github.com/anishsingh20/Analyzing-Corona-Virus-Spread",target="_blank")
+                 
+             ) #end box
              
              
              
