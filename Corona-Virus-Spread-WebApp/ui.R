@@ -127,7 +127,7 @@ dashboardPage(
             menuItem("States/Province affected", tabName = "tab3",icon= icon("cog")),
             menuItem("Daily Change in Cases", tabName = "tab4",icon=icon("calendar")),
             menuItem("Geospatial Analysis",tabName = "map",icon = icon("map")),
-            menuItem(("About"))
+            menuItem("About",tabName = "about", icon= icon("award"))
             
         ) #end sidebarmenu
         
@@ -584,7 +584,7 @@ dashboardPage(
          
          
          tabItem(
-             tabName = "About",
+             tabName = "about"
              
              
              
