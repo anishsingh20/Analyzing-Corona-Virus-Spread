@@ -138,8 +138,13 @@ dashboardPage(
         
     fluidPage(
         
+        fluidRow(
+            
+            width=4,
         
-        themeSelector() ,
+            themeSelector() 
+        
+        ),
         #adding all the tabs
         tabItems(
             
