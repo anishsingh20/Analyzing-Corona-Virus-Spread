@@ -113,7 +113,7 @@ map_data_conf <- latestConf_long %>%
 
 # Define UI for application that draws a histogram
 dashboardPage(
-    skin="red",
+    skin="black",
     dashboardHeader(title="COVID-19"),
     
     
