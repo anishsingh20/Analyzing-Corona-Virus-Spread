@@ -16,12 +16,8 @@ require(shinydashboard)
 require(readr)
 require(anytime)
 require(DT)
+require(shinythemes)
 
-library(tmap)    # for static and interactive maps
-library(leaflet) # for interactive maps
-library(mapview) # for interactive maps
-library(ggplot2) # tidyverse vis package
-require(plotly)
 
 #reading the dataset and doing some modifications
 
@@ -140,6 +136,10 @@ dashboardPage(
             tags$link(rel = "stylesheet", type = "text/css", href = "https://fonts.googleapis.com/css?family=Merriweather|Playfair+Display|Raleway")
         ),
         
+    fluidPage(
+        
+        
+        themeSelector() ,
         #adding all the tabs
         tabItems(
             
@@ -589,6 +589,8 @@ dashboardPage(
          )#end tabItem
             
         ) # end tabItems
+        
+       )#end FluidPage 
         
     )#end dashboardBody
     
