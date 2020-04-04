@@ -10,3 +10,8 @@ The data is available from 22 Jan, 2020.
 
 Link to the WebApp: https://anishsingh.shinyapps.io/Corona-Virus-Spread-WebApp/
 
+The data is updated everyday. 
+
+
+Data Source : [Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19)
+
