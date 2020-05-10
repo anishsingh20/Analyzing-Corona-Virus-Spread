@@ -63,7 +63,7 @@ shinyServer(function(input, output) {
   
   
   
-  
+ 
   
   
   Date_latestConf_long <- latestConf_long %>% 
@@ -120,6 +120,14 @@ shinyServer(function(input, output) {
   
   colnames(CountrylatestRecovered) <- c("Country","LatestRecovered") 
   
+ 
+  
+  
+  CountrylatestRecovered <- CountrylatestRecovered %>% 
+    group_by(Country) %>% 
+    summarise(nCount = sum(LatestRecovered)) %>% 
+    arrange(desc(nCount))
+    
   #making a consolidated data frame for Death and Recovery dates for each country
   #Joining the data(OUTER JOIN)Returns all rows from both tables, join records from the left which 
   #have matching keys in the right table.
@@ -130,15 +138,9 @@ shinyServer(function(input, output) {
   
   #adding recovery and death rates
   consolidated_df <- consolidated_df %>%  mutate(Death_rate = round((Deaths/Confirmed)*100,2),
-                            Recovery_rate = round((Recovered/Confirmed)*100,2)
-                            )
+                                                 Recovery_rate = round((Recovered/Confirmed)*100,2))
   
   
-  CountrylatestRecovered <- CountrylatestRecovered %>% 
-    group_by(Country) %>% 
-    summarise(nCount = sum(LatestRecovered)) %>% 
-    arrange(desc(nCount))
-    
   
   
     output$Confirmed <- renderText({
@@ -381,6 +383,25 @@ shinyServer(function(input, output) {
       
     })
     
+    output$RecRateCountry <- renderText({
+      
+      df <- consolidated_df %>% 
+        filter(Country == input$country) 
+      
+      df$Recovery_rate
+        
+      
+    })
+    
+    
+    output$DeadRateCountry <-renderText({
+      
+      df <- consolidated_df %>% 
+        filter(Country == input$country) 
+      
+      df$Death_rate
+      
+    })
     
     #country specific chart of cases
     output$CountryChart <- renderHighchart({

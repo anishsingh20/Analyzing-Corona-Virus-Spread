@@ -391,7 +391,7 @@ dashboardPage(
                             h4("Recovery Rate %:", align="left") , 
                             textOutput("RecRateCountry"), #end text Output
                             width=6,
-                            tags$head(tags$style("#RecRate{
+                            tags$head(tags$style("#RecRateCountry{
                                  color: green;
                                  font-size: 20px;
                                  font-family:'Raleway', sans-serif;
@@ -403,7 +403,7 @@ dashboardPage(
                             h4("Death Rate %:", align="left") , 
                             textOutput("DeadRateCountry"), #end text Output
                             width=6,
-                            tags$head(tags$style("#DeadRate{
+                            tags$head(tags$style("#DeadRateCountry{
                                  color: red;
                                  font-size: 20px;
                                  font-family:'Raleway', sans-serif;
