@@ -120,11 +120,17 @@ shinyServer(function(input, output) {
   
   colnames(CountrylatestRecovered) <- c("Country","LatestRecovered") 
   
-  #making a consolidated data frame for Death and Recovery dates
+  #making a consolidated data frame for Death and Recovery dates for each country
+  #Joining the data(OUTER JOIN)Returns all rows from both tables, join records from the left which 
+  #have matching keys in the right table.
   consolidated_df <- merge(x = CountrylatestConf, y = CountrylatestDeath, by = "Country",all=TRUE)
   consolidated_df <- merge(x = consolidated_df , y = CountrylatestRecovered , by = "Country", all= TRUE)
   
   colnames(consolidated_df) <- c("Country","Confirmed","Deaths","Recovered")
+  
+  consolidated_df <- consolidated_df %>%  mutate(Death_rate = round((Deaths/Confirmed)*100,2),
+                            Recovery_rate = round((Recovered/Confirmed)*100,2)
+                            )
   
   
   CountrylatestRecovered <- CountrylatestRecovered %>% 
