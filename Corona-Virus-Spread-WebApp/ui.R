@@ -159,7 +159,7 @@ dashboardPage(
                     box(
                     
                         h4("Total confirmed Cases till date:", align="left") , 
-                        width=3,
+                        width=4,
                         textOutput("Confirmed"), #end text Output
                         #adding custom CSS for the text
                         tags$head(tags$style("#Confirmed{
@@ -176,7 +176,7 @@ dashboardPage(
                         
                         h4("Total deaths till date:", align="left") , 
                         textOutput("Deaths"), #end text Output
-                        width=3,
+                        width=4,
                         #adding custom CSS for the text
                         tags$head(tags$style("#Deaths{
                                  color: red;
@@ -190,7 +190,7 @@ dashboardPage(
                         
                         h4("Total Recoveries till date:", align="left") , 
                         textOutput("Recoveries"), #end text Output
-                        width=3,
+                        width=4,
                         tags$head(tags$style("#Recoveries{
                                  color: green;
                                  font-size: 18px;
@@ -202,7 +202,7 @@ dashboardPage(
                     box(
                         
                         h4("Countries/Regions Affected:"),
-                        width=3,
+                        width=4,
                         textOutput("countCountries"),
                         tags$head(tags$style("#countCountries{
                                  color: black;
@@ -213,8 +213,34 @@ dashboardPage(
                         
                     ),#end box
                     
+                    box(
+                        
+                        h4("Recovery Rate %:", align="left") , 
+                        textOutput("RecRate"), #end text Output
+                        width=4,
+                        tags$head(tags$style("#RecRate{
+                                 color: green;
+                                 font-size: 20px;
+                                 font-family:'Raleway', sans-serif;
+                                 }"
+                        )) #end head
+                    ), 
+                    
+                    box(
+                        h4("Death Rate %:", align="left") , 
+                        textOutput("DeadRate"), #end text Output
+                        width=4,
+                        tags$head(tags$style("#DeadRate{
+                                 color: red;
+                                 font-size: 20px;
+                                 font-family:'Raleway', sans-serif;
+                                 }"
+                        )) #end head
+                    ), 
+                    
                     br(),
                     br(),
+                    
                     
                     
                     box(
