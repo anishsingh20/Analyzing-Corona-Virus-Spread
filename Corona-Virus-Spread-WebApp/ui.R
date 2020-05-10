@@ -385,6 +385,31 @@ dashboardPage(
                               
                                 
                             ) ,
+                        
+                        box(
+                            
+                            h4("Recovery Rate %:", align="left") , 
+                            textOutput("RecRateCountry"), #end text Output
+                            width=6,
+                            tags$head(tags$style("#RecRate{
+                                 color: green;
+                                 font-size: 20px;
+                                 font-family:'Raleway', sans-serif;
+                                 }"
+                            )) #end head
+                        ), 
+                        
+                        box(
+                            h4("Death Rate %:", align="left") , 
+                            textOutput("DeadRateCountry"), #end text Output
+                            width=6,
+                            tags$head(tags$style("#DeadRate{
+                                 color: red;
+                                 font-size: 20px;
+                                 font-family:'Raleway', sans-serif;
+                                 }"
+                            )) #end head
+                        ), 
                             
                             box(
                                 
