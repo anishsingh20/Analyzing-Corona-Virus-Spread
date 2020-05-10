@@ -120,6 +120,13 @@ shinyServer(function(input, output) {
   
   colnames(CountrylatestRecovered) <- c("Country","LatestRecovered") 
   
+  #making a consolidated data frame for Death and Recovery dates
+  consolidated_df <- merge(x = CountrylatestConf, y = CountrylatestDeath, by = "Country",all=TRUE)
+  consolidated_df <- merge(x = consolidated_df , y = CountrylatestRecovered , by = "Country", all= TRUE)
+  
+  colnames(consolidated_df) <- c("Country","Confirmed","Deaths","Recovered")
+  
+  
   CountrylatestRecovered <- CountrylatestRecovered %>% 
     group_by(Country) %>% 
     summarise(nCount = sum(LatestRecovered)) %>% 
