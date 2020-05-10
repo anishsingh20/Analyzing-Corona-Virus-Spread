@@ -128,6 +128,7 @@ shinyServer(function(input, output) {
   
   colnames(consolidated_df) <- c("Country","Confirmed","Deaths","Recovered")
   
+  #adding recovery and death rates
   consolidated_df <- consolidated_df %>%  mutate(Death_rate = round((Deaths/Confirmed)*100,2),
                             Recovery_rate = round((Recovered/Confirmed)*100,2)
                             )
