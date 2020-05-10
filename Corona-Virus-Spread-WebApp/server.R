@@ -171,11 +171,27 @@ shinyServer(function(input, output) {
     
     output$RecRate  <- renderText({
       
+      lastcol<-ncol(latestConf) #getting the last column from the time series dataframe
+      conf = sum(latestConf[lastcol]) #printing the sum of values in the column
+      rec = sum(latestRecoveries[lastcol])
+      
+      
+      Rec_rate_worldwide <- round((rec/conf)*100,2)
+      
+      Rec_rate_worldwide
     })
     
     
     output$DeadRate <- renderText({
       
+      lastcol<-ncol(latestConf) #getting the last column from the time series dataframe
+      conf = sum(latestConf[lastcol]) #printing the sum of values in the column
+      deaths = sum(latestDeaths[lastcol])
+      
+      
+      Death_rate_worldwide <- round((deaths/conf)*100,2)
+      
+      Death_rate_worldwide
       
     })
     
