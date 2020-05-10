@@ -68,6 +68,19 @@ shinyServer(function(input, output) {
   
   latestRecoveries_long<- gather(latestRecoveries, Date, Count, `1/22/20`:ncol(latestRecoveries) )
   
+  latestConf_long1 <- latestConf_long %>% 
+    rename(Confirmed = "Count")
+  
+  latestDeaths_long1<- latestDeaths_long %>% 
+    rename(Deaths = "Count")
+  
+  
+  latestRecoveries_long1 <- latestRecoveries_long %>% 
+    rename(Recoveries = "Count")
+  
+  
+  consolidated_df <- merge(x= , y=  , by = " " , all=TRUE)
+  
   Date_latestConf_long <- latestConf_long %>% 
     group_by(Date) %>%
     summarise(nConfirmed=sum(Count)) %>% 
