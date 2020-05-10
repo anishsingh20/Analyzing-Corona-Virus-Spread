@@ -157,6 +157,17 @@ shinyServer(function(input, output) {
     })  
     
     
+    output$RecRate  <- renderText({
+      
+    })
+    
+    
+    output$DeadRate <- renderText({
+      
+      
+    })
+    
+    
     
     output$StackedCOVID <- renderHighchart({
       
